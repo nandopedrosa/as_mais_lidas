@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 id="aml-source"> {{header}} </h1>
+<ul class="list-group aml-mais-lidas" id="aml-list">
+  {% for item in news %}
+  <li class="list-group-item"><a href={{item.link}} target="_blank"> {{item.title}} </a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

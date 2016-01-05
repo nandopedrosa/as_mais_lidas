@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{ title }} - As Mais Lidas</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/css/custom.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../static/css/ont-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../static/images/favicon.ico">
+
+</head>
+
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-info">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-info">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">CONTATO</a>
+                </li>
+                <li>
+                    <a href="#">SOBRE</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="container aml-top-header">
+    <div class="row">
+        <div class="jumbotron">
+            <h1>As mais lidas
+                <small>as notícias que você quer ler.</small>
+            </h1>
+            <p>Aqui você encontra as matérias mais lidas dos grandes Portais de Notícias nacionais ou internacionais. Se
+                você estiver no Brasil, também mostraremos um site da sua região*!
+            </p>
+            <button type="button" class="btn btn-lg btn-success">Nacional</button>
+            <button type="button" class="btn btn-lg btn-primary">Internacional</button>
+        </div>
+        <!--
+         <div class="col-xs-12 page-header">
+             <img src="../static/logo.png" id="logo"/>
+             <h1 class="aml-disclaimer"> <small>As notícias que você quer ler.</small></h1>
+         </div>
+         < /.col-lg-12 -->
+    </div>
+</div>
+<!-- /Navigation -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="list-group" id="aml-menu">
+                <a href="javascript:void(0)" id="uol" class="list-group-item active">UOL</a>
+                <a href="javascript:void(0)" id="g1" class="list-group-item">G1</a>
+                <a href="javascript:void(0)" id="r7" class="list-group-item">R7</a>
+                <a href="javascript:void(0)" id="folha" class="list-group-item">Folha</a>
+                <a href="javascript:void(0)" id="bol" class="list-group-item">BOL</a>
+                <a href="javascript:void(0)" id="carta" class="list-group-item">Carta Capital</a>
+                <a href="javascript:void(0)" id="veja" class="list-group-item">Veja</a>
+                <a href="javascript:void(0)" id="local" class="list-group-item">Local</a>
+            </div>
+        </div>
+
+        <div id="loading"><img src="../static/images/ajax-loader.gif"></div>
+
+        <!-- Page Content -->
+        <div class="col-xs-10">
+            {% block content %} {% endblock %}
+
+        </div>
+        <!-- /Page Content -->
+    </div>
+    <!-- /Row -->
+</div>
+<!-- /Container -->
+
+<div class="container text-center">
+    <footer class="footer">
+        <p class="footer-text">Copyright © As Mais Lidas 2015</p>
+    </footer>
+</div>
+
+<!-- jQuery -->
+<script src="../static/js/jquery/dist/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../static/css/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- Get User IP and set localized news feed -->
+<script type="text/javascript">
+    var userip;
+</script>
+
+<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
+
+<script>
+    baseURL = window.location.protocol + "//" + window.location.host;
+
+    // AJAX call for the State Location
+    $.get(
+            baseURL + '/get_local_ns',
+            {
+                ip: userip
+            },
+            function (responseContent) {
+                $('#local').text(responseContent.ns_title);
+                $('#local').data('state', responseContent.state);
+            },
+            'json'
+    );
+</script>
+<!--/Get User IP -->
+
+<!-- As Mais Lidas JavaScript -->
+<script src="../static/js/custom.js"></script>
+
+</body>
+
+</html>

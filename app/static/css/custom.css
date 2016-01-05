@@ -1,0 +1,85 @@
+.aml-top-header {
+    margin-bottom: 20px;
+    margin-top: 80px;
+
+}
+
+.aml-disclaimer {
+    display: inline;
+
+}
+
+.aml-mais-lidas {
+    margin-top: 20px;
+}
+
+#logo {
+    margin: 40px 0 20px 0;
+}
+
+#loading {
+    display: none;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    z-index: 2;
+    overflow: auto;
+}
+
+.navbar-default {
+    background-color: #18bc9c;
+}
+
+#navbar-info > ul > li > a {
+    color: white;
+}
+
+a {
+    color: #2E79BA;
+}
+
+a.list-group-item.active {
+    background-color: #18bc9c !important;
+    border-color: #18bc9c !important;
+}
+
+#aml-list > li.list-group-item.active {
+    background-color: white !important;
+    border-color: white !important;
+    border-style: none !important;
+}
+
+#aml-source {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Sticky Footer */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #18bc9c;
+}
+
+.footer-text {
+    margin-top: 20px;
+    color: white;
+
+}
+
+/* /Sticky Footer */
+

@@ -1,0 +1,6 @@
+*.DS_Store
+.idea/
+/app/__pycache__/
+*.py[cod]
+*$py.class
+*.cache/
