@@ -58,10 +58,11 @@ def get_state():
     ip = request.args.get('ip')
 
     state = util.getstate(ip)
-    ns_title = util.STATES_NS[state] + '*'
 
-    # DEBUG
-    # state = 'SP'
+    # DEBUG - Change here to simulate different locations. Comment otherwise.
+    state = 'RJ'
+
+    ns_title = util.STATES_NS[state] + '*'
 
     d = dict(state=state, ns_title=ns_title)
     j = json.dumps(d)

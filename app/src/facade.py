@@ -14,7 +14,7 @@ def get_most_read(source):
     """
     Gets the most read news from a given page (national or international)
 
-    :param source: the name of the source page (e.g: g1, WP, etc.)
+    :param source: the name of the source page (e.g: g1, localDF, WP, etc.)
     :return: a list with the most read news from the page
     """
     # Check if the News Source is national or internacional

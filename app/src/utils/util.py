@@ -20,20 +20,21 @@ STATES_NS = dict(AC='not applicable', AL='not applicable', AP='not applicable', 
                  BA='not applicable', CE='not applicable', DF='Correio Braziliense', ES='not applicable',
                  GO='not applicable', MA='not applicable', MT='not applicable', MS='not applicable',
                  MG='not applicable', PA='not applicable', PB='not applicable', PR='not applicable',
-                 PE='not applicable', PI='not applicable', RJ='not applicable', RN='not applicable',
+                 PE='not applicable', PI='not applicable', RJ='O Globo', RN='not applicable',
                  RS='not applicable', RO='not applicable', RR='not applicable', SC='not applicable',
                  SP='Estadão', SE='not applicable', TO='not applicable')
 
 urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r7="http://www.r7.com/",
             folha='http://www.folha.uol.com.br/', bol="http://www.bol.uol.com.br/",
             carta="http://www.cartacapital.com.br/", veja="http://veja.abril.com.br/",
-            localDF="http://www.correiobraziliense.com.br/", localSP="http://www.estadao.com.br/")
+            localDF="http://www.correiobraziliense.com.br/", localSP="http://www.estadao.com.br/",
+            localRJ="http://oglobo.globo.com/rio/")
 
 friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7 (www.r7.com)",
                       folha='Folha de São Paulo (www.folha.uol.com.br)', bol="BOL (www.bol.uol.com.br)",
                       carta="Carta Capital (www.cartacapital.com.br)", veja="Veja (veja.abril.com.br)",
                       localDF="Correio Braziliense (www.correiobraziliense.com.br)",
-                      localSP="Estadão (www.estadao.com.br)")
+                      localSP="Estadão (www.estadao.com.br)", localRJ="O Globo (oglobo.globo.com/rio)")
 
 
 # End of Constants

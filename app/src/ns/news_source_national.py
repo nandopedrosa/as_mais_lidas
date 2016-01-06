@@ -186,9 +186,24 @@ def __local_sp(soup):
     return news
 
 
+def __local_rj(soup):
+    """
+    Gets the most read news from the Rio de Janeiro Local News (O Globo)
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from O Globo Page
+    """
+    news = []
+    container = soup.find('div', id='lidas')
+    links = container.find_all('a')
+
+    for a in links:
+        news.append(dict(title=a.string, link=a['href']))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
-                  localSP=__local_sp)
+                  localSP=__local_sp, localRJ=__local_rj)
 
 
 def get_most_read(source):
