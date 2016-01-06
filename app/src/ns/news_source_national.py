@@ -158,7 +158,7 @@ def __veja(soup):
 
 def __local_df(soup):
     """
-    Gets the most read news from the Distrito Federal Local News (Correio Braziliense)
+    Gets the most read news from Distrito Federal Local News (Correio Braziliense)
     :param soup: the BeautifulSoup object
     :return: a list with the most read news from the Correio Braziliense Page
     """
@@ -173,7 +173,7 @@ def __local_df(soup):
 
 def __local_sp(soup):
     """
-    Gets the most read news from the Sao Paulo Local News (Estadao)
+    Gets the most read news from Sao Paulo Local News (Estadao)
     :param soup: the BeautifulSoup object
     :return: a list with the most read news from the Estadao Page
     """
@@ -201,9 +201,25 @@ def __local_rj(soup):
     return news
 
 
+def __local_pe(soup):
+    """
+    Gets the most read news from Pernambuco Local News (JC Online)
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from JC Online Page
+    """
+    news = []
+    list_items = soup.find('div', class_='maisVistas').find_all('li', class_='texto')
+
+    for li in list_items:
+        title = li.a.string
+        link = li.a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
-                  localSP=__local_sp, localRJ=__local_rj)
+                  localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe)
 
 
 def get_most_read(source):
