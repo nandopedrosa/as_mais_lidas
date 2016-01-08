@@ -18,7 +18,7 @@
     <link href="../static/css/custom.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../static/css/ont-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../static/images/favicon.ico">
@@ -134,8 +134,15 @@
                 ip: userip
             },
             function (responseContent) {
-                $('#local').text(responseContent.ns_title);
-                $('#local').data('state', responseContent.state);
+                console.log(responseContent.state);
+                //If the User State Location was not found, then we hide the Local news source
+                if(responseContent.state == 'notfound') {
+                    $('#local').hide();
+                } else {
+                    $('#local').show();
+                    $('#local').text(responseContent.ns_title);
+                    $('#local').data('state', responseContent.state);
+                }
             },
             'json'
     );

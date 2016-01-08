@@ -60,7 +60,7 @@ def getstate(ip):
     state = data[start_index: end_index]
 
     if state not in STATES:
-        raise ValueError('There was an error when trying to get the user location')
+        state = 'notfound'
 
     return state
 

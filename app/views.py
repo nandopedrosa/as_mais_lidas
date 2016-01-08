@@ -60,9 +60,12 @@ def get_state():
     state = util.getstate(ip)
 
     # DEBUG - Change here to simulate different locations. Comment otherwise.
-    state = 'PE'
+    # state = 'PE'
 
-    ns_title = util.STATES_NS[state] + '*'
+    if state == 'notfound':
+        ns_title = ''
+    else:
+        ns_title = util.STATES_NS[state] + '*'
 
     d = dict(state=state, ns_title=ns_title)
     j = json.dumps(d)

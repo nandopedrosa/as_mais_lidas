@@ -20,6 +20,7 @@ def get_most_read(source):
     # Check if the News Source is national or internacional
     if source in news_source_national.strategies:
         return news_source_national.get_most_read(source)
+
     elif source in news_source_international.strategies:
         return news_source_international.get_most_read(source)
     else:
