@@ -152,7 +152,8 @@ def __veja(soup):
     links.extend(links_remainder)
 
     for a in links:
-        news.append(dict(title=a.string, link=a['href']))
+        news.append(dict(title=a.string,
+                         link=util.urls['veja'] + a['href']))  # Relative link, we have to prefix with the page domain
     return news
 
 
@@ -217,9 +218,25 @@ def __local_pe(soup):
     return news
 
 
+def __local_ac(soup):
+    """
+   Gets the most read news from Acre Local News (Gazeta do Acre)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from Gazeta do Acre page
+   """
+    news = []
+    list_items = soup.find('div', id='direita_').find_all('li')
+
+    for li in list_items:
+        title = li.a.string
+        link = li.a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
-                  localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe)
+                  localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac)
 
 
 def get_most_read(source):
