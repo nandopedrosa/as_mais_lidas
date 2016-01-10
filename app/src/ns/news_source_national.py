@@ -234,9 +234,23 @@ def __local_ac(soup):
     return news
 
 
+def __local_al(soup):
+    """
+  Gets the most read news from Alagoas Local News (Cada Minuto)
+  :param soup: the BeautifulSoup object
+  :return: a list with the most read news from Cada Minuto page
+  """
+    news = []
+    links = soup.find('ul', class_='read-more').find_all('a')
+
+    for a in links:
+        news.append(dict(title=a.h3.string, link=util.urls['localAL'] + a['href']))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
-                  localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac)
+                  localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac, localAL=__local_al)
 
 
 def get_most_read(source):
