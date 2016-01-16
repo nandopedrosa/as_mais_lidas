@@ -248,9 +248,26 @@ def __local_al(soup):
     return news
 
 
+def __local_ap(soup):
+    """
+ Gets the most read news from Amapá Local News (Jornal do Dia)
+ :param soup: the BeautifulSoup object
+ :return: a list with the most read news from Jornal do Dia page
+ """
+    news = []
+    list_items = soup.find('div', id='Mod212').find_all('li')
+
+    for li in list_items:
+        title = li.h4.a.string
+        link = li.h4.a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
-                  localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac, localAL=__local_al)
+                  localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac, localAL=__local_al,
+                  localAP=__local_ap)
 
 
 def get_most_read(source):

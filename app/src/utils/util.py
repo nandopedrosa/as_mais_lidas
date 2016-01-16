@@ -17,7 +17,7 @@ STATES = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS'
           'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']
 
 # Used for the Menu of News Sources
-STATES_NS = dict(AC='Gazeta do Acre', AL='Cada Minuto', AP='not applicable', AM='not applicable',
+STATES_NS = dict(AC='Gazeta do Acre', AL='Cada Minuto', AP='Jornal do Dia', AM='not applicable',
                  BA='not applicable', CE='not applicable', DF='Correio Braziliense', ES='not applicable',
                  GO='not applicable', MA='not applicable', MT='not applicable', MS='not applicable',
                  MG='not applicable', PA='not applicable', PB='not applicable', PR='not applicable',
@@ -31,7 +31,8 @@ urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r
             carta="http://www.cartacapital.com.br/", veja="http://veja.abril.com.br",
             localDF="http://www.correiobraziliense.com.br/", localSP="http://www.estadao.com.br/",
             localRJ="http://oglobo.globo.com/rio/", localPE="http://jconline.ne10.uol.com.br/",
-            localAC="http://agazetadoacre.com/noticias/", localAL="http://www.cadaminuto.com.br/")
+            localAC="http://agazetadoacre.com/noticias/", localAL="http://www.cadaminuto.com.br/",
+            localAP="http://www.jdia.com.br/portal2/")
 
 # Used for the header of the main panel
 friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7 (www.r7.com)",
@@ -40,7 +41,8 @@ friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7
                       localDF="Correio Braziliense (www.correiobraziliense.com.br)",
                       localSP="Estadão (www.estadao.com.br)", localPE="JC Online (jconline.ne10.uol.com.br)",
                       localRJ="O Globo (oglobo.globo.com/rio)", localAL="Cada Minuto (www.cadaminuto.com.br)",
-                      localAC="A Gazeta do Acre (agazetadoacre.com/noticias)")
+                      localAC="A Gazeta do Acre (agazetadoacre.com/noticias)",
+                      localAP="Jornal do Dia (www.jdia.com.br)")
 
 
 # End of Constants
