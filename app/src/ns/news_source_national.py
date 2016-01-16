@@ -327,6 +327,7 @@ def __local_es(soup):
         news.append(dict(title=title, link=link))
     return news
 
+
 def __local_go(soup):
     """
    Gets the most read news from Goiás Local News (TV Anhaguera)
@@ -343,11 +344,27 @@ def __local_go(soup):
     return news
 
 
+def __local_ma(soup):
+    """
+   Gets the most read news from Maranhão Local News (Jornal Pequeno)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from Jornal Pequeno page
+   """
+    news = []
+    anchors = soup.find('div', class_='tablidas tab').find_all('a')
+
+    for a in anchors:
+        title = a.h5.string
+        link = a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
                   localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac, localAL=__local_al,
                   localAP=__local_ap, localAM=__local_am, localBA=__local_ba, localCE=__local_ce, localES=__local_es,
-                  localGO=__local_go)
+                  localGO=__local_go, localMA=__local_ma)
 
 
 def get_most_read(source):
