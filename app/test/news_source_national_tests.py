@@ -83,8 +83,12 @@ class NewsSourceNationalTests(unittest.TestCase):
         news, title = news_source_national.get_most_read('localCE')
         self.assertEqual(len(news), 5)
 
-    def test_local_ce(self):
+    def test_local_es(self):
         news, title = news_source_national.get_most_read('localES')
+        self.assertEqual(len(news), 5)
+
+    def test_local_go(self):
+        news, title = news_source_national.get_most_read('localGO')
         self.assertEqual(len(news), 5)
 
     def test_getstate(self):
