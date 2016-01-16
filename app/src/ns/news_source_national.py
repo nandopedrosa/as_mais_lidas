@@ -360,11 +360,26 @@ def __local_ma(soup):
     return news
 
 
+def __local_mt(soup):
+    """
+   Gets the most read news from Mato Grosso Local News (Gazeta Digital)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from Gazeta Digital page
+   """
+    news = []
+    anchors = soup.find_all('a', class_='top10titulo')
+
+    for a in anchors:
+        title = a.string
+        link = util.urls['localMT'] + a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
                   localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac, localAL=__local_al,
                   localAP=__local_ap, localAM=__local_am, localBA=__local_ba, localCE=__local_ce, localES=__local_es,
-                  localGO=__local_go, localMA=__local_ma)
+                  localGO=__local_go, localMA=__local_ma, localMT=__local_mt)
 
 
 def get_most_read(source):
