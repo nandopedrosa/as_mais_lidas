@@ -19,7 +19,7 @@ STATES = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS'
 # Used for the Menu of News Sources
 STATES_NS = dict(AC='Gazeta do Acre', AL='Cada Minuto', AP='Jornal do Dia', AM='A Crítica',
                  BA='A Tarde', CE='Diário do Nordeste', DF='Correio Braziliense', ES='Folha Vitória',
-                 GO='TV Anhaguera', MA='Jornal Pequeno', MT='Gazeta Digital', MS='not applicable',
+                 GO='TV Anhaguera', MA='Jornal Pequeno', MT='Gazeta Digital', MS='Correio do Estado',
                  MG='not applicable', PA='not applicable', PB='not applicable', PR='not applicable',
                  PE='JC Online', PI='not applicable', RJ='O Globo', RN='not applicable',
                  RS='not applicable', RO='not applicable', RR='not applicable', SC='not applicable',
@@ -35,7 +35,8 @@ urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r
             localAP="http://www.jdia.com.br/portal2/", localAM="http://acritica.uol.com.br",
             localBA="http://atarde.uol.com.br", localCE="http://diariodonordeste.verdesmares.com.br",
             localES="http://www.folhavitoria.com.br", localGO="http://g1.globo.com/goias/",
-            localMA="http://jornalpequeno.com.br/", localMT="http://www.gazetadigital.com.br")
+            localMA="http://jornalpequeno.com.br/", localMT="http://www.gazetadigital.com.br",
+            localMS="http://www.correiodoestado.com.br/")
 
 # Used for the header of the main panel
 friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7 (www.r7.com)",
@@ -50,7 +51,8 @@ friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7
                       localCE="Diário do Nordeste (diariodonordeste.verdesmares.com.br)",
                       localES="Folha Vitória (www.folhavitoria.com.br)", localGO="TV Anhaguera (g1.globo.com/goias)",
                       localMA="Jornal Pequeno (jornalpequeno.com.br)",
-                      localMT="Gazeta Digital (www.gazetadigital.com.br)")
+                      localMT="Gazeta Digital (www.gazetadigital.com.br)",
+                      localMS="Correio do Estado (www.correiodoestado.com.br)")
 
 
 # End of Constants
