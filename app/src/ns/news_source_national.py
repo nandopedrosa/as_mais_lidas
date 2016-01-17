@@ -338,7 +338,7 @@ def __local_go(soup):
     anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
 
     for a in anchors:
-        title = a.string
+        title = a['title']
         link = "http://g1.globo.com" + a['href']
         news.append(dict(title=title, link=link))
     return news
@@ -418,7 +418,7 @@ def __local_pa(soup):
     anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
 
     for a in anchors:
-        title = a.string
+        title = a['title']
         link = "http://g1.globo.com" + a['href']
         news.append(dict(title=title, link=link))
     return news
@@ -455,6 +455,7 @@ def __local_pr(soup):
         news.append(dict(title=title, link=link))
     return news
 
+
 def __local_pi(soup):
     """
    Gets the most read news from Piauí Local News (Portal O dia)
@@ -471,12 +472,45 @@ def __local_pi(soup):
     return news
 
 
+def __local_rn(soup):
+    """
+   Gets the most read news from Rio grande do Norte Local News (Inter TV)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from Inter TV page
+   """
+    news = []
+    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
+
+    for a in anchors:
+        title = a['title']
+        link = "http://g1.globo.com" + a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
+
+def __local_rs(soup):
+    """
+   Gets the most read news from Rio Grande do Sul Local News (RBS TV)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from RBS TV page
+   """
+    news = []
+    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
+
+    for a in anchors:
+        title = a['title']
+        link = "http://g1.globo.com" + a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
                   localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac, localAL=__local_al,
                   localAP=__local_ap, localAM=__local_am, localBA=__local_ba, localCE=__local_ce, localES=__local_es,
                   localGO=__local_go, localMA=__local_ma, localMT=__local_mt, localMS=__local_ms, localMG=__local_mg,
-                  localPA=__local_pa, localPB=__local_pb, localPR=__local_pr, localPI=__local_pi)
+                  localPA=__local_pa, localPB=__local_pb, localPR=__local_pr, localPI=__local_pi, localRN=__local_rn,
+                  localRS=__local_rs)
 
 
 def get_most_read(source):

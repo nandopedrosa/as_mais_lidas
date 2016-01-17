@@ -123,6 +123,14 @@ class NewsSourceNationalTests(unittest.TestCase):
         news, title = news_source_national.get_most_read('localPI')
         self.assertEqual(len(news), 5)
 
+    def test_local_rn(self):
+        news, title = news_source_national.get_most_read('localRN')
+        self.assertEqual(len(news), 5)
+
+    def test_local_rs(self):
+        news, title = news_source_national.get_most_read('localRS')
+        self.assertEqual(len(news), 5)
+
     def test_getstate(self):
         state = util.getstate('187.111.96.65')
         self.assertEqual('RJ', state)
