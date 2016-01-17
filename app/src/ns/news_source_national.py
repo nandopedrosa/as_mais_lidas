@@ -392,11 +392,26 @@ def __local_ms(soup):
     return news
 
 
+def __local_mg(soup):
+    """
+   Gets the most read news from Minas Gerais Local News (Estado de Minas)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from Estado de Minas page
+   """
+    news = []
+    anchors = soup.find('div', id='lidas').find_all('a')
+
+    for a in anchors:
+        title = a['title']
+        link = a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
                   localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac, localAL=__local_al,
                   localAP=__local_ap, localAM=__local_am, localBA=__local_ba, localCE=__local_ce, localES=__local_es,
-                  localGO=__local_go, localMA=__local_ma, localMT=__local_mt, localMS=__local_ms)
+                  localGO=__local_go, localMA=__local_ma, localMT=__local_mt, localMS=__local_ms, localMG=__local_mg)
 
 
 def get_most_read(source):
