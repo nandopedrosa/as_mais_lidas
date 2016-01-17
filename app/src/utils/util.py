@@ -20,7 +20,7 @@ STATES = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS'
 STATES_NS = dict(AC='Gazeta do Acre', AL='Cada Minuto', AP='Jornal do Dia', AM='A Crítica',
                  BA='A Tarde', CE='Diário do Nordeste', DF='Correio Braziliense', ES='Folha Vitória',
                  GO='TV Anhaguera', MA='Jornal Pequeno', MT='Gazeta Digital', MS='Correio do Estado',
-                 MG='Estado de Minas', PA='Rede Liberal', PB='Paraíba Online', PR='not applicable',
+                 MG='Estado de Minas', PA='Rede Liberal', PB='Paraíba Online', PR='Paraná Online',
                  PE='JC Online', PI='not applicable', RJ='O Globo', RN='not applicable',
                  RS='not applicable', RO='not applicable', RR='not applicable', SC='not applicable',
                  SP='Estadão', SE='not applicable', TO='not applicable')
@@ -37,7 +37,8 @@ urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r
             localES="http://www.folhavitoria.com.br", localGO="http://g1.globo.com/goias/",
             localMA="http://jornalpequeno.com.br/", localMT="http://www.gazetadigital.com.br",
             localMS="http://www.correiodoestado.com.br/", localMG="http://www.em.com.br/",
-            localPA="http://g1.globo.com/pa/para/", localPB="http://paraibaonline.net.br/")
+            localPA="http://g1.globo.com/pa/para/", localPB="http://paraibaonline.net.br/",
+            localPR="http://www.parana-online.com.br")
 
 # Used for the header of the main panel
 friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7 (www.r7.com)",
@@ -55,7 +56,8 @@ friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7
                       localMT="Gazeta Digital (www.gazetadigital.com.br)",
                       localMS="Correio do Estado (www.correiodoestado.com.br)",
                       localMG="Estado de Minas (www.em.com.br)", localPA="Rede Liberal (g1.globo.com/pa)",
-                      localPB="Paraíba Online (paraibaonline.net.br)")
+                      localPB="Paraíba Online (paraibaonline.net.br)",
+                      localPR="Paraná Online (www.parana-online.com.br/)")
 
 
 def getstate(ip):
