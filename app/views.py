@@ -60,7 +60,7 @@ def get_state():
     state = util.getstate(ip)
 
     # DEBUG - Change here to simulate different locations. Comment otherwise.
-    state = 'SC'
+    state = 'SE'
 
     if state == 'notfound':
         ns_title = ''

@@ -22,8 +22,8 @@ STATES_NS = dict(AC='Gazeta do Acre', AL='Cada Minuto', AP='Jornal do Dia', AM='
                  GO='TV Anhaguera', MA='Jornal Pequeno', MT='Gazeta Digital', MS='Correio do Estado',
                  MG='Estado de Minas', PA='Rede Liberal', PB='Paraíba Online', PR='Paraná Online',
                  PE='JC Online', PI='Portal O Dia', RJ='O Globo', RN='Inter TV',
-                 RS='RBS TV', RO='not applicable', RR='not applicable', SC='Click RBS',
-                 SP='Estadão', SE='not applicable', TO='not applicable')
+                 RS='RBS TV', RO='Rondônia ao Vivo', RR='Folha de Boa Vista', SC='Click RBS',
+                 SP='Estadão', SE='Jornal do Dia', TO='not applicable')
 
 # Used in BeautifulSoup
 urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r7="http://www.r7.com/",
@@ -40,7 +40,8 @@ urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r
             localPA="http://g1.globo.com/pa/para/", localPB="http://paraibaonline.net.br/",
             localPR="http://www.parana-online.com.br", localPI="http://www.portalodia.com",
             localRN="http://g1.globo.com/rn/", localRS="http://g1.globo.com/rs/rio-grande-do-sul/index.html",
-            localSC="http://www.clicrbs.com.br/sc/")
+            localSC="http://www.clicrbs.com.br/sc/", localRO="http://www.rondoniaovivo.com",
+            localRR="http://www.folhabv.com.br/", localSE="http://www.jornaldodiase.com.br/")
 
 # Used for the header of the main panel
 friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7 (www.r7.com)",
@@ -61,7 +62,9 @@ friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7
                       localPB="Paraíba Online (paraibaonline.net.br)",
                       localPR="Paraná Online (www.parana-online.com.br/)", localPI="Portal O Dia (www.portalodia.com)",
                       localRN="Inter TV (g1.globo.com/rn)", localRS="RBS TV (g1.globo.com/rs)",
-                      localSC="Click RBS (www.clicrbs.com.br/sc)")
+                      localSC="Click RBS (www.clicrbs.com.br/sc)", localRO="Rondônia ao Vivo (www.rondoniaovivo.com)",
+                      localRR="Folha de Boa Vista (www.folhabv.com.br)",
+                      localSE="Jornal do Dia (www.jornaldodiase.com.br)")
 
 
 def getstate(ip):

@@ -520,13 +520,63 @@ def __local_sc(soup):
     return news
 
 
+def __local_ro(soup):
+    """
+   Gets the most read news from Rondônia Local News (Rondonia ao Vivo)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from Rondonia ao Vivo page
+   """
+    news = []
+    anchors = soup.find('div', id='mais-lidas').find_all('a', class_='fill-lidas')
+
+    for a in anchors:
+        title = a['title']
+        link = util.urls['localRO'] + a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
+
+def __local_rr(soup):
+    """
+   Gets the most read news from Roraima Local News (Folha de Boa Vista)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from Folha de Boa Vista page
+   """
+    news = []
+    divs = soup.find('div', class_='mais-lidas').find_all('div', class_="ultimas-text")
+
+    for div in divs:
+        a = div.find('a')
+        title = a.string
+        link = util.urls['localRR'] + a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
+
+def __local_se(soup):
+    """
+   Gets the most read news from Sergipe Local News (Jornal do Dia)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from Jornal do Dia page
+   """
+    news = []
+    anchors = soup.find('div', class_='coluna3 bordaTopoCinza').find_all('a')
+
+    for a in anchors:
+        title = a.string
+        link = util.urls['localSE'] + a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
                   localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac, localAL=__local_al,
                   localAP=__local_ap, localAM=__local_am, localBA=__local_ba, localCE=__local_ce, localES=__local_es,
                   localGO=__local_go, localMA=__local_ma, localMT=__local_mt, localMS=__local_ms, localMG=__local_mg,
                   localPA=__local_pa, localPB=__local_pb, localPR=__local_pr, localPI=__local_pi, localRN=__local_rn,
-                  localRS=__local_rs, localSC=__local_sc)
+                  localRS=__local_rs, localSC=__local_sc, localRO=__local_ro, localRR=__local_rr, localSE=__local_se)
 
 
 def get_most_read(source):
