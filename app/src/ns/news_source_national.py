@@ -569,6 +569,21 @@ def __local_se(soup):
     return news
 
 
+def __local_to(soup):
+    """
+   Gets the most read news from Tocantins Local News (TV Anhaguera)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from TV Anhaguera page
+   """
+    news = []
+    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
+
+    for a in anchors:
+        title = a['title']
+        link = "http://g1.globo.com" + a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
@@ -576,7 +591,8 @@ strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=_
                   localAP=__local_ap, localAM=__local_am, localBA=__local_ba, localCE=__local_ce, localES=__local_es,
                   localGO=__local_go, localMA=__local_ma, localMT=__local_mt, localMS=__local_ms, localMG=__local_mg,
                   localPA=__local_pa, localPB=__local_pb, localPR=__local_pr, localPI=__local_pi, localRN=__local_rn,
-                  localRS=__local_rs, localSC=__local_sc, localRO=__local_ro, localRR=__local_rr, localSE=__local_se)
+                  localRS=__local_rs, localSC=__local_sc, localRO=__local_ro, localRR=__local_rr, localSE=__local_se,
+                  localTO=__local_to)
 
 
 def get_most_read(source):
