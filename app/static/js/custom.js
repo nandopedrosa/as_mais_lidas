@@ -15,7 +15,7 @@ $.ajaxSetup({
 });
 
 
-//AJAX call to refresh the News Source
+//AJAX Call to refresh the Main Panel after user clicks on a menu item
 function refreshNewsSource(obj) {
 
     var params;
@@ -52,7 +52,7 @@ function refreshNewsSource(obj) {
     );
 }
 
-// AJAX calls after menu select
+// Menu Item click handler
 $('#aml-menu > a.list-group-item').click(function () {
 
     //Highlight the correct menu item
@@ -62,8 +62,22 @@ $('#aml-menu > a.list-group-item').click(function () {
     refreshNewsSource($(this));
 });
 
-function setLocation(userip) {
-    alert(userip);
+//National/International buttons handler
+$('.aml-btn').click(function(){
+
+    var id = $(this).attr('id');
+
+    if(id == 'btn-national') {
+        $('.national').css('display', 'block');
+        $('.international').css('display','none');
+    } else {
+        $('.national').css('display','none');
+        $('.international').css('display', 'block');
+    }
 
 
-}
+
+
+
+
+});

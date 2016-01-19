@@ -65,8 +65,8 @@
             <p>Aqui você encontra as matérias mais lidas dos grandes Portais de Notícias nacionais ou internacionais. Se
                 você estiver no Brasil, também mostraremos um site da sua região*!
             </p>
-            <button type="button" class="btn btn-lg btn-success">Nacional</button>
-            <button type="button" class="btn btn-lg btn-primary">Internacional</button>
+            <button id="btn-national" type="button" class="btn btn-lg btn-success aml-btn">Nacional</button>
+            <button id="btn-international" type="button" class="btn btn-lg btn-primary aml-btn">Internacional</button>
         </div>
         <!--
          <div class="col-xs-12 page-header">
@@ -81,14 +81,20 @@
     <div class="row">
         <div class="col-xs-2">
             <div class="list-group" id="aml-menu">
-                <a href="javascript:void(0)" id="uol" class="list-group-item active">UOL</a>
-                <a href="javascript:void(0)" id="g1" class="list-group-item">G1</a>
-                <a href="javascript:void(0)" id="r7" class="list-group-item">R7</a>
-                <a href="javascript:void(0)" id="folha" class="list-group-item">Folha</a>
-                <a href="javascript:void(0)" id="bol" class="list-group-item">BOL</a>
-                <a href="javascript:void(0)" id="carta" class="list-group-item">Carta Capital</a>
-                <a href="javascript:void(0)" id="veja" class="list-group-item">Veja</a>
-                <a href="javascript:void(0)" id="local" class="list-group-item">Local</a>
+                <a href="javascript:void(0)" id="uol" class="list-group-item active national">UOL</a>
+                <a href="javascript:void(0)" id="g1" class="list-group-item national">G1</a>
+                <a href="javascript:void(0)" id="r7" class="list-group-item national">R7</a>
+                <a href="javascript:void(0)" id="folha" class="list-group-item national">Folha</a>
+                <a href="javascript:void(0)" id="bol" class="list-group-item national">BOL</a>
+                <a href="javascript:void(0)" id="carta" class="list-group-item national">Carta Capital</a>
+                <a href="javascript:void(0)" id="veja" class="list-group-item national">Veja</a>
+                <a href="javascript:void(0)" id="local" class="list-group-item national">Local</a>
+                <a href="javascript:void(0)" id="ny" class="list-group-item active international">NY Times</a>
+                <a href="javascript:void(0)" id="wp" class="list-group-item international">Washington Post</a>
+                <a href="javascript:void(0)" id="tg" class="list-group-item international">The Guardian</a>
+                <a href="javascript:void(0)" id="bbc" class="list-group-item international">BBC News</a>
+                <a href="javascript:void(0)" id="ep" class="list-group-item international">El País</a>
+                <a href="javascript:void(0)" id="lm" class="list-group-item international">Le Monde</a>
             </div>
         </div>
 
@@ -134,7 +140,6 @@
                 ip: userip
             },
             function (responseContent) {
-                console.log(responseContent.state);
                 //If the User State Location was not found, then we hide the Local news source
                 if(responseContent.state == 'notfound') {
                     $('#local').hide();
