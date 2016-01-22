@@ -52,32 +52,45 @@ function refreshNewsSource(obj) {
     );
 }
 
-// Menu Item click handler
-$('#aml-menu > a.list-group-item').click(function () {
-
-    //Highlight the correct menu item
+/*
+ Activates selected menu item (and deactivates previous selected menu item)
+ */
+function toggleMenuItem(menuItem) {
+    //Remove previous selected item
     $('#aml-menu > a.list-group-item').removeClass('active');
+    //Activate current menu item
+    menuItem.addClass('active');
     $(this).addClass('active');
+}
 
-    refreshNewsSource($(this));
-});
+/*
+ Changes between National and International news source
+ Activates selected menu (based on the first news source of the national or international list)
+ */
 
-//National/International buttons handler
-$('.aml-btn').click(function(){
+$('.aml-btn').click(function () {
 
     var id = $(this).attr('id');
+    var firstItem;
 
-    if(id == 'btn-national') {
+    if (id == 'btn-national') {
         $('.national').css('display', 'block');
-        $('.international').css('display','none');
+        $('.international').css('display', 'none');
+        firstItem = $('.national').first();
+
     } else {
-        $('.national').css('display','none');
+        $('.national').css('display', 'none');
         $('.international').css('display', 'block');
+        firstItem = $('.international').first();
     }
+    toggleMenuItem(firstItem);
+    refreshNewsSource(firstItem);
+});
 
-
-
-
-
-
+/*
+ Select and refresh news source
+ */
+$('#aml-menu > a.list-group-item').click(function () {
+    toggleMenuItem($(this));
+    refreshNewsSource($(this));
 });
