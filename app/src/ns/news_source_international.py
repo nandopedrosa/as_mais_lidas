@@ -24,6 +24,7 @@ def __ny(soup):
         news.append(dict(title=title, link=link))
     return news
 
+
 def __wp(soup):
     """
    Gets the most read news from the Washington Post page
@@ -40,8 +41,24 @@ def __wp(soup):
     return news
 
 
+def __tg(soup):
+    """
+   Gets the most read news from the The Guardian page
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from the The Guardian page
+   """
+    news = []
+    anchors = soup.find('div', id='tabs-popular-1').find_all('a')
+
+    for a in anchors:
+        link = a['href']
+        title = a.text
+        news.append(dict(title=title, link=link))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(ny=__ny, wp=__wp)
+strategies = dict(ny=__ny, wp=__wp, tg=__tg)
 
 
 def get_most_read(source):

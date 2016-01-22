@@ -160,6 +160,10 @@ class NewsSourceNationalTests(unittest.TestCase):
         news, title = news_source_international.get_most_read('wp')
         self.assertEqual(len(news), 5)
 
+    def test_wp(self):
+        news, title = news_source_international.get_most_read('tg')
+        self.assertEqual(len(news), 10)
+
     def test_getstate(self):
         state = util.getstate('187.111.96.65')
         self.assertEqual('RJ', state)
