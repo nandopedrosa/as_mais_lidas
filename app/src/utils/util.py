@@ -42,7 +42,8 @@ urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r
             localRN="http://g1.globo.com/rn/", localRS="http://g1.globo.com/rs/rio-grande-do-sul/index.html",
             localSC="http://www.clicrbs.com.br/sc/", localRO="http://www.rondoniaovivo.com",
             localRR="http://www.folhabv.com.br/", localSE="http://www.jornaldodiase.com.br/",
-            localTO="http://g1.globo.com/to", ny="http://www.nytimes.com/most-popular")
+            localTO="http://g1.globo.com/to", ny="http://www.nytimes.com/most-popular",
+            wp="http://www.washingtonpost.com/")
 
 # Used for the header of the main panel
 friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7 (www.r7.com)",
@@ -66,7 +67,7 @@ friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7
                       localSC="Click RBS (www.clicrbs.com.br/sc)", localRO="Rondônia ao Vivo (www.rondoniaovivo.com)",
                       localRR="Folha de Boa Vista (www.folhabv.com.br)",
                       localSE="Jornal do Dia (www.jornaldodiase.com.br)", localTO="TV Anhaguera (g1.globo.com/to)",
-                      ny="NY Times (www.nytimes.com)")
+                      ny="NY Times (www.nytimes.com)", wp="Washington Post (www.washingtonpost.com)")
 
 
 def getstate(ip):
