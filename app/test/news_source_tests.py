@@ -11,6 +11,7 @@ import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import unittest
 from src.ns import news_source_national
+from src.ns import news_source_international
 from src.utils import util
 
 
@@ -150,6 +151,10 @@ class NewsSourceNationalTests(unittest.TestCase):
     def test_local_to(self):
         news, title = news_source_national.get_most_read('localTO')
         self.assertEqual(len(news), 5)
+
+    def test_ny(self):
+        news, title = news_source_international.get_most_read('ny')
+        self.assertEqual(len(news), 10)
 
     def test_getstate(self):
         state = util.getstate('187.111.96.65')

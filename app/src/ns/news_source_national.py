@@ -458,16 +458,16 @@ def __local_pr(soup):
 
 def __local_pi(soup):
     """
-   Gets the most read news from Piauí Local News (Portal O dia)
+   Gets the most read news from Piauí Local News (TV Clube)
    :param soup: the BeautifulSoup object
-   :return: a list with the most read news from Portal O Dia page
+   :return: a list with the most read news from TV Clube page
    """
     news = []
-    anchors = soup.find('div', class_='seccao mais-lidas').find_all('a')
+    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
 
     for a in anchors:
-        title = a.string
-        link = util.urls['localPI'] + a['href']
+        title = a['title']
+        link = "http://g1.globo.com" + a['href']
         news.append(dict(title=title, link=link))
     return news
 
