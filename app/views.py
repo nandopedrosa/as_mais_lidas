@@ -73,3 +73,18 @@ def get_state():
     d = dict(state=state, ns_title=ns_title)
     j = json.dumps(d)
     return j
+
+
+@app.route('/change_location', methods=["GET"])
+def change_location():
+    """
+    Changes the user Location
+    :return: a JSON file with the name of the regional news source based on the new location
+    and the location ID (e.g: localAC)
+    """
+    location = request.args.get('location')
+    ns_name = util.friendly_names[location]
+
+    d = dict(ns_name=ns_name)
+    j = json.dumps(d)
+    return j

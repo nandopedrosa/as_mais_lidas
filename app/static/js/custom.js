@@ -106,7 +106,7 @@ $('#lang').click(function () {
         $('#aml-title').html('<h1 id="aml-title">The Most Read <small>news you want to read.</small>');
         $('#aml-description').text("Here you find the most read news from popular" +
             " News Websites from all around the world. " +
-            "If you are in Brazil, we'll try to show you some regional news from your location*!");
+            "If you are in Brazil, we'll try to show you some regional news from your location*");
         $('#btn-national').text('National');
         $('#btn-international').text('International');
         $('#lang').text('PORTUGUÊS');
@@ -118,17 +118,38 @@ $('#lang').click(function () {
         $('#btn-close-modal').text('Close');
         $('#about-modal-body').html('<p><b>As Mais Lidas (The Most Read)</b> is a website for those who want to get ' +
             'straight to the point.</p><p>The idea came thinking about those who have no time (or desire) to navigate ' +
-            'multiple websites just to find that which matters the most. Here you can find, in a single place, the most ' +
+            'multiple websites just to find that which matters the most.</p><p> Here you can find, in a single place, the most ' +
             'read news from the biggest News Websites from all around the world and get information in a matter ' +
             'of minutes!</p> <p> Furthermore, if you are in Brazil, we will try to discover your location through ' +
-            'the use of the IP Geolocation technology (GeoIP), which allows us to track and identify the location' +
-            ' of a computer based on its Internet Protocol address. Although modern, this tecnology has some accuracy ' +
-            'limitations: 0.2% margin of error for Country identification, 7% for States and 15% for Cities.  </p> ' +
+            'the use of the IP Geolocation* technology (GeoIP).</p>' +
             '<p> If you have any doubts or suggestions, please contact us by clicking the "CONTACT" link on top right ' +
             'corner of the page. With our thanks, have a great time and get informed!</p> <p><em>The GeoIP technology ' +
-            'is possible thanks to http://www.localizaip.com.br/</em>  </p>');
+            'is possible thanks to http://www.localizaip.com.br. Although modern, this technology has some accuracy limitations.</em>  </p>');
     } else {
         //We're changing back to Portuguese
         window.location.reload(baseURL);
     }
+});
+
+/*
+ Change user location
+ */
+$('#select-location').change(function () {
+    var location = $(this).val();
+
+    if(location == '')
+        return;
+
+    $.get(
+        baseURL + '/change_location',
+        {
+            location: location
+        },
+        function (responseContent) {
+            $('#local').text(responseContent.ns_name + '*');
+            $('#local').data('state', location.replace('local', '')); // e.g (localAC -> AC)
+        },
+        'json'
+    );
+
 });

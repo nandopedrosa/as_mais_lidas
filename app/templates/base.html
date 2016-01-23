@@ -65,7 +65,7 @@
             </h1>
             <p id="aml-description">Aqui você encontra as matérias mais lidas dos grandes Portais de Notícias nacionais
                 ou internacionais. Se
-                você estiver no Brasil, também mostraremos um site da sua região*!
+                você estiver no Brasil, também mostraremos um site da sua região*
             </p>
             <button id="btn-national" type="button" class="btn btn-lg btn-success aml-btn">Nacional</button>
             <button id="btn-international" type="button" class="btn btn-lg btn-primary aml-btn">Internacional</button>
@@ -81,7 +81,43 @@
 <!-- /Navigation -->
 <div class="container">
     <div class="row">
-        <div class="col-xs-4 col-md-2">
+        <div class="form-group col-xs-10  col-md-12">
+            <label for="select-location">Mude sua localização (Brasil)*</label>
+            <select class="form-control" id="select-location">
+                <option value="">Selecione</option>
+                <option value="localAC">Acre</option>
+                <option value="localAL">Alagoas</option>
+                <option value="localAP">Amapá</option>
+                <option value="localAM">Amazonas</option>
+                <option value="localBA">Bahia</option>
+                <option value="localCE">Ceará</option>
+                <option value="localDF">Distrito Federal</option>
+                <option value="localES">Espirito Santo</option>
+                <option value="localGO">Goiás</option>
+                <option value="localMA">Maranhão</option>
+                <option value="localMS">Mato Grosso do Sul</option>
+                <option value="localMT">Mato Grosso</option>
+                <option value="localMG">Minas Gerais</option>
+                <option value="localPA">Pará</option>
+                <option value="localPB">Paraíba</option>
+                <option value="localPR">Paraná</option>
+                <option value="localPE">Pernambuco</option>
+                <option value="localPI">Piauí</option>
+                <option value="localRJ">Rio de Janeiro</option>
+                <option value="localRN">Rio Grande do Norte</option>
+                <option value="localRS">Rio Grande do Sul</option>
+                <option value="localRO">Rondônia</option>
+                <option value="localRR">Roraima</option>
+                <option value="localSC">Santa Catarina</option>
+                <option value="localSP">São Paulo</option>
+                <option value="localSE">Sergipe</option>
+                <option value="localTO">Tocantins</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-5 col-md-2">
             <div class="list-group" id="aml-menu">
                 <a href="javascript:void(0)" id="uol" class="list-group-item active national">UOL</a>
                 <a href="javascript:void(0)" id="g1" class="list-group-item national">G1</a>
@@ -103,7 +139,7 @@
         <div id="loading"><img src="../static/images/ajax-loader.gif"></div>
 
         <!-- Page Content -->
-        <div class="col-xs-8 col-md-10">
+        <div class="col-xs-7 col-md-10">
             {% block content %} {% endblock %}
 
         </div>
@@ -137,21 +173,22 @@
 
                 <p>A ideia surgiu pensando em quem
                     não tem tempo (ou o desejo) de navegar em diversos locais apenas para achar aquilo que mais lhe
-                    interessa. Aqui você pode achar, em um único lugar, as notícias mais lidas dos maiores Portais de
+                    interessa.</p>
+
+                <p> Aqui você pode achar, em um único lugar, as notícias mais lidas dos grandes Portais de
                     Notícias do mundo inteiro e se informar em questão de minutos!</p>
 
                 <p>Além disso, se você estiver no Brasil, nós tentaremos descobrir aonde você está por meio da
-                    tecnologia de geolocalização por IP ou "GeoIP", que permite rastrear e identificar a localização
-                    geográfica de um computador através do seu IP. Apesar de moderna, esta tecnologia apresenta
-                    limitações de precisão: 0.2% de erro na identificação do País, 7% para estado e 15% de erro para a
-                    cidades.
+                    tecnologia de geolocalização por IP* ou "GeoIP".
                 </p>
 
                 <p> Caso tenha dúvidas ou sugestões, por favor entre em contato pelo link "CONTATO" no topo da página.
                     Com os agradecimentos da nossa equipe, divirta-se e informe-se!</p>
 
                 <p>
-                    <em>A tecnologia "GeoIP" é possível graças ao site http://www.localizaip.com.br/</em>
+                    <em>* A tecnologia "GeoIP" é possível graças ao site http://www.localizaip.com.br. Apesar de
+                        moderna, esta tecnologia apresenta
+                        limitações de precisão.</em>
                 </p>
             </div>
             <div class="modal-footer">
@@ -198,6 +235,8 @@
                     $('#local').show();
                     $('#local').text(responseContent.ns_title);
                     $('#local').data('state', responseContent.state);
+                    //Set the Location Select list
+                    $('#select-location').val('local' + responseContent.state).prop('selected', true);
                 }
             },
             'json'
