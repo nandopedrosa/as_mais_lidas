@@ -109,6 +109,8 @@ $('#lang').click(function () {
             "If you are in Brazil, we'll try to show you some regional news from your location*");
         $('#btn-national').text('National');
         $('#btn-international').text('International');
+        $('#label-select-location').text('Change your location (Brazil)*');
+
         $('#lang').text('PORTUGUÊS');
         $('#contact').text('CONTACT');
         $('#about').text('ABOUT');
