@@ -6,8 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description"
+          content="News aggregator website from the most popular News Websites from all around the world">
+    <meta name="author" content="Fernando Pedrosa">
 
     <title>{{ title }} - As Mais Lidas</title>
 
@@ -16,9 +17,6 @@
 
     <!-- Custom CSS -->
     <link href="../static/css/custom.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../static/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../static/images/favicon.ico">
@@ -50,7 +48,7 @@
                     <a id="contact" href="#">CONTATO</a>
                 </li>
                 <li>
-                    <a id="about" href="#">SOBRE</a>
+                    <a id="about" href="#" data-toggle="modal" data-target="#about-modal">SOBRE</a>
                 </li>
             </ul>
         </div>
@@ -121,6 +119,51 @@
     </footer>
 </div>
 
+<!-- Modals -->
+
+<!-- About Modal -->
+
+<div id="about-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="about-header">Sobre</h4>
+            </div>
+            <div class="modal-body" id="about-modal-body">
+                <p><b>As Mais Lidas</b> é um site para quem deseja ir direto ao ponto.</p>
+
+                <p>A ideia surgiu pensando em quem
+                    não tem tempo (ou o desejo) de navegar em diversos locais apenas para achar aquilo que mais lhe
+                    interessa. Aqui você pode achar, em um único lugar, as notícias mais lidas dos maiores Portais de
+                    Notícias do mundo inteiro e se informar em questão de minutos!</p>
+
+                <p>Além disso, se você estiver no Brasil, nós tentaremos descobrir aonde você está por meio da
+                    tecnologia de geolocalização por IP ou "GeoIP", que permite rastrear e identificar a localização
+                    geográfica de um computador através do seu IP. Apesar de moderna, esta tecnologia apresenta
+                    limitações de precisão: 0.2% de erro na identificação do País, 7% para estado e 15% de erro para a
+                    cidades.
+                </p>
+
+                <p> Caso tenha dúvidas ou sugestões, por favor entre em contato pelo link "CONTATO" no topo da página.
+                    Com os agradecimentos da nossa equipe, divirta-se e informe-se!</p>
+
+                <p>
+                    <em>A tecnologia "GeoIP" é possível graças ao site http://www.localizaip.com.br/</em>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-close-modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Modals -->
+
+
 <!-- jQuery -->
 <script src="../static/js/jquery/dist/jquery.min.js"></script>
 
@@ -135,9 +178,13 @@
 <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 
 <script>
+
+    /*
+     Updates regional news source
+     */
+
     baseURL = window.location.protocol + "//" + window.location.host;
 
-    // AJAX call for the State Location
     $.get(
             baseURL + '/get_local_ns',
             {
@@ -158,7 +205,7 @@
 </script>
 <!--/Get User IP -->
 
-<!-- As Mais Lidas JavaScript -->
+<!-- Custom JavaScript -->
 <script src="../static/js/custom.js"></script>
 
 </body>
