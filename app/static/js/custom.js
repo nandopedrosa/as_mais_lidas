@@ -94,3 +94,27 @@ $('#aml-menu > a.list-group-item').click(function () {
     toggleMenuItem($(this));
     refreshNewsSource($(this));
 });
+
+/*
+ Change page language
+ */
+$('#lang').click(function() {
+   var lang = $(this);
+
+    if(lang.text().toLowerCase() == 'english') {
+        //We're changing to English
+        $('#aml-title').text('The Most Read');
+        $('#aml-subtitle').text('news you want to read');
+        $('#aml-description').text("Here you find the most read news from popular" +
+            " News Websites from all around the world. " +
+            "If you are in Brazil, we'll try to show you some regional news from your location*!");
+        $('#btn-national').text('National');
+        $('#btn-international').text('International');
+        $('#lang').text('PORTUGUÊS');
+        $('#contact').text('CONTACT');
+        $('#about').text('ABOUT');
+    } else {
+        //We're changing back to Portuguese
+        window.location.reload(baseURL);
+    }
+});

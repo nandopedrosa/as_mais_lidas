@@ -44,10 +44,13 @@
         <div class="collapse navbar-collapse" id="navbar-info">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">CONTATO</a>
+                    <a id="lang" href="#">ENGLISH</a>
                 </li>
                 <li>
-                    <a href="#">SOBRE</a>
+                    <a id="contact" href="#">CONTATO</a>
+                </li>
+                <li>
+                    <a id="about" href="#">SOBRE</a>
                 </li>
             </ul>
         </div>
@@ -59,10 +62,11 @@
 <div class="container aml-top-header">
     <div class="row">
         <div class="jumbotron">
-            <h1>As mais lidas
-                <small>as notícias que você quer ler.</small>
+            <h1 id="aml-title">As mais lidas
+                <small id="aml-subtitle">as notícias que você quer ler.</small>
             </h1>
-            <p>Aqui você encontra as matérias mais lidas dos grandes Portais de Notícias nacionais ou internacionais. Se
+            <p id="aml-description">Aqui você encontra as matérias mais lidas dos grandes Portais de Notícias nacionais
+                ou internacionais. Se
                 você estiver no Brasil, também mostraremos um site da sua região*!
             </p>
             <button id="btn-national" type="button" class="btn btn-lg btn-success aml-btn">Nacional</button>
@@ -79,7 +83,7 @@
 <!-- /Navigation -->
 <div class="container">
     <div class="row">
-        <div class="col-xs-4 col-md-2" >
+        <div class="col-xs-4 col-md-2">
             <div class="list-group" id="aml-menu">
                 <a href="javascript:void(0)" id="uol" class="list-group-item active national">UOL</a>
                 <a href="javascript:void(0)" id="g1" class="list-group-item national">G1</a>
@@ -141,7 +145,7 @@
             },
             function (responseContent) {
                 //If the User State Location was not found, then we hide the Local news source
-                if(responseContent.state == 'notfound') {
+                if (responseContent.state == 'notfound') {
                     $('#local').hide();
                 } else {
                     $('#local').show();
