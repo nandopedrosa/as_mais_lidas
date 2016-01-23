@@ -103,8 +103,7 @@ $('#lang').click(function() {
 
     if(lang.text().toLowerCase() == 'english') {
         //We're changing to English
-        $('#aml-title').text('The Most Read');
-        $('#aml-subtitle').text('news you want to read');
+        $('#aml-title').html('<h1 id="aml-title">The Most Read <small>news you want to read.</small>');
         $('#aml-description').text("Here you find the most read news from popular" +
             " News Websites from all around the world. " +
             "If you are in Brazil, we'll try to show you some regional news from your location*!");
