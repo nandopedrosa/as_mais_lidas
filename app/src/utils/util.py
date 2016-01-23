@@ -43,7 +43,8 @@ urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r
             localSC="http://www.clicrbs.com.br/sc/", localRO="http://www.rondoniaovivo.com",
             localRR="http://www.folhabv.com.br/", localSE="http://www.jornaldodiase.com.br/",
             localTO="http://g1.globo.com/to", ny="http://www.nytimes.com/most-popular",
-            wp="http://www.washingtonpost.com/", tg="http://www.theguardian.com/international")
+            wp="http://www.washingtonpost.com/", tg="http://www.theguardian.com/international",
+            lf="http://www.lefigaro.fr/", tt="http://www.telegraph.co.uk", ep="http://elpais.com/")
 
 # Used for the header of the main panel
 friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7 (www.r7.com)",
@@ -68,7 +69,8 @@ friendly_names = dict(g1="G1 (g1.globo.com)", uol="UOL (www.uol.com.br)", r7="R7
                       localRR="Folha de Boa Vista (www.folhabv.com.br)",
                       localSE="Jornal do Dia (www.jornaldodiase.com.br)", localTO="TV Anhaguera (g1.globo.com/to)",
                       ny="NY Times (www.nytimes.com)", wp="Washington Post (www.washingtonpost.com)",
-                      tg="The Guardian (www.theguardian.com/international)")
+                      tg="The Guardian (www.theguardian.com/international)", lf="Le Figaro (www.lefigaro.fr)",
+                      tt="The Telegraph (www.telegraph.co.uk)", ep="El País (elpais.com)")
 
 
 def getstate(ip):

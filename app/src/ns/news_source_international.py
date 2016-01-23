@@ -57,8 +57,64 @@ def __tg(soup):
     return news
 
 
+def __lf(soup):
+    """
+   Gets the most read news from the Le Figaro page
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from the Le Figaro page
+   """
+    news = []
+    anchors = soup.find('div', class_='fig-wid-most fig-wid-most-daily').find('ol').find_all('a')
+
+    for a in anchors:
+        link = a['href']
+        title = a.text
+        news.append(dict(title=title, link=link))
+    return news
+
+
+def __tt(soup):
+    """
+   Gets the most read news from The Telegraph page
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from the The Telegraph page
+   """
+    news = []
+    headers = soup.find('div', id='div-SHARED').find_all('h3', class_='topFiveComment')
+
+    for h in headers:
+        a = h.find('a')
+        link = util.urls['tt'] + a['href']
+        title = a.text
+        news.append(dict(title=title, link=link))
+    return news
+
+def __ep(soup):
+    """
+   Gets the most read news from El País page
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from the El País page
+   """
+    news = []
+    anchors = soup.find('div', id='lmv_todo').find_all('a')
+
+    for a in anchors:
+        link = a['href']
+        title = 'not-found'
+
+        # Sometimes the item has a Span element (Video icon), sometimes it doesn't
+        span = a.find('span')
+        if span is None:
+            title = a.string
+        else:
+            title = span.next_sibling.string
+
+        news.append(dict(title=title, link=link))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(ny=__ny, wp=__wp, tg=__tg)
+strategies = dict(ny=__ny, wp=__wp, tg=__tg, lf=__lf, tt=__tt, ep=__ep)
 
 
 def get_most_read(source):

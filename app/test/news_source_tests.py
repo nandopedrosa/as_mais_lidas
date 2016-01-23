@@ -160,8 +160,20 @@ class NewsSourceNationalTests(unittest.TestCase):
         news, title = news_source_international.get_most_read('wp')
         self.assertEqual(len(news), 5)
 
-    def test_wp(self):
+    def test_tg(self):
         news, title = news_source_international.get_most_read('tg')
+        self.assertEqual(len(news), 10)
+
+    def test_lf(self):
+        news, title = news_source_international.get_most_read('lf')
+        self.assertEqual(len(news), 5)
+
+    def test_tt(self):
+        news, title = news_source_international.get_most_read('tt')
+        self.assertEqual(len(news), 10)
+
+    def test_ep(self):
+        news, title = news_source_international.get_most_read('ep')
         self.assertEqual(len(news), 10)
 
     def test_getstate(self):
