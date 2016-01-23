@@ -11,6 +11,7 @@ from flask import render_template, request
 from app import app
 import src.utils.util as util
 import src.facade as facade
+from datetime import datetime
 
 # Default news source
 DEFAULT_NS = "uol"
@@ -24,8 +25,10 @@ def index():
     :return: The rendered index page
     """
     news, header = facade.get_most_read(DEFAULT_NS)
+    current_year = datetime.now().year
     return render_template("ns.html",
                            title="Home",
+                           year=current_year,
                            news=news,
                            header=header)
 
