@@ -109,7 +109,7 @@ $('#lang').click(function () {
             "If you are in Brazil, we'll try to show you some regional news from your location*");
         $('#btn-national').text('National');
         $('#btn-international').text('International');
-        $('#label-select-location').text('Change your location (Brazil)*');
+        $('#label-select-location').text('Change your location*');
 
         $('#lang').text('PORTUGUÊS');
         $('#contact').text('CONTACT');
@@ -117,7 +117,7 @@ $('#lang').click(function () {
 
         //About Modal
         $('#about-header').text('About');
-        $('#btn-close-modal').text('Close');
+        $('.modal-footer > .btn-default').text('Close'); // Works for the Contact modal too
         $('#about-modal-body').html('<p><b>As Mais Lidas (The Most Read)</b> is a website for those who want to get ' +
             'straight to the point.</p><p>The idea came thinking about those who have no time (or desire) to navigate ' +
             'multiple websites just to find that which matters the most.</p><p> Here you can find, in a single place, the most ' +
@@ -127,6 +127,16 @@ $('#lang').click(function () {
             '<p> If you have any doubts or suggestions, please contact us by clicking the "CONTACT" link on top right ' +
             'corner of the page. With our thanks, have a great time and get informed!</p> <p><em>The GeoIP technology ' +
             'is possible thanks to http://www.localizaip.com.br. Although modern, this technology has some accuracy limitations.</em>  </p>');
+
+        //Contact Modal
+        $('#contact-header').text('Contact');
+        $('#name-label').text('Name');
+        $('#message-label').text('Message');
+        $('#contact-name').attr('placeholder', 'Enter your name');
+        $('#contact-email').attr('placeholder', 'Enter your email');
+        $('#contact-message').attr('placeholder', 'Enter your message with suggestions, bug reports or anything else you think is important');
+        $('#email').attr('placeholder', 'Enter email');
+        $('#btn-submit-contact').text('Send');
     } else {
         //We're changing back to Portuguese
         window.location.reload(baseURL);
@@ -139,7 +149,7 @@ $('#lang').click(function () {
 $('#select-location').change(function () {
     var location = $(this).val();
 
-    if(location == '')
+    if (location == '')
         return;
 
     $.get(
@@ -150,6 +160,22 @@ $('#select-location').change(function () {
         function (responseContent) {
             $('#local').text(responseContent.ns_name + '*');
             $('#local').data('state', location.replace('local', '')); // e.g (localAC -> AC)
+        },
+        'json'
+    );
+
+});
+
+/*
+ Submit contact message
+ */
+$('#btn-submit-contact').click(function () {
+    alert('teste')
+    $.post(
+        baseURL + '/send_message',
+        $('#contact-form').serialize(),
+        function (responseContent) {
+            alert(responseContent.test);
         },
         'json'
     );

@@ -45,7 +45,7 @@
                     <a id="lang" href="#">ENGLISH</a>
                 </li>
                 <li>
-                    <a id="contact" href="#">CONTATO</a>
+                    <a id="contact" href="#" data-toggle="modal" data-target="#contact-modal">CONTATO</a>
                 </li>
                 <li>
                     <a id="about" href="#" data-toggle="modal" data-target="#about-modal">SOBRE</a>
@@ -81,8 +81,8 @@
 <!-- /Navigation -->
 <div class="container">
     <div class="row">
-        <div class="form-group col-xs-10  col-md-12">
-            <label id="label-select-location" for="select-location">Mude sua localização (Brasil)*</label>
+        <div class="form-group col-xs-6  col-md-2">
+            <label id="label-select-location" for="select-location">Mude sua localização*</label>
             <select class="form-control" id="select-location">
                 <option value="">Selecione</option>
                 <option value="localAC">Acre</option>
@@ -151,7 +151,7 @@
 
 <div class="container text-center">
     <footer class="footer">
-        <p class="footer-text">Copyright © As Mais Lidas {{year}}</p>
+        <p class="footer-text">Copyright © As Mais Lidas {{ year }}</p>
     </footer>
 </div>
 
@@ -192,6 +192,39 @@
                 </p>
             </div>
             <div class="modal-footer">
+                <button id="btn-close-modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Modal -->
+<div id="contact-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="contact-header">Contato</h4>
+            </div>
+            <div class="modal-body" id="contact-modal-body">
+                <form id="contact-form" method="post" action='/contact/' name="contact-form">
+                    <div class="form-group">
+                        <label id="name-label" for="contact-name">Nome</label>
+                        <input name="name" class="form-control" id="contact-name" placeholder="Digite seu nome">
+                    </div>
+                    <div class="form-group">
+                        <label id="email-label" for="contact-email">Email</label>
+                        <input name="email" type="email" class="form-control" id="contact-email" placeholder="Digite seu email">
+                    </div>
+                    <div class="form-group">
+                        <label id="message-label" for="contact-message">Mensagem</label>
+                        <textarea name="message" class="form-control" rows="4" id="contact-message" placeholder="Digite sua mensagem com sugestões relatos de problemas ou qualquer outra coisa que você achar importante"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-submit-contact" type="button" class="btn btn-primary pull-left">Enviar</button>
                 <button id="btn-close-modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
