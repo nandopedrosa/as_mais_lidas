@@ -163,21 +163,75 @@ $('#select-location').change(function () {
         },
         'json'
     );
-
 });
+
+/*
+ Resets modal fields and error messages
+ :param modalId: the id of the modal to be reset
+ */
+function resetModal(modalId) {
+    $(modalId).find('form').trigger('reset'); //Resets all input fields
+    $(modalId).find('div').removeClass('has-error'); //Removes error class
+    $(modalId).find('p.text-danger').text(''); //Removes field error messages
+    $(modalId).find('div.alert').remove(); //Removes alert messages
+}
+
+/*
+ Resets modal fields and error messages when modal is opened
+ */
+$('*[data-toggle="modal"]').click(function () {
+    var modalId = $(this).attr('data-target');
+    resetModal(modalId);
+});
+
+/*
+ Hides a specific modal (and removes backdrop overlay)
+ param: id: the ID of the modal to be hidden
+ */
+/*function hideModal(id) {
+ $(id).modal('hide');
+ $('body').removeClass('modal-open');
+ $('.modal-backdrop').remove();
+ }*/
+
+/*
+ Shows an error message for a specific form element
+ :param id: the form element id
+ :param message: the error message to be shown
+ */
+function fieldError(id, message) {
+    $(id).next('p').text(message);
+    $(id).parent('div.form-group').addClass('has-error');
+}
+
+/*
+ Shows a sucess message alert
+ param: formId: the id of the form related to the message
+ para: message: the message content to be shown
+ */
+function showSuccessMessage(formId, message) {
+    var successMessage = '<div class="alert alert-success" role="alert">#MESSAGE#</div>'.replace('#MESSAGE#', message);
+    $(successMessage).insertBefore(formId);
+}
 
 /*
  Submit contact message
  */
 $('#btn-submit-contact').click(function () {
-    alert('teste')
     $.post(
         baseURL + '/send_message',
         $('#contact-form').serialize(),
-        function (responseContent) {
-            alert(responseContent.test);
+        function (data) {
+            if (data.error) {
+                if (data.name != undefined) fieldError('#contact-name', data.name[0]);
+                if (data.email != undefined) fieldError('#contact-email', data.email[0]);
+                if (data.message != undefined) fieldError('#contact-message', data.message[0]);
+            } else {
+                resetModal('#contact-modal');
+                showSuccessMessage('#contact-form', 'Mensagem enviada com sucesso');
+            }
         },
         'json'
     );
-
 });
+

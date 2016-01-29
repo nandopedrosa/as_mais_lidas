@@ -12,6 +12,7 @@ from app import app
 import src.utils.util as util
 import src.facade as facade
 from datetime import datetime
+from .forms import ContactForm
 
 # Default news source
 DEFAULT_NS = "uol"
@@ -26,11 +27,13 @@ def index():
     """
     news, header = facade.get_most_read(DEFAULT_NS)
     current_year = datetime.now().year
+    contact_form = ContactForm()
     return render_template("ns.html",
                            title="Home",
                            year=current_year,
                            news=news,
-                           header=header)
+                           header=header,
+                           contact_form=contact_form)
 
 
 @app.route('/most_read_ns', methods=["GET"])
@@ -97,10 +100,13 @@ def send_message():
     :return: a JSON file with status code (OK/ERROR). If an error occurs, the JSON file also has a list with the error
     messages and related fields
     """
-    name = request.form.get('name')
-    email = request.form.get('email')
-    message = request.form.get('message')
-    print(name)
-    print(email)
-    print(message)
-    return 'teste'
+    form = ContactForm(request.form)
+
+    if form.validate():
+        print('DEU CERTO, ' + form.name.data)
+        form.errors['error'] = False
+    else:
+        print('VALIDACAO FALHOU')
+        form.errors['error'] = True
+
+    return json.dumps(form.errors)
