@@ -50,8 +50,8 @@ def __r7(soup):
     :return: a list with the most read news from the R7 Page
     """
     news = []
-    container = soup.select('.most-read')[0]
-    most_read = container.find_all('a')
+    container = soup.select('.mais_lidas')[0]
+    most_read = container.find_all('a', class_='text')
 
     for item in most_read:
         news.append(dict(title=item.string, link=item['href']))
