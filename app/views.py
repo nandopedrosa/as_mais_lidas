@@ -7,12 +7,13 @@ __email__ = "fpedrosa@gmail.com"
 """
 
 import json
+import util
+import facade
+import forms
 from flask import render_template, request
 from app import app
-import src.utils.util as util
-import src.facade as facade
 from datetime import datetime
-from .forms import ContactForm
+
 
 # Default news source
 DEFAULT_NS = "uol"
@@ -103,8 +104,8 @@ def send_message():
     form = ContactForm(request.form)
 
     if form.validate():
-        print('DEU CERTO, ' + form.name.data)
         form.errors['error'] = False
+
     else:
         print('VALIDACAO FALHOU')
         form.errors['error'] = True

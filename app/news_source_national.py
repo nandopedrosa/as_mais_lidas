@@ -7,7 +7,7 @@ __email__ = "fpedrosa@gmail.com"
 """
 
 import html
-from src.utils import util
+import util
 
 
 def __g1(soup):
@@ -378,16 +378,16 @@ def __local_mt(soup):
 
 def __local_ms(soup):
     """
-   Gets the most read news from Mato Grosso do Sul Local News (Correio do Estado)
+   Gets the most read news from Mato Grosso do Sul Local News (TV Morena)
    :param soup: the BeautifulSoup object
-   :return: a list with the most read news from Correio do Estado page
+   :return: a list with the most read news from TV Morena page
    """
     news = []
-    anchors = soup.find('ul', class_='maisLidasList').find_all('a')
+    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
 
     for a in anchors:
-        title = a.string
-        link = a['href']
+        title = a['title']
+        link = "http://g1.globo.com" + a['href']
         news.append(dict(title=title, link=link))
     return news
 

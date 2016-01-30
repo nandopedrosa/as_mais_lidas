@@ -6,8 +6,8 @@ __email__ = "fpedrosa@gmail.com"
 
 """
 
-from src.ns import news_source_national
-from src.ns import news_source_international
+import news_source_national
+import news_source_international
 
 
 def get_most_read(source):

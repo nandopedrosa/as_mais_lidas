@@ -1,18 +1,14 @@
 """
-unittests.py: Application unit tests
+tests.py: Application unit tests
 
 __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
 
 """
-import sys
-import os.path
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import unittest
-from src.ns import news_source_national
-from src.ns import news_source_international
-from src.utils import util
+import news_source_national
+import news_source_international
+import util
 
 
 class NewsSourceNationalTests(unittest.TestCase):

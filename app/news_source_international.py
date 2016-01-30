@@ -5,7 +5,7 @@ __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
 
 """
-from src.utils import util
+import util
 
 
 def __ny(soup):

@@ -8,6 +8,8 @@ __email__ = "fpedrosa@gmail.com"
 
 import httplib2
 from bs4 import BeautifulSoup
+from app import app
+from app import mail
 
 # Constants
 
@@ -19,7 +21,7 @@ STATES = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS'
 # Used for the Menu of News Sources
 STATES_NS = dict(AC='Gazeta do Acre', AL='Cada Minuto', AP='Jornal do Dia', AM='A Crítica',
                  BA='A Tarde', CE='Diário do Nordeste', DF='Correio Braziliense', ES='Folha Vitória',
-                 GO='TV Anhaguera', MA='Jornal Pequeno', MT='Gazeta Digital', MS='Correio do Estado',
+                 GO='TV Anhaguera', MA='Jornal Pequeno', MT='Gazeta Digital', MS='TV Morena',
                  MG='Estado de Minas', PA='Rede Liberal', PB='Paraíba Online', PR='Paraná Online',
                  PE='JC Online', PI='TV Clube', RJ='O Globo', RN='Inter TV',
                  RS='RBS TV', RO='Rondônia ao Vivo', RR='Folha de Boa Vista', SC='Click RBS',
@@ -36,7 +38,7 @@ urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r
             localBA="http://atarde.uol.com.br", localCE="http://diariodonordeste.verdesmares.com.br",
             localES="http://www.folhavitoria.com.br", localGO="http://g1.globo.com/goias/",
             localMA="http://jornalpequeno.com.br/", localMT="http://www.gazetadigital.com.br",
-            localMS="http://www.correiodoestado.com.br/", localMG="http://www.em.com.br/",
+            localMS="http://g1.globo.com/ms", localMG="http://www.em.com.br/",
             localPA="http://g1.globo.com/pa/para/", localPB="http://paraibaonline.net.br/",
             localPR="http://www.parana-online.com.br", localPI="http://g1.globo.com/pi/",
             localRN="http://g1.globo.com/rn/", localRS="http://g1.globo.com/rs/rio-grande-do-sul/index.html",
@@ -60,7 +62,7 @@ friendly_names = dict(g1="G1", uol="UOL", r7="R7",
                       localES="Folha Vitória", localGO="TV Anhaguera",
                       localMA="Jornal Pequeno",
                       localMT="Gazeta Digital",
-                      localMS="Correio do Estado",
+                      localMS="TV Morena",
                       localMG="Estado de Minas", localPA="Rede Liberal",
                       localPB="Paraíba Online",
                       localPR="Paraná Online (www.parana-online.com.br/)", localPI="TV Clube",
