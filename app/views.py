@@ -9,7 +9,7 @@ __email__ = "fpedrosa@gmail.com"
 import json
 import util
 import facade
-import forms
+from forms import ContactForm
 from flask import render_template, request
 from app import app
 from datetime import datetime
@@ -105,7 +105,7 @@ def send_message():
 
     if form.validate():
         form.errors['error'] = False
-
+        util.send_email(form.name.data, form.email.data, form.message.data)
     else:
         print('VALIDACAO FALHOU')
         form.errors['error'] = True

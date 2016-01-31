@@ -27,5 +27,5 @@ class ContactForm(Form):
 
     message = TextAreaField("Mensagem", validators=[
         InputRequired("Por favor, escreva sua mensagem")
-        , Length(min=3, max=512, message="A sua mensagem deve ter no mínimo 3 caracteres e no máximo 512")
+        , Length(min=3, max=4000, message="A sua mensagem deve ter no mínimo 3 caracteres e no máximo 4000")
     ])
