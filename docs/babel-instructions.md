@@ -6,7 +6,7 @@ Execute these commands on the root of your application (where the README file is
 
 1. Initial text extraction: pybabel extract -F babel.cfg -o messages.pot app 
 
-2. Generating a language catalog: pybabel init -i messages.pot -d app/translations -l en
+2. Generating a language catalog: pybabel init -i messages.pot -d app/translations -l pt
 
 3. Then you can edit the translations with PoeEdit
 
