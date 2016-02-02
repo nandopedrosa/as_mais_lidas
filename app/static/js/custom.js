@@ -160,21 +160,6 @@ $('*[data-toggle="modal"]').click(function () {
     resetModal(modalId);
 });
 
-/*
- Hides a specific modal (and removes backdrop overlay)
- param: id: the ID of the modal to be hidden
- */
-/*function hideModal(id) {
- $(id).modal('hide');
- $('body').removeClass('modal-open');
- $('.modal-backdrop').remove();
- }*/
-
-/*
- Shows an error message for a specific form element
- :param id: the form element id
- :param message: the error message to be shown
- */
 function fieldError(id, message) {
     $(id).next('p').text(message);
     $(id).parent('div.form-group').addClass('has-error');
