@@ -100,47 +100,23 @@ $('#aml-menu > a.list-group-item').click(function () {
  */
 $('#lang').click(function () {
     var lang = $(this);
+    var code = 'pt';
 
     if (lang.text().toLowerCase() == 'english') {
-        //We're changing to English
-        $('#aml-title').html('<h1 id="aml-title">The Most Read <small>news you want to read.</small>');
-        $('#aml-description').text("Here you find the most read news from popular" +
-            " News Websites from all around the world. " +
-            "If you are in Brazil, we'll try to show you some regional news from your location*");
-        $('#btn-national').text('National');
-        $('#btn-international').text('International');
-        $('#label-select-location').text('Change your location*');
-
-        $('#lang').text('PORTUGUÊS');
-        $('#contact').text('CONTACT');
-        $('#about').text('ABOUT');
-
-        //About Modal
-        $('#about-header').text('About');
-        $('.modal-footer > .btn-default').text('Close'); // Works for the Contact modal too
-        $('#about-modal-body').html('<p><b>As Mais Lidas (The Most Read)</b> is a website for those who want to get ' +
-            'straight to the point.</p><p>The idea came thinking about those who have no time (or desire) to navigate ' +
-            'multiple websites just to find that which matters the most.</p><p> Here you can find, in a single place, the most ' +
-            'read news from the biggest News Websites from all around the world and get information in a matter ' +
-            'of minutes!</p> <p> Furthermore, if you are in Brazil, we will try to discover your location through ' +
-            'the use of the IP Geolocation* technology (GeoIP).</p>' +
-            '<p> If you have any doubts or suggestions, please contact us by clicking the "CONTACT" link on top right ' +
-            'corner of the page. With our thanks, have a great time and get informed!</p> <p><em>The GeoIP technology ' +
-            'is possible thanks to http://www.localizaip.com.br. Although modern, this technology has some accuracy limitations.</em>  </p>');
-
-        //Contact Modal
-        $('#contact-header').text('Contact');
-        $('#name-label').text('Name');
-        $('#message-label').text('Message');
-        $('#contact-name').attr('placeholder', 'Enter your name');
-        $('#contact-email').attr('placeholder', 'Enter your email');
-        $('#contact-message').attr('placeholder', 'Enter your message with suggestions, bug reports or anything else you think is important');
-        $('#email').attr('placeholder', 'Enter email');
-        $('#btn-submit-contact').text('Send');
+        lang.text('PORTUGUÊS');
+        code = 'en';
     } else {
-        //We're changing back to Portuguese
-        window.location.reload(baseURL);
+        lang.text('ENGLISH');
     }
+
+    console.log(code);
+    $.post(
+        baseURL + '/lang/' + code,
+        function() {
+            window.location.reload();
+        }
+    );
+
 });
 
 /*

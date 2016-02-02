@@ -10,10 +10,11 @@ import json
 import util
 import facade
 from forms import ContactForm
-from flask import render_template, request
-from app import app
+from flask import render_template, request, session, redirect, url_for
+from flask.ext.babel import gettext
+from app import app, babel
 from datetime import datetime
-
+from config import LANGUAGES
 
 # Default news source
 DEFAULT_NS = "uol"
@@ -30,7 +31,7 @@ def index():
     current_year = datetime.now().year
     contact_form = ContactForm()
     return render_template("ns.html",
-                           title="Home",
+                           title=gettext('Home Page'),
                            year=current_year,
                            news=news,
                            header=header,
@@ -98,7 +99,7 @@ def change_location():
 def send_message():
     """
     Sends a contact message
-    :return: a JSON file with status code (OK/ERROR). If an error occurs, the JSON file also has a list with the error
+    :return: a JSON file with status code (OK/ERRO  R). If an error occurs, the JSON file also has a list with the error
     messages and related fields
     """
     form = ContactForm(request.form)
@@ -107,7 +108,33 @@ def send_message():
         form.errors['error'] = False
         util.send_email(form.name.data, form.email.data, form.message.data)
     else:
-        print('VALIDACAO FALHOU')
         form.errors['error'] = True
 
     return json.dumps(form.errors)
+
+
+@app.route('/lang/<code>', methods=['POST'])
+def lang(code):
+    """
+    Changes the language of the app for a given session
+    :param code: the language code (e.g: pt-BR)
+    :return: just a generic String (it is mandatory to return something in route functions)
+    """
+    if code in LANGUAGES:
+        session['lang'] = code
+
+    return 'Changed language to: ' + code
+
+
+@babel.localeselector
+def get_locale():
+    """
+    Gets the current language for the application
+    :return: the current language
+    """
+    if 'lang' in session:
+        return session['lang']
+    else:
+        return 'pt'
+
+

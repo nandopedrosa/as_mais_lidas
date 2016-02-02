@@ -10,7 +10,7 @@
           content="News aggregator website from the most popular News Websites from all around the world">
     <meta name="author" content="Fernando Pedrosa">
 
-    <title>{{ title }} - As Mais Lidas</title>
+    <title id="page-title">{{ title }} - As Mais Lidas</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../static/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,8 @@
         <div class="collapse navbar-collapse" id="navbar-info">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a id="lang" href="#">ENGLISH</a>
+                    <!--We set the text with a script (see at the bottom)-->
+                    <a id="lang" href="#">{{ _('PORTUGU\u00caS') }}</a>
                 </li>
                 <li>
                     <a id="contact" href="#" data-toggle="modal" data-target="#contact-modal">CONTATO</a>
@@ -192,7 +193,7 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <button id="btn-close-modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button id="btn-close-about-modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -229,7 +230,7 @@
             </div>
             <div class="modal-footer">
                 <button id="btn-submit-contact" type="button" class="btn btn-primary pull-left">Enviar</button>
-                <button id="btn-close-modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button id="btn-close-contact-modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
