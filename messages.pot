@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-02 01:41-0200\n"
+"POT-Creation-Date: 2016-02-03 01:06-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,141 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.1.1\n"
 
+#: app/forms.py:17
+msgid "Name"
+msgstr ""
+
+#: app/forms.py:17
+msgid "Enter your name"
+msgstr ""
+
+#: app/forms.py:18
+msgid "Please, enter your name"
+msgstr ""
+
+#: app/forms.py:19
+msgid "Your name must have a minimum of 3 characters"
+msgstr ""
+
+#: app/forms.py:20
+msgid "Your name must have a maximum of 128 characters"
+msgstr ""
+
+#: app/forms.py:23
+msgid "Enter your email"
+msgstr ""
+
+#: app/forms.py:24
+msgid "Please, enter your email"
+msgstr ""
+
+#: app/forms.py:25
+msgid "Your email must have a minimum of 6 characters"
+msgstr ""
+
+#: app/forms.py:26
+msgid "Please, inform a valid email"
+msgstr ""
+
+#: app/forms.py:29
+msgid "Message"
+msgstr ""
+
+#: app/forms.py:30
+msgid "Please, write your message"
+msgstr ""
+
+#: app/forms.py:31
+msgid "Your message must have between 3 and 4000 characters"
+msgstr ""
+
+#: app/forms.py:32
+msgid ""
+"Enter your message with suggestions, bug reports or anything else you "
+"think is important"
+msgstr ""
+
 #: app/views.py:34
 msgid "Home Page"
 msgstr ""
 
 #: app/templates/base.html:46
 msgid "PORTUGUÊS"
+msgstr ""
+
+#: app/templates/base.html:49
+msgid "CONTACT"
+msgstr ""
+
+#: app/templates/base.html:52
+msgid "ABOUT"
+msgstr ""
+
+#: app/templates/base.html:64 app/templates/base.html:164
+msgid "The Most Read"
+msgstr ""
+
+#: app/templates/base.html:65
+msgid "news you want to read."
+msgstr ""
+
+#: app/templates/base.html:67
+msgid ""
+"Here you find the most read news from popular News Websites from all "
+"around the world. If you are in Brazil, we will try to show you some "
+"regional news from your location*"
+msgstr ""
+
+#: app/templates/base.html:68
+msgid "National"
+msgstr ""
+
+#: app/templates/base.html:69
+msgid "International"
+msgstr ""
+
+#: app/templates/base.html:77
+msgid "Change your location (Brazil)*"
+msgstr ""
+
+#: app/templates/base.html:79
+msgid "Select"
+msgstr ""
+
+#: app/templates/base.html:164
+msgid "is a website for those who want to get straight to the point."
+msgstr ""
+
+#: app/templates/base.html:166
+msgid ""
+"The idea came when thinking about those who have no time (or desire) to "
+"navigate multiple websites just to find what really matters."
+msgstr ""
+
+#: app/templates/base.html:168
+msgid ""
+"Here you can find, in a single place, the most read news from the biggest"
+" News Websites from all around the world and get information in a matter "
+"of minutes."
+msgstr ""
+
+#: app/templates/base.html:170
+msgid ""
+"Furthermore, if you are in Brazil, we will try to discover your location "
+"through the use of the IP Geolocation* technology (GeoIP)."
+msgstr ""
+
+#: app/templates/base.html:173
+msgid ""
+"The GeoIP technology is possible thanks to http://www.localizaip.com.br. "
+"Although modern, this technology has some accuracy limitations."
+msgstr ""
+
+#: app/templates/base.html:177 app/templates/base.html:214
+msgid "Close"
+msgstr ""
+
+#: app/templates/base.html:213
+msgid "Send"
 msgstr ""
 

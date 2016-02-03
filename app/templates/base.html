@@ -46,10 +46,10 @@
                     <a id="lang" href="#">{{ _('PORTUGU\u00caS') }}</a>
                 </li>
                 <li>
-                    <a id="contact" href="#" data-toggle="modal" data-target="#contact-modal">CONTATO</a>
+                    <a id="contact" href="#" data-toggle="modal" data-target="#contact-modal">{{_('CONTACT')}}</a>
                 </li>
                 <li>
-                    <a id="about" href="#" data-toggle="modal" data-target="#about-modal">SOBRE</a>
+                    <a id="about" href="#" data-toggle="modal" data-target="#about-modal">{{_('ABOUT')}}</a>
                 </li>
             </ul>
         </div>
@@ -61,31 +61,22 @@
 <div class="container aml-top-header">
     <div class="row">
         <div class="jumbotron">
-            <h1 id="aml-title">As mais lidas
-                <small>as notícias que você quer ler.</small>
+            <h1 id="aml-title">{{ _('The Most Read') }}
+                <small>{{_('news you want to read.')}}</small>
             </h1>
-            <p id="aml-description">Aqui você encontra as matérias mais lidas dos grandes Portais de Notícias nacionais
-                ou internacionais. Se
-                você estiver no Brasil, também mostraremos um site da sua região*
-            </p>
-            <button id="btn-national" type="button" class="btn btn-lg btn-success aml-btn">Nacional</button>
-            <button id="btn-international" type="button" class="btn btn-lg btn-primary aml-btn">Internacional</button>
+            <p id="aml-description">{{_('Here you find the most read news from popular News Websites from all around the world. If you are in Brazil, we will try to show you some regional news from your location*')}}</p>
+            <button id="btn-national" type="button" class="btn btn-lg btn-success aml-btn">{{_('National')}}</button>
+            <button id="btn-international" type="button" class="btn btn-lg btn-primary aml-btn">{{_('International')}}</button>
         </div>
-        <!--
-         <div class="col-xs-12 page-header">
-             <img src="../static/logo.png" id="logo"/>
-             <h1 class="aml-disclaimer"> <small>As notícias que você quer ler.</small></h1>
-         </div>
-         < /.col-lg-12 -->
     </div>
 </div>
 <!-- /Navigation -->
 <div class="container">
     <div class="row">
         <div class="form-group col-xs-6  col-md-2">
-            <label id="label-select-location" for="select-location">Mude sua localização*</label>
+            <label id="label-select-location" for="select-location">{{_('Change your location (Brazil)*')}}</label>
             <select class="form-control" id="select-location">
-                <option value="">Selecione</option>
+                <option value="">{{_('Select')}}</option>
                 <option value="localAC">Acre</option>
                 <option value="localAL">Alagoas</option>
                 <option value="localAP">Amapá</option>
@@ -170,31 +161,21 @@
                 <h4 class="modal-title" id="about-header">Sobre</h4>
             </div>
             <div class="modal-body" id="about-modal-body">
-                <p><b>As Mais Lidas</b> é um site para quem deseja ir direto ao ponto.</p>
+                <p><b>{{_('The Most Read')}}</b> {{_('is a website for those who want to get straight to the point.')}}</p>
 
-                <p>A ideia surgiu pensando em quem
-                    não tem tempo (ou o desejo) de navegar em diversos locais apenas para achar aquilo que mais lhe
-                    interessa.</p>
+                <p>{{_('The idea came when thinking about those who have no time (or desire) to navigate multiple websites just to find what really matters.')}}</p>
 
-                <p> Aqui você pode achar, em um único lugar, as notícias mais lidas dos grandes Portais de
-                    Notícias do mundo inteiro e se informar em questão de minutos!</p>
+                <p> {{_('Here you can find, in a single place, the most read news from the biggest News Websites from all around the world and get information in a matter of minutes.')}}</p>
 
-                <p>Além disso, se você estiver no Brasil, nós tentaremos descobrir aonde você está por meio da
-                    tecnologia de geolocalização por IP* ou "GeoIP".
-                </p>
-
-                <p> Caso tenha dúvidas ou sugestões, por favor entre em contato pelo link "CONTATO" no topo da página.
-                    Com os agradecimentos da nossa equipe, divirta-se e informe-se!</p>
+                <p>{{_('Furthermore, if you are in Brazil, we will try to discover your location through the use of the IP Geolocation* technology (GeoIP).')}}</p>
 
                 <p>
-                    <em>* A tecnologia "GeoIP" é possível graças ao site http://www.localizaip.com.br. Apesar de
-                        moderna, esta tecnologia apresenta
-                        limitações de precisão.</em>
+                    <em>{{_('The GeoIP technology is possible thanks to http://www.localizaip.com.br. Although modern, this technology has some accuracy limitations.')}}</em>
                 </p>
             </div>
             <div class="modal-footer">
-                <button id="btn-close-about-modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-            </div>
+                <button id="btn-close-about-modal" type="button" class="btn btn-default" data-dismiss="modal">{{_('Close')}}</button>
+            </div>"
         </div>
     </div>
 </div>
@@ -202,7 +183,7 @@
 <!-- Contact Modal -->
 <div id="contact-modal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
-        <!-- Modal content-->
+        <!-- Modal content-->'
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -213,29 +194,29 @@
                     {{ contact_form.hidden_tag() }}
                     <div class="form-group">
                         {{ contact_form.name.label }}
-                        {{ contact_form.name(class="form-control", placeholder="Digite o seu nome", id="contact-name") }}
+                        {{ contact_form.name(class="form-control", placeholder=contact_form.name.description, id="contact-name") }}
                         <p class="text-danger"></p>
                     </div>
                     <div class="form-group">
                         {{ contact_form.email.label }}
-                        {{ contact_form.email(class="form-control", placeholder="Digite o seu email", id="contact-email") }}
+                        {{ contact_form.email(class="form-control", placeholder=contact_form.email.description, id="contact-email") }}
                         <p class="text-danger"></p>
                     </div>
                     <div class="form-group">
                         {{ contact_form.message.label }}
-                        {{ contact_form.message(class="form-control", rows="4", placeholder="Digite sua mensagem com sugestões relatos de problemas ou qualquer outra coisa que você achar importante", id="contact-message") }}
+                        {{ contact_form.message(class="form-control", rows="4", placeholder=contact_form.message.description, id="contact-message") }}
                         <p class="text-danger"></p>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="btn-submit-contact" type="button" class="btn btn-primary pull-left">Enviar</button>
-                <button id="btn-close-contact-modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button id="btn-submit-contact" type="button" class="btn btn-primary pull-left">{{_('Send')}}</button>
+                <button id="btn-close-contact-modal" type="button" class="btn btn-default" data-dismiss="modal">{{_('Close')}}</button>
             </div>
         </div>
     </div>
 </div>
-
+'
 <!-- /Modals -->
 
 
