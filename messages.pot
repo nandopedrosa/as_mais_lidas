@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-03 01:06-0200\n"
+"POT-Creation-Date: 2016-02-03 12:27-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,6 +73,33 @@ msgstr ""
 
 #: app/views.py:34
 msgid "Home Page"
+msgstr ""
+
+#: app/templates/404.html:9 app/templates/404.html:42
+msgid "Page not found"
+msgstr ""
+
+#: app/templates/404.html:43
+msgid "The requested page could not be found"
+msgstr ""
+
+#: app/templates/404.html:45 app/templates/500.html:45
+msgid "Back to Homepage"
+msgstr ""
+
+#: app/templates/500.html:9
+msgid "Error"
+msgstr ""
+
+#: app/templates/500.html:42
+msgid "An error has occurred"
+msgstr ""
+
+#: app/templates/500.html:43
+msgid ""
+"We are sorry to inform an internal error has occurred. The site "
+"administrator has been contacted and we will try to fix this as soon as "
+"possible."
 msgstr ""
 
 #: app/templates/base.html:46
