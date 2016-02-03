@@ -19,7 +19,6 @@ def __g1(soup):
     """
     news = []
     container = soup.select('ul.highlights > li')
-    container = None
 
     for item in container:
         news.append(dict(title=item.a.span.string, link=item.a['href']))

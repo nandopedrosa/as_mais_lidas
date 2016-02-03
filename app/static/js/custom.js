@@ -49,7 +49,9 @@ function refreshNewsSource(obj) {
             }
         },
         'json'
-    );
+    ).fail(function () {
+        window.location.replace(baseURL + '/error');
+    });
 }
 
 /*
@@ -112,7 +114,7 @@ $('#lang').click(function () {
     console.log(code);
     $.post(
         baseURL + '/lang/' + code,
-        function() {
+        function () {
             window.location.reload();
         }
     );
