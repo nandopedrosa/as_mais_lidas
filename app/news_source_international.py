@@ -5,7 +5,7 @@ __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
 
 """
-import util
+from app.utils import urls, getpage, parsepage, friendly_names
 
 
 def __ny(soup):
@@ -84,7 +84,7 @@ def __tt(soup):
 
     for h in headers:
         a = h.find('a')
-        link = util.urls['tt'] + a['href']
+        link = urls['tt'] + a['href']
         title = a.text
         news.append(dict(title=title, link=link))
     return news
@@ -126,7 +126,7 @@ def get_most_read(source):
     :param source: the name of the source page (e.g: g1)
     :return: a list with the most read news from the page
     """
-    response, content = util.getpage(util.urls[source])  # First we download the page
-    soup = util.parsepage(content)  # Then we parse it
+    response, content = getpage(urls[source])  # First we download the page
+    soup = parsepage(content)  # Then we parse it
     strategy = strategies[source]  # Then we execute the selected Strategy based on the source
-    return strategy(soup), util.friendly_names[source]
+    return strategy(soup), friendly_names[source]

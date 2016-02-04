@@ -7,7 +7,7 @@ __email__ = "fpedrosa@gmail.com"
 """
 
 import html
-import util
+from app.utils import urls, getpage, anchor_has_no_class, parsepage, friendly_names
 
 
 def __g1(soup):
@@ -147,13 +147,13 @@ def __veja(soup):
     """
     news = []
 
-    links = soup.find('div', class_='mais-lidas').find('ul').find_all(util.anchor_has_no_class)
-    links_remainder = soup.find('div', class_='mais-lidas').find('ul').next_sibling.find_all(util.anchor_has_no_class)
+    links = soup.find('div', class_='mais-lidas').find('ul').find_all(anchor_has_no_class)
+    links_remainder = soup.find('div', class_='mais-lidas').find('ul').next_sibling.find_all(anchor_has_no_class)
     links.extend(links_remainder)
 
     for a in links:
         news.append(dict(title=a.string,
-                         link=util.urls['veja'] + a['href']))  # Relative link, we have to prefix with the page domain
+                         link=urls['veja'] + a['href']))  # Relative link, we have to prefix with the page domain
     return news
 
 
@@ -244,7 +244,7 @@ def __local_al(soup):
     links = soup.find('ul', class_='read-more').find_all('a')
 
     for a in links:
-        news.append(dict(title=a.h3.string, link=util.urls['localAL'] + a['href']))
+        news.append(dict(title=a.h3.string, link=urls['localAL'] + a['href']))
     return news
 
 
@@ -275,7 +275,7 @@ def __local_am(soup):
 
     for li in list_items:
         title = li.a.string
-        link = util.urls['localAM'] + li.a['href']
+        link = urls['localAM'] + li.a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -291,7 +291,7 @@ def __local_ba(soup):
 
     for a in anchors:
         title = a.string
-        link = util.urls['localBA'] + a['href']
+        link = urls['localBA'] + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -307,7 +307,7 @@ def __local_ce(soup):
 
     for a in anchors:
         title = a.string
-        link = util.urls['localCE'] + a['href']
+        link = urls['localCE'] + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -323,7 +323,7 @@ def __local_es(soup):
 
     for li in list_items:
         title = li.a.string
-        link = util.urls['localES'] + li.a['href']
+        link = urls['localES'] + li.a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -371,7 +371,7 @@ def __local_mt(soup):
 
     for a in anchors:
         title = a.string
-        link = util.urls['localMT'] + a['href']
+        link = urls['localMT'] + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -451,7 +451,7 @@ def __local_pr(soup):
 
     for a in anchors:
         title = a.string
-        link = util.urls['localPR'] + a['href']
+        link = urls['localPR'] + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -531,7 +531,7 @@ def __local_ro(soup):
 
     for a in anchors:
         title = a['title']
-        link = util.urls['localRO'] + a['href']
+        link = urls['localRO'] + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -548,7 +548,7 @@ def __local_rr(soup):
     for div in divs:
         a = div.find('a')
         title = a.string
-        link = util.urls['localRR'] + a['href']
+        link = urls['localRR'] + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -564,7 +564,7 @@ def __local_se(soup):
 
     for a in anchors:
         title = a.string
-        link = util.urls['localSE'] + a['href']
+        link = urls['localSE'] + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -602,7 +602,7 @@ def get_most_read(source):
     :param source: the name of the source page (e.g: g1)
     :return: a list with the most read news from the page
     """
-    response, content = util.getpage(util.urls[source])  # First we download the page
-    soup = util.parsepage(content)  # Then we parse it
+    response, content = getpage(urls[source])  # First we download the page
+    soup = parsepage(content)  # Then we parse it
     strategy = strategies[source]  # Then we execute the selected Strategy based on the source
-    return strategy(soup), util.friendly_names[source]
+    return strategy(soup), friendly_names[source]

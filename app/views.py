@@ -7,7 +7,7 @@ __email__ = "fpedrosa@gmail.com"
 """
 
 import json
-import util
+from app.utils import getstate, STATES_NS, friendly_names, send_email
 from .facade import get_most_read
 from forms import ContactForm
 from flask import render_template, request, session, redirect, url_for, jsonify
@@ -65,7 +65,7 @@ def get_state():
     """
     ip = request.args.get('ip')
 
-    state = util.getstate(ip)
+    state = getstate(ip)
 
     # DEBUG - Change here to simulate different locations. Comment otherwise.
     # state = 'TO'
@@ -73,7 +73,7 @@ def get_state():
     if state == 'notfound':
         ns_title = ''
     else:
-        ns_title = util.STATES_NS[state] + '*'
+        ns_title = STATES_NS[state] + '*'
 
     d = dict(state=state, ns_title=ns_title)
     j = json.dumps(d)
@@ -88,7 +88,7 @@ def change_location():
     and the location ID (e.g: localAC)
     """
     location = request.args.get('location')
-    ns_name = util.friendly_names[location]
+    ns_name = friendly_names[location]
 
     d = dict(ns_name=ns_name)
     j = json.dumps(d)
@@ -106,7 +106,7 @@ def send_message():
 
     if form.validate():
         form.errors['error'] = False
-        util.send_email(form.name.data, form.email.data, form.message.data)
+        send_email(form.name.data, form.email.data, form.message.data)
     else:
         form.errors['error'] = True
 

@@ -8,7 +8,7 @@ __email__ = "fpedrosa@gmail.com"
 import unittest
 import news_source_national
 import news_source_international
-import util
+from app.utils import getstate
 
 
 class NewsSourceNationalTests(unittest.TestCase):
@@ -173,13 +173,13 @@ class NewsSourceNationalTests(unittest.TestCase):
         self.assertEqual(len(news), 10)
 
     def test_getstate(self):
-        state = util.getstate('187.111.96.65')
+        state = getstate('187.111.96.65')
         self.assertEqual('RJ', state)
 
-        state = util.getstate('177.166.105.8')
+        state = getstate('177.166.105.8')
         self.assertEqual('SP', state)
 
-        state = util.getstate('189.9.21.1')
+        state = getstate('189.9.21.1')
         self.assertEqual('DF', state)
 
 
