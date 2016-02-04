@@ -4,4 +4,4 @@
 *.py[cod]
 *$py.class
 *.cache/
-/app/config.py
+
