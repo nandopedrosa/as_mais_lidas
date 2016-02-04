@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn as-mais-lidas:app
