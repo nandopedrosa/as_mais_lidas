@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 """
-config.py: Application configurations
+aml_config.py: Application configurations
 
 __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"

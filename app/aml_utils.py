@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from flask.ext.mail import Message
 from app import app, mail
 from app.decorators import async
-from app.config import ADMINS
+from app.aml_config import ADMINS
 
 # Constants
 
