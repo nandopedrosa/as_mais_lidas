@@ -7,7 +7,7 @@ __email__ = "fpedrosa@gmail.com"
 """
 
 import json
-from app.utils import getstate, STATES_NS, friendly_names, send_email
+from app.aml_utils import getstate, STATES_NS, friendly_names, send_email
 from .facade import get_most_read
 from forms import ContactForm
 from flask import render_template, request, session, redirect, url_for, jsonify

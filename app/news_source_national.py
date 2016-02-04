@@ -7,7 +7,7 @@ __email__ = "fpedrosa@gmail.com"
 """
 
 import html
-from app.utils import urls, getpage, anchor_has_no_class, parsepage, friendly_names
+from app.aml_utils import urls, getpage, anchor_has_no_class, parsepage, friendly_names
 
 
 def __g1(soup):

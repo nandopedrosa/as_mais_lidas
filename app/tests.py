@@ -8,7 +8,7 @@ __email__ = "fpedrosa@gmail.com"
 import unittest
 import news_source_national
 import news_source_international
-from app.utils import getstate
+from app.aml_utils import getstate
 
 
 class NewsSourceNationalTests(unittest.TestCase):

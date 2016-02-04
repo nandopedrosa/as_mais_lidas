@@ -5,7 +5,7 @@ __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
 
 """
-from app.utils import urls, getpage, parsepage, friendly_names
+from app.aml_utils import urls, getpage, parsepage, friendly_names
 
 
 def __ny(soup):
