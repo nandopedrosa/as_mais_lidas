@@ -6,8 +6,8 @@ __email__ = "fpedrosa@gmail.com"
 
 """
 import unittest
-import news_source_national
-import news_source_international
+import app.news_source_national as news_source_national
+import app.news_source_international as news_source_international
 from app.aml_utils import getstate
 
 
