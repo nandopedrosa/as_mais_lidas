@@ -10,7 +10,7 @@ from flask.ext.mail import Mail
 from flask.ext.babel import Babel
 from flask.json import JSONEncoder as BaseEncoder
 from speaklater import _LazyString
-import config
+from app.config import ADMINS, MAIL_SERVER, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD
 import logging
 import logging.handlers
 
@@ -94,14 +94,14 @@ babel = Babel(app)
 app.json_encoder = JSONEncoder
 
 # Error Handling (send email)
-if not app.debug and config.MAIL_SERVER != '':
+if not app.debug and MAIL_SERVER != '':
     credentials = None
 
-    if config.MAIL_USERNAME or config.MAIL_PASSWORD:
-        credentials = (config.MAIL_USERNAME, config.MAIL_PASSWORD)
+    if MAIL_USERNAME or MAIL_PASSWORD:
+        credentials = (MAIL_USERNAME, MAIL_PASSWORD)
 
     mail_handler = TlsSMTPHandler(("smtp.gmail.com", 587),
-                                  'no-reply@' + config.MAIL_SERVER, config.ADMINS,
+                                  'no-reply@' + MAIL_SERVER, ADMINS,
                                   '[asmaislidas] Application error', credentials)
 
     mail_handler.setLevel(logging.ERROR)

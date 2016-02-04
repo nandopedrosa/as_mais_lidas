@@ -7,11 +7,12 @@ __email__ = "fpedrosa@gmail.com"
 """
 
 import httplib2
+# noinspection PyPackageRequirements
 from bs4 import BeautifulSoup
 from flask.ext.mail import Message
 from app import app, mail
-from decorators import async
-from config import ADMINS
+from app.decorators import async
+from app.config import ADMINS
 
 # Constants
 

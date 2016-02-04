@@ -89,6 +89,7 @@ def __tt(soup):
         news.append(dict(title=title, link=link))
     return news
 
+
 def __ep(soup):
     """
    Gets the most read news from El País page
@@ -100,6 +101,7 @@ def __ep(soup):
 
     for a in anchors:
         link = a['href']
+        # noinspection PyUnusedLocal
         title = 'not-found'
 
         # Sometimes the item has a Span element (Video icon), sometimes it doesn't

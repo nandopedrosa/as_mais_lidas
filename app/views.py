@@ -8,13 +8,13 @@ __email__ = "fpedrosa@gmail.com"
 
 import json
 import util
-import facade
+from .facade import get_most_read
 from forms import ContactForm
 from flask import render_template, request, session, redirect, url_for, jsonify
 from flask.ext.babel import gettext
 from app import app, babel
 from datetime import datetime
-from config import LANGUAGES
+from app.config import LANGUAGES
 
 # Default news source
 DEFAULT_NS = "uol"
@@ -27,7 +27,7 @@ def index():
     Renders the index (home) page with the default News Source
     :return: The rendered index page
     """
-    news, header = facade.get_most_read(DEFAULT_NS)
+    news, header = get_most_read(DEFAULT_NS)
     current_year = datetime.now().year
     contact_form = ContactForm()
     return render_template("ns.html",
@@ -51,7 +51,7 @@ def ns():
     if p_state:
         p_ns += p_state  # eg.: localDF, localSP, etc.
 
-    news, header = facade.get_most_read(p_ns)
+    news, header = get_most_read(p_ns)
     d = dict(news=news, header=header)
     j = json.dumps(d)
     return j
