@@ -10,7 +10,7 @@ import json
 import util
 import facade
 from forms import ContactForm
-from flask import render_template, request, session, redirect, url_for
+from flask import render_template, request, session, redirect, url_for, jsonify
 from flask.ext.babel import gettext
 from app import app, babel
 from datetime import datetime
@@ -99,7 +99,7 @@ def change_location():
 def send_message():
     """
     Sends a contact message
-    :return: a JSON file with status code (OK/ERRO  R). If an error occurs, the JSON file also has a list with the error
+    :return: a JSON file with status code (OK/ERROR). If an error occurs, the JSON file also has a list with the error
     messages and related fields
     """
     form = ContactForm(request.form)
@@ -110,7 +110,7 @@ def send_message():
     else:
         form.errors['error'] = True
 
-    return json.dumps(form.errors)
+    return jsonify(form.errors)
 
 
 @app.route('/lang/<code>', methods=['POST'])

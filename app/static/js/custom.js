@@ -191,7 +191,7 @@ $('#btn-submit-contact').click(function () {
                 if (data.message != undefined) fieldError('#contact-message', data.message[0]);
             } else {
                 resetModal('#contact-modal');
-                showSuccessMessage('#contact-form', 'Mensagem enviada com sucesso');
+                showSuccessMessage('#contact-form', 'Mensagem enviada com sucesso (Message Sent)');
             }
         },
         'json'

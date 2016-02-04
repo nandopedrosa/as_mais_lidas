@@ -8,9 +8,26 @@ __email__ = "fpedrosa@gmail.com"
 from flask import Flask
 from flask.ext.mail import Mail
 from flask.ext.babel import Babel
+from flask.json import JSONEncoder as BaseEncoder
+from speaklater import _LazyString
 import config
 import logging
 import logging.handlers
+
+"""
+=================================================== Custom Config Classes ====================================
+"""
+
+
+class JSONEncoder(BaseEncoder):
+    """
+    Subclass of BaseEncoder. Allows Flask-Babel lazy_gettext to render error messages on WTForms.
+    """
+
+    def default(self, o):
+        if isinstance(o, _LazyString):
+            return str(o)
+        return BaseEncoder.default(self, o)
 
 
 class TlsSMTPHandler(logging.handlers.SMTPHandler):
@@ -53,16 +70,18 @@ class TlsSMTPHandler(logging.handlers.SMTPHandler):
             raise
         except:
             self.handleError(record)
+
+
 """
 =================================================== App Initilization ====================================
 """
-
 
 app = Flask(__name__)
 
 # For session security
 app.secret_key = 'F12Zr47jyX R~X@H!jmM]Lwf/,?KT'
 
+# Load Configurations
 app.config.from_object('config')
 
 # Flask-Mail
@@ -71,8 +90,10 @@ mail = Mail(app)
 # Flask-Babel
 babel = Babel(app)
 
-# Error Handling (send email)
+# Custom JSON Serializer (necessary for Flask-Babel lazy_gettext to work)
+app.json_encoder = JSONEncoder
 
+# Error Handling (send email)
 if not app.debug and config.MAIL_SERVER != '':
     credentials = None
 
@@ -85,6 +106,5 @@ if not app.debug and config.MAIL_SERVER != '':
 
     mail_handler.setLevel(logging.ERROR)
     app.logger.addHandler(mail_handler)
-
 
 from app import views
