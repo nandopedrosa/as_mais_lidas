@@ -155,6 +155,13 @@ function resetModal(modalId) {
 }
 
 /*
+ Removes a previous alert (error) message
+ */
+function removeErrorAlert(modalId) {
+    $(modalId).find('div.alert').remove(); //Removes alert messages
+}
+
+/*
  Resets modal fields and error messages when modal is opened
  */
 $('*[data-toggle="modal"]').click(function () {
@@ -162,6 +169,11 @@ $('*[data-toggle="modal"]').click(function () {
     resetModal(modalId);
 });
 
+/*
+ Highlights a field with error and shows the error message
+  param: id: the field id
+  param: message: the error message
+ */
 function fieldError(id, message) {
     $(id).next('p').text(message);
     $(id).parent('div.form-group').addClass('has-error');
@@ -178,9 +190,20 @@ function showSuccessMessage(formId, message) {
 }
 
 /*
+ Shows an error message alert
+ param: formId: the id of the form related to the message
+ para: message: the message content to be shown
+ */
+function showErrorMesssage(formId, message) {
+    var errorMessage = '<div class="alert alert-danger" role="alert">#MESSAGE#</div>'.replace('#MESSAGE#', message);
+    $(errorMessage).insertBefore(formId);
+}
+
+/*
  Submit contact message
  */
 $('#btn-submit-contact').click(function () {
+    removeErrorAlert('#contact-modal');
     $.post(
         baseURL + '/send_message',
         $('#contact-form').serialize(),
@@ -189,9 +212,10 @@ $('#btn-submit-contact').click(function () {
                 if (data.name != undefined) fieldError('#contact-name', data.name[0]);
                 if (data.email != undefined) fieldError('#contact-email', data.email[0]);
                 if (data.message != undefined) fieldError('#contact-message', data.message[0]);
+                showErrorMesssage('#contact-form', data.status);
             } else {
                 resetModal('#contact-modal');
-                showSuccessMessage('#contact-form', 'Mensagem enviada com sucesso (Message Sent)');
+                showSuccessMessage('#contact-form', data.status);
             }
         },
         'json'

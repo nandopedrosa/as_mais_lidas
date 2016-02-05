@@ -106,8 +106,10 @@ def send_message():
 
     if form.validate():
         form.errors['error'] = False
+        form.errors['status'] = gettext('Message successfully sent')
         send_email(form.name.data, form.email.data, form.message.data)
     else:
+        form.errors['status'] = gettext('Your message could not be sent')
         form.errors['error'] = True
 
     return jsonify(form.errors)
