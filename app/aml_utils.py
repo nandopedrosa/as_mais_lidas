@@ -23,7 +23,7 @@ STATES = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS'
 
 # Used for the Menu of News Sources
 STATES_NS = dict(AC='Gazeta do Acre', AL='Cada Minuto', AP='Jornal do Dia', AM='A Crítica',
-                 BA='A Tarde', CE='Diário do Nordeste', DF='Correio Braziliense', ES='Folha Vitória',
+                 BA='A Tarde', CE='Diário do Nordeste', DF='Jornal de Brasília', ES='Folha Vitória',
                  GO='TV Anhaguera', MA='Jornal Pequeno', MT='Gazeta Digital', MS='TV Morena',
                  MG='Estado de Minas', PA='Rede Liberal', PB='Paraíba Online', PR='Paraná Online',
                  PE='JC Online', PI='TV Clube', RJ='O Globo', RN='Inter TV',
@@ -34,7 +34,7 @@ STATES_NS = dict(AC='Gazeta do Acre', AL='Cada Minuto', AP='Jornal do Dia', AM='
 urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r7="http://www.r7.com/",
             folha='http://www.folha.uol.com.br/', bol="http://www.bol.uol.com.br/",
             carta="http://www.cartacapital.com.br/", veja="http://veja.abril.com.br",
-            localDF="http://www.correiobraziliense.com.br/", localSP="http://www.estadao.com.br/",
+            localDF="http://www.jornaldebrasilia.com.br/cidades/", localSP="http://www.estadao.com.br/",
             localRJ="http://oglobo.globo.com/rio/", localPE="http://jconline.ne10.uol.com.br/",
             localAC="http://agazetadoacre.com/noticias/", localAL="http://www.cadaminuto.com.br/",
             localAP="http://www.jdia.com.br/portal2/", localAM="http://acritica.uol.com.br",
@@ -55,7 +55,7 @@ urls = dict(g1="http://g1.globo.com/index.html", uol="http://www.uol.com.br/", r
 friendly_names = dict(g1="G1", uol="UOL", r7="R7",
                       folha='Folha de São Paulo', bol="BOL",
                       carta="Carta Capital", veja="Veja",
-                      localDF="Correio Braziliense",
+                      localDF="Jornal de Brasília",
                       localSP="Estadão", localPE="JC Online",
                       localRJ="O Globo", localAL="Cada Minuto",
                       localAC="A Gazeta do Acre",
