@@ -62,7 +62,6 @@ function toggleMenuItem(menuItem) {
     $('#aml-menu > a.list-group-item').removeClass('active');
     //Activate current menu item
     menuItem.addClass('active');
-    $(this).addClass('active');
 }
 
 /*
@@ -142,10 +141,14 @@ $('#select-location').change(function () {
         'json'
     );
 
-    //Scrolls to the regional news source (so the user knows it worked)
-    $('html, body').animate({
-        scrollTop: $("#local").offset().top
-    }, 2000);
+    //Active regional news source menu item
+    toggleMenuItem($('#local'));
+
+    //Refresh regional news source after 1 second
+    setTimeout(function(){
+        $('#local').trigger('click');
+    },1000);
+
 });
 
 /*
