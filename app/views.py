@@ -31,7 +31,7 @@ def index():
     current_year = datetime.now().year
     contact_form = ContactForm()
     return render_template("ns.html",
-                           title=gettext('Home Page'),
+                           title=gettext('Error'),
                            year=current_year,
                            news=news,
                            header=header,

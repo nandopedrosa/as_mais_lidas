@@ -1,51 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow" />
+{% extends "base.html" %}
 
-    <title>{{ _('Error') }}</title>
+{% block content %}
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../static/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<div class="well" style="margin: 20px auto; text-align: center; padding: 25px; max-width: 600px">
+    <h2 style="margin: 0"><div class="glyphicon glyphicon-warning-sign"></div> {{ _('An error has occurred') }}</h2>
+    <p style="margin-top: 5px ">{{ _('We are sorry to inform an internal error has occurred. The site administrator has been contacted and we will try to fix this as soon as possible.') }}</p>
+    <p>
+        <a style="margin: 5px 5px" class="btn btn-default btn-sm" href="{{ url_for('index') }}">{{ _('Back to Homepage') }}</a>
+    </p>
+</div>
 
-    <style>
-    body {
-        background: #fbfbfb;
-    }
+{% endblock %}
 
-    .well {
-        margin: 50px auto;
-        text-align: center;
-        padding: 25px;
-        max-width: 600px;
-    }
-    h1, h2, h3, p {
-        margin: 0;
-    }
-    p {
-        font-size: 17px;
-        margin-top: 25px;
-    }
-    p a.btn {
-        margin: 0 5px;
-    }
-    </style>
 
-</head>
-<body>
 
-    <div class="container">
-        <div class="well">
-            <h1><div class="glyphicon glyphicon-warning-sign"></div> {{ _('An error has occurred') }}</h1>
-            <p>{{ _('We are sorry to inform an internal error has occurred. The site administrator has been contacted and we will try to fix this as soon as possible.') }}</p>
-            <p>
-                <a class="btn btn-default btn-lg" href="{{ url_for('index') }}">{{ _('Back to Homepage') }}</a>
-            </p>
-        </div>
-    </div>
-
-</body>
-</html>

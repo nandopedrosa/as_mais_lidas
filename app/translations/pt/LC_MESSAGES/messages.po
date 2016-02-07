@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-04 23:33-0200\n"
-"PO-Revision-Date: 2016-02-04 23:34-0200\n"
+"POT-Creation-Date: 2016-02-07 14:33-0200\n"
+"PO-Revision-Date: 2016-02-07 14:34-0200\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: pt <LL@li.org>\n"
@@ -76,8 +76,8 @@ msgstr ""
 "outro aspecto que você achar importante"
 
 #: app/views.py:34
-msgid "Home Page"
-msgstr "Página Inicial"
+msgid "Error"
+msgstr "Erro"
 
 #: app/views.py:109
 msgid "Message successfully sent"
@@ -87,27 +87,23 @@ msgstr "Mensagem enviada com sucesso"
 msgid "Your message could not be sent"
 msgstr "Não foi possível enviar a mensagem"
 
-#: app/templates/404.html:9 app/templates/404.html:42
+#: app/templates/404.html:6
 msgid "Page not found"
 msgstr "Página não encontrada"
 
-#: app/templates/404.html:43
-msgid "The requested page could not be found"
-msgstr "A página requisitada não foi encontrada"
+#: app/templates/404.html:7
+msgid "The requested page could not be found."
+msgstr "A página requisitada não foi encontrada."
 
-#: app/templates/404.html:45 app/templates/500.html:45
+#: app/templates/404.html:9 app/templates/500.html:9
 msgid "Back to Homepage"
 msgstr "Voltar à página inicial"
 
-#: app/templates/500.html:9
-msgid "Error"
-msgstr "Erro"
-
-#: app/templates/500.html:42
+#: app/templates/500.html:6
 msgid "An error has occurred"
 msgstr "Ocorreu um erro"
 
-#: app/templates/500.html:43
+#: app/templates/500.html:7
 msgid ""
 "We are sorry to inform an internal error has occurred. The site "
 "administrator has been contacted and we will try to fix this as soon as "
@@ -208,3 +204,6 @@ msgstr "Fechar"
 #: app/templates/base.html:213
 msgid "Send"
 msgstr "Enviar"
+
+#~ msgid "Home Page"
+#~ msgstr "Página Inicial"
