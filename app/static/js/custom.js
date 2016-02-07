@@ -141,6 +141,11 @@ $('#select-location').change(function () {
         },
         'json'
     );
+
+    //Scrolls to the regional news source (so the user knows it worked)
+    $('html, body').animate({
+        scrollTop: $("#local").offset().top
+    }, 2000);
 });
 
 /*
