@@ -30,13 +30,11 @@ def index():
     news, header = get_most_read(DEFAULT_NS)
     current_year = datetime.now().year
     contact_form = ContactForm()
-    ip = request.remote_addr
     return render_template("ns.html",
                            title=gettext('Home Page'),
                            year=current_year,
                            news=news,
                            header=header,
-                           ip = ip,
                            contact_form=contact_form)
 
 

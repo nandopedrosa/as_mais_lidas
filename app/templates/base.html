@@ -239,10 +239,6 @@
      Updates regional news source
      */
 
-    userip = '{{ ip }}';
-
-    console.log(userip);
-
     baseURL = window.location.protocol + "//" + window.location.host;
 
     $.get(
@@ -269,6 +265,7 @@
     $('html, body').animate({
         scrollTop: $("#local").offset().top
     }, 2000);
+
 </script>
 <!--/Get User IP -->
 
