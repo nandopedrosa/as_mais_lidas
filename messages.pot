@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-07 14:33-0200\n"
+"POT-Creation-Date: 2016-02-07 14:52-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,7 +72,7 @@ msgid ""
 msgstr ""
 
 #: app/views.py:34
-msgid "Error"
+msgid "Home Page"
 msgstr ""
 
 #: app/views.py:109
@@ -83,8 +83,12 @@ msgstr ""
 msgid "Your message could not be sent"
 msgstr ""
 
-#: app/templates/404.html:6
+#: app/views.py:149 app/templates/404.html:6
 msgid "Page not found"
+msgstr ""
+
+#: app/views.py:162
+msgid "Error"
 msgstr ""
 
 #: app/templates/404.html:7

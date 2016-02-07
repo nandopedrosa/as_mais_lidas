@@ -31,7 +31,7 @@ def index():
     current_year = datetime.now().year
     contact_form = ContactForm()
     return render_template("ns.html",
-                           title=gettext('Error'),
+                           title=gettext('Home Page'),
                            year=current_year,
                            news=news,
                            header=header,
@@ -143,13 +143,23 @@ def get_locale():
 # noinspection PyUnusedLocal
 @app.errorhandler(404)
 def not_found_error(error):
-    return render_template('404.html'), 404
+    contact_form = ContactForm()
+    current_year = datetime.now().year
+    return render_template("404.html",
+                           title=gettext('Page not found'),
+                           year=current_year,
+                           contact_form=contact_form)
 
 
 # noinspection PyUnusedLocal
 @app.errorhandler(500)
 def internal_error(error):
-    return render_template('500.html'), 500
+    contact_form = ContactForm()
+    current_year = datetime.now().year
+    return render_template("500.html",
+                           title=gettext('Error'),
+                           year=current_year,
+                           contact_form=contact_form)
 
 
 @app.route('/error', methods=['GET'])

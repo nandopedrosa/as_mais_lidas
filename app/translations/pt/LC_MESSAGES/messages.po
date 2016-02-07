@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-07 14:33-0200\n"
-"PO-Revision-Date: 2016-02-07 14:34-0200\n"
+"POT-Creation-Date: 2016-02-07 14:52-0200\n"
+"PO-Revision-Date: 2016-02-07 14:55-0200\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: pt <LL@li.org>\n"
@@ -68,16 +68,12 @@ msgid "Your message must have between 3 and 4000 characters"
 msgstr "A sua mensagem deve ter entre 3 e 4000 caracteres"
 
 #: app/forms.py:32
-msgid ""
-"Enter your message with suggestions, bug reports or anything else you "
-"think is important"
-msgstr ""
-"Digite sua mensagem com sugestões, relatos de problemas ou qualquer "
-"outro aspecto que você achar importante"
+msgid "Enter your message with suggestions, bug reports or anything else you think is important"
+msgstr "Digite sua mensagem com sugestões, relatos de problemas ou qualquer outro aspecto que você achar importante"
 
 #: app/views.py:34
-msgid "Error"
-msgstr "Erro"
+msgid "Home Page"
+msgstr "Página Inicial"
 
 #: app/views.py:109
 msgid "Message successfully sent"
@@ -87,9 +83,13 @@ msgstr "Mensagem enviada com sucesso"
 msgid "Your message could not be sent"
 msgstr "Não foi possível enviar a mensagem"
 
-#: app/templates/404.html:6
+#: app/views.py:149 app/templates/404.html:6
 msgid "Page not found"
 msgstr "Página não encontrada"
+
+#: app/views.py:162
+msgid "Error"
+msgstr "Erro"
 
 #: app/templates/404.html:7
 msgid "The requested page could not be found."
@@ -104,13 +104,8 @@ msgid "An error has occurred"
 msgstr "Ocorreu um erro"
 
 #: app/templates/500.html:7
-msgid ""
-"We are sorry to inform an internal error has occurred. The site "
-"administrator has been contacted and we will try to fix this as soon as "
-"possible."
-msgstr ""
-"Lamentamos informar que um erro interno ocorreu. O administrador do site "
-"foi contactado e tentaremos resolver esse problema o mais rápido possível"
+msgid "We are sorry to inform an internal error has occurred. The site administrator has been contacted and we will try to fix this as soon as possible."
+msgstr "Lamentamos informar que um erro interno ocorreu. O administrador do site foi contactado e tentaremos resolver esse problema o mais rápido possível"
 
 #: app/templates/base.html:46
 msgid "PORTUGUÊS"
@@ -133,14 +128,8 @@ msgid "news you want to read."
 msgstr "as notícias que você quer ler."
 
 #: app/templates/base.html:67
-msgid ""
-"Here you find the most read news from popular News Websites from all "
-"around the world. If you are in Brazil, we will try to show you some "
-"regional news from your location*"
-msgstr ""
-"Aqui você encontra as matérias mais lidas dos grandes Portais de "
-"Notícias nacionais ou internacionais. Se você estiver no Brasil, também "
-"mostraremos um site da sua região*"
+msgid "Here you find the most read news from popular News Websites from all around the world. If you are in Brazil, we will try to show you some regional news from your location*"
+msgstr "Aqui você encontra as matérias mais lidas dos grandes Portais de Notícias nacionais ou internacionais. Se você estiver no Brasil, também mostraremos um site da sua região*"
 
 #: app/templates/base.html:68
 msgid "National"
@@ -163,39 +152,20 @@ msgid "is a website for those who want to get straight to the point."
 msgstr "é um site para quem deseja ir direto ao ponto."
 
 #: app/templates/base.html:166
-msgid ""
-"The idea came when thinking about those who have no time (or desire) to "
-"navigate multiple websites just to find what really matters."
-msgstr ""
-"A ideia surgiu pensando em quem não tem tempo (ou o desejo) de navegar "
-"em diversos locais apenas para achar aquilo que mais lhe interessa."
+msgid "The idea came when thinking about those who have no time (or desire) to navigate multiple websites just to find what really matters."
+msgstr "A ideia surgiu pensando em quem não tem tempo (ou o desejo) de navegar em diversos locais apenas para achar aquilo que mais lhe interessa."
 
 #: app/templates/base.html:168
-msgid ""
-"Here you can find, in a single place, the most read news from the "
-"biggest News Websites from all around the world and get information in a "
-"matter of minutes."
-msgstr ""
-"Aqui você pode achar, em um único lugar, as notícias mais lidas dos "
-"grandes Portais de Notícias do mundo inteiro e se informar em questão de "
-"minutos!"
+msgid "Here you can find, in a single place, the most read news from the biggest News Websites from all around the world and get information in a matter of minutes."
+msgstr "Aqui você pode achar, em um único lugar, as notícias mais lidas dos grandes Portais de Notícias do mundo inteiro e se informar em questão de minutos!"
 
 #: app/templates/base.html:170
-msgid ""
-"Furthermore, if you are in Brazil, we will try to discover your location "
-"through the use of the IP Geolocation* technology (GeoIP)."
-msgstr ""
-"Além disso, se você estiver no Brasil, nós tentaremos descobrir aonde "
-"você está por meio da tecnologia de geolocalização por IP* ou \"GeoIP\"."
+msgid "Furthermore, if you are in Brazil, we will try to discover your location through the use of the IP Geolocation* technology (GeoIP)."
+msgstr "Além disso, se você estiver no Brasil, nós tentaremos descobrir aonde você está por meio da tecnologia de geolocalização por IP* ou \"GeoIP\"."
 
 #: app/templates/base.html:173
-msgid ""
-"The GeoIP technology is possible thanks to http://www.localizaip.com.br. "
-"Although modern, this technology has some accuracy limitations."
-msgstr ""
-"A tecnologia \"GeoIP\" é possível graças ao site http://www.localizaip."
-"com.br. Apesar de moderna, esta tecnologia "
-"apresenta                        limitações de precisão."
+msgid "The GeoIP technology is possible thanks to http://www.localizaip.com.br. Although modern, this technology has some accuracy limitations."
+msgstr "A tecnologia \"GeoIP\" é possível graças ao site http://www.localizaip.com.br. Apesar de moderna, esta tecnologia apresenta                        limitações de precisão."
 
 #: app/templates/base.html:177 app/templates/base.html:214
 msgid "Close"
@@ -204,6 +174,3 @@ msgstr "Fechar"
 #: app/templates/base.html:213
 msgid "Send"
 msgstr "Enviar"
-
-#~ msgid "Home Page"
-#~ msgstr "Página Inicial"
