@@ -167,7 +167,7 @@ def __local_df(soup):
     links = soup.find('div', id='box-maislidas').find_all('a')
 
     for a in links:
-        news.append(dict(title=a.string, link=a['href']))
+        news.append(dict(title=a.string, link= 'http://www.jornaldebrasilia.com.br/' + a['href']))
     return news
 
 
