@@ -10,7 +10,7 @@ import os
 
 # Security settings for WTForms
 CSRF_ENABLED = True
-SECRET_KEY = 'breakingalldoors'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Flask-mail settings
 MAIL_SERVER = 'smtp.gmail.com'

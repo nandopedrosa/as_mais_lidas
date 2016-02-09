@@ -78,9 +78,6 @@ class TlsSMTPHandler(logging.handlers.SMTPHandler):
 
 app = Flask(__name__)
 
-# For session security
-app.secret_key = 'F12Zr47jyX R~X@H!jmM]Lwf/,?KT'
-
 # Load Configurations
 app.config.from_pyfile('aml_config.py')
 
