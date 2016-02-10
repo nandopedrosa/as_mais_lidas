@@ -7,7 +7,9 @@ __email__ = "fpedrosa@gmail.com"
 """
 
 import html
-from app.aml_utils import urls, getpage, anchor_has_no_class, parsepage, friendly_names
+from app.aml_utils import getpage, anchor_has_no_class, parsepage, get_ns
+from app.models import *
+from app import db
 
 
 def __g1(soup):
@@ -146,6 +148,7 @@ def __veja(soup):
     :return: a list with the most read news from the Veja Page
     """
     news = []
+    ns = get_ns('veja')
 
     links = soup.find('div', class_='mais-lidas').find('ul').find_all(anchor_has_no_class)
     links_remainder = soup.find('div', class_='mais-lidas').find('ul').next_sibling.find_all(anchor_has_no_class)
@@ -153,7 +156,7 @@ def __veja(soup):
 
     for a in links:
         news.append(dict(title=a.string,
-                         link=urls['veja'] + a['href']))  # Relative link, we have to prefix with the page domain
+                         link=ns.url + a['href']))  # Relative link, we have to prefix with the page domain
     return news
 
 
@@ -167,7 +170,7 @@ def __local_df(soup):
     links = soup.find('div', id='box-maislidas').find_all('a')
 
     for a in links:
-        news.append(dict(title=a.string, link= 'http://www.jornaldebrasilia.com.br/' + a['href']))
+        news.append(dict(title=a.string, link='http://www.jornaldebrasilia.com.br/' + a['href']))
     return news
 
 
@@ -240,10 +243,12 @@ def __local_al(soup):
   :return: a list with the most read news from Cada Minuto page
   """
     news = []
+    ns = get_ns('localAL')
+
     links = soup.find('ul', class_='read-more').find_all('a')
 
     for a in links:
-        news.append(dict(title=a.h3.string, link=urls['localAL'] + a['href']))
+        news.append(dict(title=a.h3.string, link=ns.url + a['href']))
     return news
 
 
@@ -270,11 +275,13 @@ def __local_am(soup):
  :return: a list with the most read news from A Crítica page
  """
     news = []
+    ns = get_ns('localAM')
+
     list_items = soup.find('div', id='mas-leidas').find_all('li')
 
     for li in list_items:
         title = li.a.string
-        link = urls['localAM'] + li.a['href']
+        link = ns.url + li.a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -286,11 +293,13 @@ def __local_ba(soup):
   :return: a list with the most read news from A Tarde page
   """
     news = []
+    ns = get_ns('localBA')
+
     anchors = soup.find('aside', id='conteudos').find_all('a')
 
     for a in anchors:
         title = a.string
-        link = urls['localBA'] + a['href']
+        link = ns.url + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -302,11 +311,13 @@ def __local_ce(soup):
     :return: a list with the most read news from Diário do Nordeste page
     """
     news = []
+    ns = get_ns('localCE')
+
     anchors = soup.find('section', id='mais-lidas').find_all('a')
 
     for a in anchors:
         title = a.string
-        link = urls['localCE'] + a['href']
+        link = ns.url + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -318,11 +329,13 @@ def __local_es(soup):
    :return: a list with the most read news from Folha Vitória page
    """
     news = []
+    ns = get_ns('localES')
+
     list_items = soup.find('div', class_='readMore container t2').find_all('li', class_='geral')
 
     for li in list_items:
         title = li.a.string
-        link = urls['localES'] + li.a['href']
+        link = ns.url + li.a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -366,11 +379,13 @@ def __local_mt(soup):
    :return: a list with the most read news from Gazeta Digital page
    """
     news = []
+    ns = get_ns('localMT')
+
     anchors = soup.find_all('a', class_='top10titulo')
 
     for a in anchors:
         title = a.string
-        link = urls['localMT'] + a['href']
+        link = ns.url + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -446,11 +461,13 @@ def __local_pr(soup):
    :return: a list with the most read news from Paraná Online page
    """
     news = []
+    ns = get_ns('localPR')
+
     anchors = soup.find('ul', id='lidas').find_all('a')
 
     for a in anchors:
         title = a.string
-        link = urls['localPR'] + a['href']
+        link = ns.url + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -526,11 +543,13 @@ def __local_ro(soup):
    :return: a list with the most read news from Rondonia ao Vivo page
    """
     news = []
+    ns = get_ns('localRO')
+
     anchors = soup.find('div', id='mais-lidas').find_all('a', class_='fill-lidas')
 
     for a in anchors:
         title = a['title']
-        link = urls['localRO'] + a['href']
+        link = ns.url + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -542,12 +561,14 @@ def __local_rr(soup):
    :return: a list with the most read news from Folha de Boa Vista page
    """
     news = []
+    ns = get_ns('localRR')
+
     divs = soup.find('div', class_='mais-lidas').find_all('div', class_="ultimas-text")
 
     for div in divs:
         a = div.find('a')
         title = a.string
-        link = urls['localRR'] + a['href']
+        link = ns.url + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -559,11 +580,13 @@ def __local_se(soup):
    :return: a list with the most read news from Jornal do Dia page
    """
     news = []
+    ns = get_ns('localSE')
+
     anchors = soup.find('div', class_='coluna3 bordaTopoCinza').find_all('a')
 
     for a in anchors:
         title = a.string
-        link = urls['localSE'] + a['href']
+        link = ns.url + a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -594,14 +617,15 @@ strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=_
                   localTO=__local_to)
 
 
-def get_most_read(source):
+def get_most_read(key):
     """
     Gets the most read news from a given page
 
-    :param source: the name of the source page (e.g: g1)
-    :return: a list with the most read news from the page
+    :param key: the key of the source page (e.g: g1)
+    :return: a list with the most read news from the page and the name of news source
     """
-    response, content = getpage(urls[source])  # First we download the page
+    ns = get_ns(key)
+    response, content = getpage(ns.url)  # Download the page
     soup = parsepage(content)  # Then we parse it
-    strategy = strategies[source]  # Then we execute the selected Strategy based on the source
-    return strategy(soup), friendly_names[source]
+    strategy = strategies[key]  # Then we execute the selected Strategy based on the source
+    return strategy(soup), ns.name

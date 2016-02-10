@@ -1,13 +1,14 @@
 """
 views.py: Routing and view rendering of the application
 
+
 __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
 
 """
 
 import json
-from app.aml_utils import getstate, STATES_NS, friendly_names, send_email
+from app.aml_utils import getstate, send_email, get_ns
 from app.facade import get_most_read
 from app.forms import ContactForm
 from flask import render_template, request, session, redirect, url_for, jsonify
@@ -73,7 +74,8 @@ def get_state():
     if state == 'notfound':
         ns_title = ''
     else:
-        ns_title = STATES_NS[state] + '*'
+        ns_local = get_ns('local' + state)
+        ns_title = ns_local.name + '*'
 
     d = dict(state=state, ns_title=ns_title)
     j = json.dumps(d)
@@ -85,10 +87,10 @@ def change_location():
     """
     Changes the user Location
     :return: a JSON file with the name of the regional news source based on the new location
-    and the location ID (e.g: localAC)
     """
     location = request.args.get('location')
-    ns_name = friendly_names[location]
+    ns_local = get_ns(location)
+    ns_name = ns_local.name
 
     d = dict(ns_name=ns_name)
     j = json.dumps(d)

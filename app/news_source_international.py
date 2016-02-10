@@ -5,7 +5,7 @@ __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
 
 """
-from app.aml_utils import urls, getpage, parsepage, friendly_names
+from app.aml_utils import getpage, parsepage, get_ns
 
 
 def __ny(soup):
@@ -80,11 +80,13 @@ def __tt(soup):
    :return: a list with the most read news from the The Telegraph page
    """
     news = []
+    ns = get_ns('tt')
+
     headers = soup.find('div', id='div-SHARED').find_all('h3', class_='topFiveComment')
 
     for h in headers:
         a = h.find('a')
-        link = urls['tt'] + a['href']
+        link = ns.url + a['href']
         title = a.text
         news.append(dict(title=title, link=link))
     return news
@@ -119,14 +121,15 @@ def __ep(soup):
 strategies = dict(ny=__ny, wp=__wp, tg=__tg, lf=__lf, tt=__tt, ep=__ep)
 
 
-def get_most_read(source):
+def get_most_read(key):
     """
     Gets the most read news from a given page
 
-    :param source: the name of the source page (e.g: g1)
-    :return: a list with the most read news from the page
+    :param key: the key of the source page (e.g: g1)
+    :return: a list with the most read news from the page and the name of news source
     """
-    response, content = getpage(urls[source])  # First we download the page
+    ns = get_ns(key)
+    response, content = getpage(ns.url)  # Download the page
     soup = parsepage(content)  # Then we parse it
-    strategy = strategies[source]  # Then we execute the selected Strategy based on the source
-    return strategy(soup), friendly_names[source]
+    strategy = strategies[key]  # Then we execute the selected Strategy based on the source
+    return strategy(soup), ns.name
