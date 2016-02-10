@@ -20,4 +20,4 @@ class NewsSource(db.Model):
         self.url = url
 
     def __repr__(self):
-        return 'Name: ' + name + ', Key: ' + key + ', URL: ' + url
+        return 'Name: ' + self.name + ', Key: ' + self.key + ', URL: ' + self.url
