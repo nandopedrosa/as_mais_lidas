@@ -13,6 +13,7 @@ from speaklater import _LazyString
 from app.aml_config import ADMINS, MAIL_SERVER, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD
 import logging
 import logging.handlers
+from flask.ext.sqlalchemy import SQLAlchemy
 
 """
 =================================================== Custom Config Classes ====================================
@@ -86,6 +87,9 @@ mail = Mail(app)
 
 # Flask-Babel
 babel = Babel(app)
+
+# Database
+db = SQLAlchemy(app)
 
 # Custom JSON Serializer (necessary for Flask-Babel lazy_gettext to work)
 app.json_encoder = JSONEncoder

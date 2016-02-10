@@ -9,9 +9,18 @@ import unittest
 import app.news_source_national as news_source_national
 import app.news_source_international as news_source_international
 from app.aml_utils import getstate
+from app import app, db
+from app.models import NewsSource
 
 
 class NewsSourceNationalTests(unittest.TestCase):
+    def setUp(self):
+        # Development database
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:admin@localhost/as-mais-lidas'
+
+    def tearDown(self):
+        db.session.remove()
+
     def test_g1(self):
         news, title = news_source_national.get_most_read('g1')
         self.assertEqual(len(news), 5)
@@ -181,6 +190,27 @@ class NewsSourceNationalTests(unittest.TestCase):
 
         state = getstate('189.9.21.1')
         self.assertEqual('DF', state)
+
+    def test_db(self):
+        # First we test the insert operation
+        ns1 = NewsSource(name='test', key='tst', url='http://test.com')
+        db.session.add(ns1)
+        db.session.commit()
+        self.assertIsNotNone(ns1.id_news_source)
+
+        # Now the query
+        ns2 = NewsSource.query.get(ns1.id_news_source)
+        self.assertEqual(ns1.id_news_source, ns2.id_news_source)
+
+        # And now we delete the test data and check if it was really deleted
+        db.session.delete(ns2)
+        db.session.commit()
+        ns3 = NewsSource.query.get(ns1.id_news_source)
+        self.assertIsNone(ns3)
+
+
+
+
 
 
 if __name__ == '__main__':

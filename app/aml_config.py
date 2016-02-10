@@ -29,3 +29,7 @@ LANGUAGES = {
 }
 
 BABEL_DEFAULT_LOCALE = 'pt_BR'
+
+# Database Configuration
+SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:admin@localhost/as-mais-lidas'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
