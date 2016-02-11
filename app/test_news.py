@@ -1,5 +1,5 @@
 """
-tests.py: Application unit tests
+test_news.py: Application unit tests for the News Category. Also tests DB connection
 
 __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
@@ -13,7 +13,7 @@ from app import app, db
 from app.models import NewsSource
 
 
-class NewsSourceNationalTests(unittest.TestCase):
+class NewsSourceTests(unittest.TestCase):
     def setUp(self):
         # Development database
         app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:admin@localhost/as-mais-lidas'
@@ -207,10 +207,6 @@ class NewsSourceNationalTests(unittest.TestCase):
         db.session.commit()
         ns3 = NewsSource.query.get(ns1.id_news_source)
         self.assertIsNone(ns3)
-
-
-
-
 
 
 if __name__ == '__main__':
