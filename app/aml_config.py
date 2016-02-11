@@ -31,5 +31,9 @@ LANGUAGES = {
 BABEL_DEFAULT_LOCALE = 'pt_BR'
 
 # Database Configuration
-SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:admin@localhost/as-mais-lidas'
+if os.environ.get('DATABASE_URL') is None:
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:admin@localhost/as-mais-lidas'  # Development Database¬
+else:
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']  # Heroku Database
+
 SQLALCHEMY_TRACK_MODIFICATIONS = False
