@@ -25,6 +25,9 @@ export PATH=$PATH=/Library/PostgreSQL/9.5/lib
 $ sudo mv /usr/lib/libpq.5.dylib /usr/lib/libpq.5.dylib.old
 $ sudo ln -s /Library/PostgreSQL/9.4/lib/libpq.5.dylib /usr/lib
 
+TO RUN SCRIPT ON HEROKU:
+
+heroku run python  migrate.py db upgrade
 
 
 
