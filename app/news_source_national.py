@@ -162,16 +162,17 @@ def __veja(soup):
 
 def __local_df(soup):
     """
-    Gets the most read news from Distrito Federal Local News (Correio Braziliense)
+    Gets the most read news from Distrito Federal Local News (G1 DF)
     :param soup: the BeautifulSoup object
-    :return: a list with the most read news from the Correio Braziliense Page
+    :return: a list with the most read news from the G1 DF Page
     """
     news = []
-    container = soup.find('div', id='lidas')
-    links = container.find_all('a')
+    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
 
-    for a in links:
-        news.append(dict(title=a['title'], link=a['href']))
+    for a in anchors:
+        title = a['title']
+        link = "http://g1.globo.com" + a['href']
+        news.append(dict(title=title, link=link))
     return news
 
 
