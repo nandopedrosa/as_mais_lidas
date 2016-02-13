@@ -51,7 +51,7 @@ class NewsSourceTests(unittest.TestCase):
 
     def test_local_df(self):
         news, title = news_source_national.get_most_read('localDF')
-        self.assertEqual(len(news), 7)
+        self.assertEqual(len(news), 4)
 
     def test_local_sp(self):
         news, title = news_source_national.get_most_read('localSP')
@@ -157,9 +157,9 @@ class NewsSourceTests(unittest.TestCase):
         news, title = news_source_national.get_most_read('localTO')
         self.assertEqual(len(news), 5)
 
-    def test_ny(self):
-        news, title = news_source_international.get_most_read('ny')
-        self.assertEqual(len(news), 10)
+    def test_fox(self):
+        news, title = news_source_international.get_most_read('fox')
+        self.assertEqual(len(news), 5)
 
     def test_wp(self):
         news, title = news_source_international.get_most_read('wp')

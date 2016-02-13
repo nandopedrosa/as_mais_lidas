@@ -8,15 +8,14 @@ __email__ = "fpedrosa@gmail.com"
 from app.aml_utils import getpage, parsepage, get_ns
 
 
-def __ny(soup):
+def __fox(soup):
     """
-   Gets the most read news from the NY Times page
+   Gets the most read news from the Fox News page
    :param soup: the BeautifulSoup object
-   :return: a list with the most read news from the NY Times page
+   :return: a list with the most read news from the Fox News page
    """
     news = []
-    ordered_list = soup.find_all('ol', class_='mostPopularList')[1]  # Second Ordered List of the page
-    anchors = ordered_list.find_all('a')
+    anchors = soup.find('section', id='trending').find('ol').find_all('a')
 
     for a in anchors:
         title = a.string
@@ -118,7 +117,7 @@ def __ep(soup):
 
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(ny=__ny, wp=__wp, tg=__tg, lf=__lf, tt=__tt, ep=__ep)
+strategies = dict(fox=__fox, wp=__wp, tg=__tg, lf=__lf, tt=__tt, ep=__ep)
 
 
 def get_most_read(key):
