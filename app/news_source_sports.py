@@ -86,8 +86,27 @@ def __e_placar(soup):
     return news
 
 
+def __e_gp(soup):
+    """
+    Gets the most read news from the Grande Premio page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Grande Premio page
+    """
+    news = []
+    ns = get_ns('e_gp')
+
+    anchors = soup.find('div', class_='mhv-mais-lida-posicao').parent.find_all('a')
+
+    for a in anchors:
+        title = a.string
+        link = ns.url + a['href']
+        news.append(dict(title=title, link=link))
+
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(e_espn_br=__e_espn_br, e_fox_br=__e_fox_br, e_lance=__e_lance, e_placar=__e_placar)
+strategies = dict(e_espn_br=__e_espn_br, e_fox_br=__e_fox_br, e_lance=__e_lance, e_placar=__e_placar, e_gp=__e_gp)
 
 
 def get_most_read(key):

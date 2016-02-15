@@ -26,5 +26,9 @@ class SportsTests(unittest.TestCase):
         news, title = nss.get_most_read('e_placar')
         self.assertEqual(len(news), 5)
 
+    def test_gp(self):
+        news, title = nss.get_most_read('e_gp')
+        self.assertEqual(len(news), 5)
+
 if __name__ == '__main__':
     unittest.main()
