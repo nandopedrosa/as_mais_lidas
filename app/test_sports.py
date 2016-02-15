@@ -11,7 +11,7 @@ import app.news_source_sports as nss
 
 class SportsTests(unittest.TestCase):
     def test_espn(self):
-        news, title = nss.get_most_read('e_espn')
+        news, title = nss.get_most_read('e_espn_br')
         self.assertEqual(len(news), 6)
 
 

@@ -74,6 +74,15 @@
 <div class="container">
     <div class="row">
         <div class="form-group col-xs-6  col-md-2">
+            <label id="label-select-category" for="select-category">{{_('Category')}}</label>
+            <select class="form-control" id="select-category">
+                <option value="news">{{_('News')}}</option>
+                <option value="sports">{{_('Sports')}}</option>
+                <option value="technology">{{_('Technology')}}</option>
+                <option value="entertainment">{{_('Entertainment')}}</option>
+            </select>
+        </div>
+        <div class="form-group col-xs-6  col-md-2">
             <label id="label-select-location" for="select-location">{{_('Change your location (Brazil)*')}}</label>
             <select class="form-control" id="select-location">
                 <option value="">{{_('Select')}}</option>
@@ -111,20 +120,26 @@
     <div class="row">
         <div class="col-xs-5 col-md-2">
             <div class="list-group" id="aml-menu">
-                <a href="javascript:void(0)" id="uol" class="list-group-item active national">UOL</a>
-                <a href="javascript:void(0)" id="g1" class="list-group-item national">G1</a>
-                <a href="javascript:void(0)" id="r7" class="list-group-item national">R7</a>
-                <a href="javascript:void(0)" id="folha" class="list-group-item national">Folha</a>
-                <a href="javascript:void(0)" id="bol" class="list-group-item national">BOL</a>
-                <a href="javascript:void(0)" id="carta" class="list-group-item national">Carta Capital</a>
-                <a href="javascript:void(0)" id="veja" class="list-group-item national">Veja</a>
-                <a href="javascript:void(0)" id="local" class="list-group-item national">Local</a>
-                <a href="javascript:void(0)" id="wp" class="list-group-item international">Washington Post</a>
-                <a href="javascript:void(0)" id="tg" class="list-group-item international">The Guardian</a>
-                <a href="javascript:void(0)" id="tt" class="list-group-item international">The Telegraph</a>
-                <a href="javascript:void(0)" id="fox" class="list-group-item active international">Fox News</a>
-                <a href="javascript:void(0)" id="ep" class="list-group-item international">El País</a>
-                <a href="javascript:void(0)" id="lf" class="list-group-item international">Le Figaro</a>
+                <a href="javascript:void(0)" id="uol" class="list-group-item news active national">UOL</a>
+                <a href="javascript:void(0)" id="g1" class="list-group-item news national">G1</a>
+                <a href="javascript:void(0)" id="r7" class="list-group-item news national">R7</a>
+                <a href="javascript:void(0)" id="folha" class="list-group-item news national">Folha</a>
+                <a href="javascript:void(0)" id="bol" class="list-group-item news national">BOL</a>
+                <a href="javascript:void(0)" id="carta" class="list-group-item news national">Carta Capital</a>
+                <a href="javascript:void(0)" id="veja" class="list-group-item news national">Veja</a>
+                <a href="javascript:void(0)" id="local" class="list-group-item news national">Local</a>
+                <a href="javascript:void(0)" id="wp" class="list-group-item news international">Washington Post</a>
+                <a href="javascript:void(0)" id="tg" class="list-group-item news international">The Guardian</a>
+                <a href="javascript:void(0)" id="tt" class="list-group-item news international">The Telegraph</a>
+                <a href="javascript:void(0)" id="fox" class="list-group-item news international">Fox News</a>
+                <a href="javascript:void(0)" id="ep" class="list-group-item news international">El País</a>
+                <a href="javascript:void(0)" id="lf" class="list-group-item news international">Le Figaro</a>
+                <a href="javascript:void(0)" id="e_espn_br" class="list-group-item sports national">ESPN Brasil</a>
+                <a href="javascript:void(0)" id="e_fox_br" class="list-group-item sports national">Fox Sports</a>
+                <a href="javascript:void(0)" id="e_lance" class="list-group-item sports national">Lance</a>
+                <a href="javascript:void(0)" id="e_placar" class="list-group-item sports national">Placar</a>
+                <a href="javascript:void(0)" id="e_gp" class="list-group-item sports national">Grande Prêmio</a>
+                <a href="javascript:void(0)" id="e_fut" class="list-group-item sports national">Futnet</a>
             </div>
         </div>
 

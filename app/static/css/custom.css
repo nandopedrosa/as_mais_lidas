@@ -1,4 +1,8 @@
-.international {
+.news.international {
+    display: none;
+}
+
+.sports {
     display: none;
 }
 

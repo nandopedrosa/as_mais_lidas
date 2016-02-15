@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-07 14:52-0200\n"
+"POT-Creation-Date: 2016-02-14 22:50-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,19 +71,19 @@ msgid ""
 "think is important"
 msgstr ""
 
-#: app/views.py:34
+#: app/views.py:35
 msgid "Home Page"
 msgstr ""
 
-#: app/views.py:109
+#: app/views.py:111
 msgid "Message successfully sent"
 msgstr ""
 
-#: app/views.py:112
+#: app/views.py:114
 msgid "Your message could not be sent"
 msgstr ""
 
-#: app/views.py:149 app/templates/404.html:6
+#: app/views.py:151 app/templates/404.html:6
 msgid "Page not found"
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr ""
 msgid "ABOUT"
 msgstr ""
 
-#: app/templates/base.html:64 app/templates/base.html:164
+#: app/templates/base.html:64 app/templates/base.html:173
 msgid "The Most Read"
 msgstr ""
 
@@ -153,40 +153,60 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: app/templates/base.html:164
+#: app/templates/base.html:110
+msgid "Category"
+msgstr ""
+
+#: app/templates/base.html:112
+msgid "News"
+msgstr ""
+
+#: app/templates/base.html:113
+msgid "Sports"
+msgstr ""
+
+#: app/templates/base.html:114
+msgid "Technology"
+msgstr ""
+
+#: app/templates/base.html:115
+msgid "Entertainment"
+msgstr ""
+
+#: app/templates/base.html:173
 msgid "is a website for those who want to get straight to the point."
 msgstr ""
 
-#: app/templates/base.html:166
+#: app/templates/base.html:175
 msgid ""
 "The idea came when thinking about those who have no time (or desire) to "
 "navigate multiple websites just to find what really matters."
 msgstr ""
 
-#: app/templates/base.html:168
+#: app/templates/base.html:177
 msgid ""
 "Here you can find, in a single place, the most read news from the biggest"
 " News Websites from all around the world and get information in a matter "
 "of minutes."
 msgstr ""
 
-#: app/templates/base.html:170
+#: app/templates/base.html:179
 msgid ""
 "Furthermore, if you are in Brazil, we will try to discover your location "
 "through the use of the IP Geolocation* technology (GeoIP)."
 msgstr ""
 
-#: app/templates/base.html:173
+#: app/templates/base.html:182
 msgid ""
 "The GeoIP technology is possible thanks to http://www.localizaip.com.br. "
 "Although modern, this technology has some accuracy limitations."
 msgstr ""
 
-#: app/templates/base.html:177 app/templates/base.html:214
+#: app/templates/base.html:186 app/templates/base.html:223
 msgid "Close"
 msgstr ""
 
-#: app/templates/base.html:213
+#: app/templates/base.html:222
 msgid "Send"
 msgstr ""
 

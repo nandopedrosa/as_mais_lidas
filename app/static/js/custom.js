@@ -75,13 +75,15 @@ $('.aml-btn').click(function () {
     var firstItem;
 
     if (id == 'btn-national') {
-        $('.national').css('display', 'block');
-        $('.international').css('display', 'none');
+        $('.news.national').css('display', 'block');
+        $('.news.international').css('display', 'none');
+        $('#select-location').parent().show();
         firstItem = $('.national').first();
 
     } else {
         $('.national').css('display', 'none');
         $('.international').css('display', 'block');
+        $('#select-location').parent().hide();
         firstItem = $('.international').first();
     }
     toggleMenuItem(firstItem);
@@ -230,3 +232,34 @@ $('#btn-submit-contact').click(function () {
     );
 });
 
+
+/*
+ Change category
+ */
+$('#select-category').change(function() {
+   //First we hide previously shown items
+    $('.list-group-item').css('display', 'none');
+
+    //Now we show the correct items based on the chosen category
+    var category = $(this).val();
+
+    $('.list-group-item.national.' + category).css('display', 'block');
+
+    console.log(category);
+
+    // We only show the Location Select and National/International Buttons for the News Category
+    if(category != 'news') {
+        $('#select-location').parent().hide();
+        $('#btn-international').hide();
+        $('#btn-national').hide();
+    } else {
+        $('#select-location').parent().show();
+        $('#btn-international').show();
+        $('#btn-national').show();
+    }
+
+    var firstItem = $('.' + category).first();
+    toggleMenuItem(firstItem);
+    refreshNewsSource(firstItem);
+
+});

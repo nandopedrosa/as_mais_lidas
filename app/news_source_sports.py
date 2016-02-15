@@ -8,14 +8,14 @@ __email__ = "fpedrosa@gmail.com"
 from app.aml_utils import getpage, parsepage, get_ns
 
 
-def __espn(soup):
+def __e_espn_br(soup):
     """
    Gets the most read news from the ESPN.com.br page
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from the ESPN  page
    """
     news = []
-    ns = get_ns('e_espn')
+    ns = get_ns('e_espn_br')
 
     anchors = soup.find('div', id='most_viewed-all').find_all('a')
 
@@ -28,7 +28,7 @@ def __espn(soup):
 
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(e_espn=__espn)
+strategies = dict(e_espn_br=__e_espn_br)
 
 
 def get_most_read(key):
