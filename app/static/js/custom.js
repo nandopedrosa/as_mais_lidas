@@ -237,6 +237,9 @@ $('#btn-submit-contact').click(function () {
  Change category
  */
 $('#select-category').change(function() {
+    //Make previous news source go blank, for a smoother transition
+    $('#aml-source').text('');
+
    //First we hide previously shown items
     $('.list-group-item').css('display', 'none');
 
