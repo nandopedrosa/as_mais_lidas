@@ -27,8 +27,27 @@ def __e_espn_br(soup):
     return news
 
 
+def __e_fox_br(soup):
+    """
+    Gets the most read news from the ESPN.com.br page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the ESPN  page
+    """
+    news = []
+    ns = get_ns('e_fox_br')
+
+    anchors = soup.find('div', class_='most-viewed').find_all('a')
+
+    for a in anchors:
+        title = a.find(class_='article-title').string
+        link = ns.url + a['href']
+        news.append(dict(title=title, link=link))
+
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(e_espn_br=__e_espn_br)
+strategies = dict(e_espn_br=__e_espn_br, e_fox_br=__e_fox_br)
 
 
 def get_most_read(key):
