@@ -22,6 +22,9 @@ class SportsTests(unittest.TestCase):
         news, title = nse.get_most_read('en_contigo')
         self.assertEqual(len(news), 5)
 
+    def test_tititi(self):
+        news, title = nse.get_most_read('en_tititi')
+        self.assertEqual(len(news), 5)
 
 if __name__ == '__main__':
     unittest.main()

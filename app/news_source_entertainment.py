@@ -48,6 +48,7 @@ def __en_fuxico(soup):
 
     return news
 
+
 def __en_contigo(soup):
     """
     Gets the most read news from the Contigo page
@@ -67,8 +68,27 @@ def __en_contigo(soup):
     return news
 
 
+def __en_tititi(soup):
+    """
+    Gets the most read news from the Tititi page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Tititi page
+    """
+    news = []
+    ns = get_ns('en_tititi')
+
+    anchors = soup.find('div', class_='box mais-lidas clearfix').find_all('a')
+
+    for a in anchors:
+        title = a.p.string
+        link = ns.url + a['href']
+        news.append(dict(title=title, link=link))
+
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(en_ego=__en_ego, en_fuxico=__en_fuxico, en_contigo=__en_contigo)
+strategies = dict(en_ego=__en_ego, en_fuxico=__en_fuxico, en_contigo=__en_contigo, en_tititi=__en_tititi)
 
 
 def get_most_read(key):
