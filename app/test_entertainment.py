@@ -18,6 +18,9 @@ class SportsTests(unittest.TestCase):
         news, title = nse.get_most_read('en_fuxico')
         self.assertEqual(len(news), 10)
 
+    def test_contigo(self):
+        news, title = nse.get_most_read('en_contigo')
+        self.assertEqual(len(news), 5)
 
 
 if __name__ == '__main__':
