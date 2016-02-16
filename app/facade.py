@@ -9,6 +9,7 @@ __email__ = "fpedrosa@gmail.com"
 import app.news_source_national as news_source_national
 import app.news_source_international as news_source_international
 import app.news_source_sports as news_source_sports
+import app.news_source_entertainment as news_source_entertainment
 
 
 def get_most_read(key):
@@ -25,5 +26,7 @@ def get_most_read(key):
         return news_source_international.get_most_read(key)
     elif key in news_source_sports.strategies:
         return news_source_sports.get_most_read(key)
+    elif key in news_source_entertainment.strategies:
+        return news_source_entertainment.get_most_read(key)
     else:
         raise ValueError('No news source found for SOURCE={0}'.format(key))

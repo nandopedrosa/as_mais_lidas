@@ -1,5 +1,5 @@
 """
-test_news.py: Application unit tests for the Sports Category.
+test_sports.py: Application unit tests for the Sports Category.
 
 __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
