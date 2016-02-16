@@ -14,6 +14,10 @@ class SportsTests(unittest.TestCase):
         news, title = nse.get_most_read('en_ego')
         self.assertEqual(len(news), 9)
 
+    def test_fuxico(self):
+        news, title = nse.get_most_read('en_fuxico')
+        self.assertEqual(len(news), 10)
+
 
 
 if __name__ == '__main__':

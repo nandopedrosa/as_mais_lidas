@@ -5,7 +5,7 @@ __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
 
 """
-from app.aml_utils import getpage, parsepage, get_ns
+from app.aml_utils import getpage, parsepage, get_ns, anchor_has_no_class
 
 
 def __en_ego(soup):
@@ -31,8 +31,26 @@ def __en_ego(soup):
     return news
 
 
+def __en_fuxico(soup):
+    """
+    Gets the most read news from the Fuxico page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Fuxico page
+    """
+    news = []
+    spans = soup.find('div', id='top10_home').find_all('span', class_='ordem')
+
+    for s in spans:
+        a = s.parent.next_sibling.next_sibling.a
+        title = a.string
+        link = 'http://www.ofuxico.com.br' + a['href']
+        news.append(dict(title=title, link=link))
+
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(en_ego=__en_ego)
+strategies = dict(en_ego=__en_ego, en_fuxico=__en_fuxico)
 
 
 def get_most_read(key):
