@@ -87,8 +87,28 @@ def __en_tititi(soup):
     return news
 
 
+def __en_vip(soup):
+    """
+    Gets the most read news from the Área Vip page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Área Vip page
+    """
+    news = []
+
+    divs = soup.find_all('div', class_='td-block-span12')
+
+    for d in divs[:5]:
+        a = d.find(anchor_has_no_class)
+        title = a['title']
+        link = a['href']
+        news.append(dict(title=title, link=link))
+
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(en_ego=__en_ego, en_fuxico=__en_fuxico, en_contigo=__en_contigo, en_tititi=__en_tititi)
+strategies = dict(en_ego=__en_ego, en_fuxico=__en_fuxico, en_contigo=__en_contigo, en_tititi=__en_tititi,
+                  en_vip=__en_vip)
 
 
 def get_most_read(key):
