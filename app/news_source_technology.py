@@ -41,8 +41,24 @@ def __tec_cw(soup):
     return news
 
 
+def __tec_olhar(soup):
+    """
+    Gets the most read news from the Olhar Digital page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Olhar Digital page
+    """
+    news = []
+    images = soup.find('div', id='div-gpt-corpo2').next_sibling.next_sibling.find_all('img')
+
+    for img in images:
+        title = img['alt']
+        link = img.parent['href']
+        news.append(dict(title=title, link=link))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(tec_g1=__tec_g1, tec_cw=__tec_cw)
+strategies = dict(tec_g1=__tec_g1, tec_cw=__tec_cw, tec_olhar=__tec_olhar)
 
 
 def get_most_read(key):
