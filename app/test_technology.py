@@ -14,6 +14,10 @@ class SportsTests(unittest.TestCase):
         news, title = nst.get_most_read('tec_g1')
         self.assertEqual(len(news), 5)
 
+    def test_cw(self):
+        news, title = nst.get_most_read('tec_cw')
+        self.assertEqual(len(news), 5)
+
 
 if __name__ == '__main__':
     unittest.main()

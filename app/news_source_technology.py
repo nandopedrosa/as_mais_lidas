@@ -7,6 +7,7 @@ __email__ = "fpedrosa@gmail.com"
 """
 from app.aml_utils import getpage, parsepage, get_ns
 
+
 def __tec_g1(soup):
     """
     Gets the most read news from the G1 Technology page
@@ -22,8 +23,26 @@ def __tec_g1(soup):
         news.append(dict(title=title, link=link))
     return news
 
+
+def __tec_cw(soup):
+    """
+    Gets the most read news from the Computer World page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Computer World page
+    """
+    news = []
+    anchors = soup.find('ul', class_='pane').find_all('a')
+
+    for a in anchors:
+        if a.img is None:
+            title = a.string
+            link = a['href']
+            news.append(dict(title=title, link=link))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(tec_g1=__tec_g1)
+strategies = dict(tec_g1=__tec_g1, tec_cw=__tec_cw)
 
 
 def get_most_read(key):
