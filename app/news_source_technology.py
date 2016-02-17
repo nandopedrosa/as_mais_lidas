@@ -57,8 +57,27 @@ def __tec_olhar(soup):
     return news
 
 
+def __tec_canal(soup):
+    """
+    Gets the most read news from the Canaltech page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Canaltech page
+    """
+    news = []
+    ns = get_ns('tec_canal')
+    anchors = soup.find('div', class_='topArticles box').find_all('a')
+
+    for a in anchors:
+        title = a.img['alt']
+        link = ns.url + a['href']
+        # Remove last forward slash
+        link = link[:-1]
+        news.append(dict(title=title, link=link))
+    return news
+
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(tec_g1=__tec_g1, tec_cw=__tec_cw, tec_olhar=__tec_olhar)
+strategies = dict(tec_g1=__tec_g1, tec_cw=__tec_cw, tec_olhar=__tec_olhar, tec_canal=__tec_canal)
 
 
 def get_most_read(key):
