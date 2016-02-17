@@ -76,8 +76,23 @@ def __tec_canal(soup):
     return news
 
 
+def __tec_uol(soup):
+    """
+    Gets the most read news from the UOL Tecnologia page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the UOL Tecnologia page
+    """
+    news = []
+    anchors = soup.find('ol', class_='lst-wrapper').find_all('a')
+
+    for a in anchors:
+        title = a.span.string
+        link = a['href']
+        news.append(dict(title=title, link=link))
+    return news
+
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(tec_g1=__tec_g1, tec_cw=__tec_cw, tec_olhar=__tec_olhar, tec_canal=__tec_canal)
+strategies = dict(tec_g1=__tec_g1, tec_cw=__tec_cw, tec_olhar=__tec_olhar, tec_canal=__tec_canal, tec_uol=__tec_uol)
 
 
 def get_most_read(key):
