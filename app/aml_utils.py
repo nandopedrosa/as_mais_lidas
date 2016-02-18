@@ -29,6 +29,9 @@ def getstate(ip):
     :param ip: The user IP
     :return: State Location (e.g: SP, DF, etc.)
     """
+    if ip is None:
+        return 'notfound'
+
     url = IP_SERVICE_URL.replace("#IP#", ip)
     response, content = getpage(url)
     soup = parsepage(content)
