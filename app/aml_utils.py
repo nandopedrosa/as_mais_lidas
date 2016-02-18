@@ -34,8 +34,15 @@ def getstate(ip):
     soup = parsepage(content)
     data = soup.find_all('span', class_='style4')[3].get_text()
 
-    start_index = data.index("Estado:") + len("Estado:")
+    state_index = data.find("Estado")
+
+    if state_index != -1:
+        start_index = state_index + len("Estado:")
+    else:
+        return 'notfound'
+
     end_index = start_index + 2
+
     state = data[start_index: end_index]
 
     if state not in STATES:
