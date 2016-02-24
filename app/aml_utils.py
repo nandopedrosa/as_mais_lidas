@@ -36,7 +36,7 @@ def getstate(ip):
         url = IP_SERVICE_URL.replace("#IP#", ip)
         response, content = getpage(url)
         soup = parsepage(content)
-        data = soup.find_all('span', class_='style4')[3].get_text()
+        data = soup.find_all('span', class_='style4')[1].get_text()
 
         state_index = data.find("Estado")
 
