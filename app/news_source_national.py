@@ -116,11 +116,16 @@ def __bol(soup):
     :return: a list with the most read news from the BOL Page
     """
     news = []
-    container = soup.find('ul', class_='maisclicadas')
-    most_read = container.find_all('li')
+    container = soup.find('div', class_='mais-clicadas-lista link-primary')
+    most_read = container.find_all('span', class_="mais-clicadas-texto link-text cor-transition")
 
     for item in most_read:
-        news.append(dict(title=item.a.span.next_element.next_element, link=item.a['href']))
+        # Find the link for the news source
+        for parent in item.parents:
+            if parent.name == 'a':
+                link = parent['href']
+                break
+        news.append(dict(title=item.text, link=link))
     return news
 
 
