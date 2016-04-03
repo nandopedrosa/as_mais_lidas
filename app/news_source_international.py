@@ -81,7 +81,7 @@ def __tt(soup):
     news = []
     ns = get_ns('tt')
 
-    headers = soup.find('div', id='div-SHARED').find_all('h3', class_='topFiveComment')
+    headers = soup.find('div', class_='mostViewedList').find_all('h3', class_='list-of-entities__item-body-headline')
 
     for h in headers:
         a = h.find('a')
