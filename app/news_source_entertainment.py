@@ -17,15 +17,11 @@ def __en_ego(soup):
     news = []
     ns = get_ns('en_ego')
 
-    anchors_famosos = soup.find('div', {"data-evtrk-assunto": "famosos"}).find_all('a', class_='chamada')
-    anchors_moda = soup.find('div', {"data-evtrk-assunto": "moda"}).find_all('a', class_='chamada')
-    anchors_beleza = soup.find('div', {"data-evtrk-assunto": "beleza"}).find_all('a', class_='chamada')
-
-    anchors = anchors_famosos + anchors_moda + anchors_beleza
+    anchors = soup.find('div', class_='widget mais-lidas').find_all('a')
 
     for a in anchors:
         title = a['title']
-        link = ns.url + a['href']
+        link = a['href']
         news.append(dict(title=title, link=link))
 
     return news

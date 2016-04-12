@@ -12,7 +12,7 @@ import app.news_source_entertainment as nse
 class SportsTests(unittest.TestCase):
     def test_ego(self):
         news, title = nse.get_most_read('en_ego')
-        self.assertEqual(len(news), 9)
+        self.assertEqual(len(news), 5)
 
     def test_fuxico(self):
         news, title = nse.get_most_read('en_fuxico')
