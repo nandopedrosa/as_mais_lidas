@@ -175,14 +175,14 @@ class NewsSourceTests(unittest.TestCase):
 
     def test_tt(self):
         news, title = news_source_international.get_most_read('tt')
-        self.assertEqual(len(news), 10)
+        self.assertEqual(len(news), 5)
 
     def test_ep(self):
         news, title = news_source_international.get_most_read('ep')
         self.assertEqual(len(news), 10)
 
-    def test_ny(self):
-        news, title = news_source_international.get_most_read('ny')
+    def test_reu(self):
+        news, title = news_source_international.get_most_read('reu')
         self.assertEqual(len(news), 10)
 
     def test_getstate(self):
@@ -197,7 +197,7 @@ class NewsSourceTests(unittest.TestCase):
 
     def test_db(self):
         # First we test the insert operation
-        ns1 = NewsSource(name='test', key='tst', url='http://test.com')
+        ns1 = NewsSource(id_news_source=999, name='test', key='tst', url='http://test.com')
         db.session.add(ns1)
         db.session.commit()
         self.assertIsNotNone(ns1.id_news_source)

@@ -14,7 +14,8 @@ class NewsSource(db.Model):
     key = db.Column(db.String(128), unique=True, nullable=False)
     url = db.Column(db.String(128), nullable=False)
 
-    def __init__(self, name, key, url):
+    def __init__(self, id_news_source, name, key, url):
+        self.id_news_source = id_news_source
         self.name = name
         self.key = key
         self.url = url

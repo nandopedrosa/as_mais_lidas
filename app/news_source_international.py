@@ -116,8 +116,27 @@ def __ep(soup):
     return news
 
 
+def __reu(soup):
+    """
+   Gets the most read news from Reuters page
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from Reuters page
+   """
+    news = []
+
+    div = soup.find('div', class_='news-headline-list ')
+    h3s = div.find_all('h3', class_='story-title')
+
+    for h in h3s:
+        link = 'http://www.reuters.com' + h.a['href']
+        title = h.a.string
+        news.append(dict(title=title, link=link))
+    return news
+
+
 def __ny(soup):
     """
+    DEPRECATED
    Gets the most read news from NY Times page
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from the NY Times page
@@ -134,7 +153,7 @@ def __ny(soup):
 
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(fox=__fox, wp=__wp, tg=__tg, lf=__lf, tt=__tt, ep=__ep, ny=__ny)
+strategies = dict(fox=__fox, wp=__wp, tg=__tg, lf=__lf, tt=__tt, ep=__ep, ny=__ny, reu=__reu)
 
 
 def get_most_read(key):
