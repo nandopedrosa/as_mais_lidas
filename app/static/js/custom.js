@@ -112,7 +112,6 @@ $('#lang').click(function () {
         lang.text('ENGLISH');
     }
 
-    console.log(code);
     $.post(
         baseURL + '/lang/' + code,
         function () {
@@ -247,8 +246,6 @@ $('#select-category').change(function() {
     var category = $(this).val();
 
     $('.list-group-item.national.' + category).css('display', 'block');
-
-    console.log(category);
 
     // We only show the Location Select and National/International Buttons for the News Category
     if(category != 'news') {

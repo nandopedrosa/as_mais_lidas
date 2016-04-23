@@ -11,6 +11,7 @@ import app.news_source_international as news_source_international
 import app.news_source_sports as news_source_sports
 import app.news_source_entertainment as news_source_entertainment
 import app.news_source_technology as news_source_technology
+import app.news_source_music as news_source_music
 
 
 def get_most_read(key):
@@ -31,5 +32,7 @@ def get_most_read(key):
         return news_source_entertainment.get_most_read(key)
     elif key in news_source_technology.strategies:
         return news_source_technology.get_most_read(key)
+    elif key in news_source_music.strategies:
+        return news_source_music.get_most_read(key)
     else:
         raise ValueError('No news source found for SOURCE={0}'.format(key))
