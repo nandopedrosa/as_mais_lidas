@@ -8,14 +8,68 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-04-22 21:21-0300\n"
+"POT-Creation-Date: 2016-05-28 17:23-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.1.1\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: app/forms.py:17
+msgid "Name"
+msgstr ""
+
+#: app/forms.py:17
+msgid "Enter your name"
+msgstr ""
+
+#: app/forms.py:18
+msgid "Please, enter your name"
+msgstr ""
+
+#: app/forms.py:19
+msgid "Your name must have a minimum of 3 characters"
+msgstr ""
+
+#: app/forms.py:20
+msgid "Your name must have a maximum of 128 characters"
+msgstr ""
+
+#: app/forms.py:23
+msgid "Enter your email"
+msgstr ""
+
+#: app/forms.py:24
+msgid "Please, enter your email"
+msgstr ""
+
+#: app/forms.py:25
+msgid "Your email must have a minimum of 6 characters"
+msgstr ""
+
+#: app/forms.py:26
+msgid "Please, inform a valid email"
+msgstr ""
+
+#: app/forms.py:29
+msgid "Message"
+msgstr ""
+
+#: app/forms.py:30
+msgid "Please, write your message"
+msgstr ""
+
+#: app/forms.py:31
+msgid "Your message must have between 3 and 4000 characters"
+msgstr ""
+
+#: app/forms.py:32
+msgid ""
+"Enter your message with suggestions, bug reports or anything else you "
+"think is important"
+msgstr ""
 
 #: app/views.py:35
 msgid "Home Page"
@@ -29,7 +83,7 @@ msgstr ""
 msgid "Your message could not be sent"
 msgstr ""
 
-#: app/views.py:151 app/templates/404.html:6
+#: app/templates/404.html:6 app/views.py:151
 msgid "Page not found"
 msgstr ""
 
@@ -68,7 +122,7 @@ msgstr ""
 msgid "ABOUT"
 msgstr ""
 
-#: app/templates/base.html:53 app/templates/base.html:180
+#: app/templates/base.html:53 app/templates/base.html:183
 msgid "The Most Read"
 msgstr ""
 
@@ -123,40 +177,40 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: app/templates/base.html:180
+#: app/templates/base.html:183
 msgid "is a website for those who want to get straight to the point."
 msgstr ""
 
-#: app/templates/base.html:182
+#: app/templates/base.html:185
 msgid ""
 "The idea came when thinking about those who have no time (or desire) to "
 "navigate multiple websites just to find what really matters."
 msgstr ""
 
-#: app/templates/base.html:184
+#: app/templates/base.html:187
 msgid ""
 "Here you can find, in a single place, the most read news from the biggest"
 " News Websites from all around the world and get information in a matter "
 "of minutes."
 msgstr ""
 
-#: app/templates/base.html:186
+#: app/templates/base.html:189
 msgid ""
 "Furthermore, if you are in Brazil, we will try to discover your location "
 "through the use of the IP Geolocation* technology (GeoIP)."
 msgstr ""
 
-#: app/templates/base.html:189
+#: app/templates/base.html:192
 msgid ""
 "The GeoIP technology is possible thanks to http://www.localizaip.com.br. "
 "Although modern, this technology has some accuracy limitations."
 msgstr ""
 
-#: app/templates/base.html:193 app/templates/base.html:230
+#: app/templates/base.html:196 app/templates/base.html:233
 msgid "Close"
 msgstr ""
 
-#: app/templates/base.html:229
+#: app/templates/base.html:232
 msgid "Send"
 msgstr ""
 

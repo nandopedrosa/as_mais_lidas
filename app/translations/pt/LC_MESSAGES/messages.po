@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-04-22 21:21-0300\n"
-"PO-Revision-Date: 2016-04-22 21:22-0300\n"
+"POT-Creation-Date: 2016-05-28 17:23-0300\n"
+"PO-Revision-Date: 2016-05-28 17:26-0300\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: pt <LL@li.org>\n"
@@ -16,8 +16,60 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.1.1\n"
+"Generated-By: Babel 2.3.4\n"
 "X-Generator: Poedit 1.8.6\n"
+
+#: app/forms.py:17
+msgid "Name"
+msgstr "Nome"
+
+#: app/forms.py:17
+msgid "Enter your name"
+msgstr "Digite o seu nome"
+
+#: app/forms.py:18
+msgid "Please, enter your name"
+msgstr "Por favor, digite o seu nome"
+
+#: app/forms.py:19
+msgid "Your name must have a minimum of 3 characters"
+msgstr "Seu nome deve ter no mínimo 3 caracteres"
+
+#: app/forms.py:20
+msgid "Your name must have a maximum of 128 characters"
+msgstr "Seu nome pode ter no máximo 128 caracteres"
+
+#: app/forms.py:23
+msgid "Enter your email"
+msgstr "Digite seu email"
+
+#: app/forms.py:24
+msgid "Please, enter your email"
+msgstr "Por favor, digite seu email"
+
+#: app/forms.py:25
+msgid "Your email must have a minimum of 6 characters"
+msgstr "Seu email deve ter no mínimo 6 caracteres"
+
+#: app/forms.py:26
+msgid "Please, inform a valid email"
+msgstr "Por favor, informe um email válido"
+
+#: app/forms.py:29
+msgid "Message"
+msgstr "Mensagem"
+
+#: app/forms.py:30
+msgid "Please, write your message"
+msgstr "Por favor, escreva sua mensagem"
+
+#: app/forms.py:31
+msgid "Your message must have between 3 and 4000 characters"
+msgstr "Sua mensagem deve ter entre 3 e 4000 caracteres"
+
+#: app/forms.py:32
+msgid "Enter your message with suggestions, bug reports or anything else you think is important"
+msgstr "Digite sua mensagem com sugestões, relatos de erros ou qualquer outra coisa que você julgar importante"
 
 #: app/views.py:35
 msgid "Home Page"
@@ -31,7 +83,7 @@ msgstr "Mensagem enviada com sucesso"
 msgid "Your message could not be sent"
 msgstr "Não foi possível enviar a mensagem"
 
-#: app/views.py:151 app/templates/404.html:6
+#: app/templates/404.html:6 app/views.py:151
 msgid "Page not found"
 msgstr "Página não encontrada"
 
@@ -52,13 +104,8 @@ msgid "An error has occurred"
 msgstr "Ocorreu um erro"
 
 #: app/templates/500.html:7
-msgid ""
-"We are sorry to inform an internal error has occurred. The site "
-"administrator has been contacted and we will try to fix this as soon as "
-"possible."
-msgstr ""
-"Lamentamos informar que um erro interno ocorreu. O administrador do site "
-"foi contactado e tentaremos resolver esse problema o mais rápido possível"
+msgid "We are sorry to inform an internal error has occurred. The site administrator has been contacted and we will try to fix this as soon as possible."
+msgstr "Lamentamos informar que um erro interno ocorreu. O administrador do site foi contactado e tentaremos resolver esse problema o mais rápido possível"
 
 #: app/templates/base.html:35
 msgid "PORTUGUÊS"
@@ -72,7 +119,7 @@ msgstr "CONTATO"
 msgid "ABOUT"
 msgstr "SOBRE"
 
-#: app/templates/base.html:53 app/templates/base.html:180
+#: app/templates/base.html:53 app/templates/base.html:183
 msgid "The Most Read"
 msgstr "As Mais Lidas"
 
@@ -81,14 +128,8 @@ msgid "news you want to read."
 msgstr "as notícias que você quer ler."
 
 #: app/templates/base.html:56
-msgid ""
-"Here you find the most read news from popular News Websites from all "
-"around the world. If you are in Brazil, we will try to show you some "
-"regional news from your location*"
-msgstr ""
-"Aqui você encontra as matérias mais lidas dos grandes Portais de "
-"Notícias nacionais ou internacionais. Se você estiver no Brasil, também "
-"mostraremos um site da sua região*"
+msgid "Here you find the most read news from popular News Websites from all around the world. If you are in Brazil, we will try to show you some regional news from your location*"
+msgstr "Aqui você encontra as matérias mais lidas dos grandes Portais de Notícias nacionais ou internacionais. Se você estiver no Brasil, também mostraremos um site da sua região*"
 
 #: app/templates/base.html:57
 msgid "National"
@@ -130,92 +171,30 @@ msgstr "Mude sua localização*"
 msgid "Select"
 msgstr "Selecione"
 
-#: app/templates/base.html:180
+#: app/templates/base.html:183
 msgid "is a website for those who want to get straight to the point."
 msgstr "é um site para quem deseja ir direto ao ponto."
 
-#: app/templates/base.html:182
-msgid ""
-"The idea came when thinking about those who have no time (or desire) to "
-"navigate multiple websites just to find what really matters."
-msgstr ""
-"A ideia surgiu pensando em quem não tem tempo (ou o desejo) de navegar "
-"em diversos locais apenas para achar aquilo que mais lhe interessa."
+#: app/templates/base.html:185
+msgid "The idea came when thinking about those who have no time (or desire) to navigate multiple websites just to find what really matters."
+msgstr "A ideia surgiu pensando em quem não tem tempo (ou o desejo) de navegar em diversos locais apenas para achar aquilo que mais lhe interessa."
 
-#: app/templates/base.html:184
-msgid ""
-"Here you can find, in a single place, the most read news from the "
-"biggest News Websites from all around the world and get information in a "
-"matter of minutes."
-msgstr ""
-"Aqui você pode achar, em um único lugar, as notícias mais lidas dos "
-"grandes Portais de Notícias do mundo inteiro e se informar em questão de "
-"minutos!"
-
-#: app/templates/base.html:186
-msgid ""
-"Furthermore, if you are in Brazil, we will try to discover your location "
-"through the use of the IP Geolocation* technology (GeoIP)."
-msgstr ""
-"Além disso, se você estiver no Brasil, nós tentaremos descobrir onde "
-"você está por meio da tecnologia de geolocalização por IP* ou \"GeoIP\"."
+#: app/templates/base.html:187
+msgid "Here you can find, in a single place, the most read news from the biggest News Websites from all around the world and get information in a matter of minutes."
+msgstr "Aqui você pode achar, em um único lugar, as notícias mais lidas dos grandes Portais de Notícias do mundo inteiro e se informar em questão de minutos!"
 
 #: app/templates/base.html:189
-msgid ""
-"The GeoIP technology is possible thanks to http://www.localizaip.com.br. "
-"Although modern, this technology has some accuracy limitations."
-msgstr ""
-"A tecnologia \"GeoIP\" é possível graças ao site http://www.localizaip."
-"com.br. Apesar de moderna, esta tecnologia "
-"apresenta                        limitações de precisão."
+msgid "Furthermore, if you are in Brazil, we will try to discover your location through the use of the IP Geolocation* technology (GeoIP)."
+msgstr "Além disso, se você estiver no Brasil, nós tentaremos descobrir onde você está por meio da tecnologia de geolocalização por IP* ou \"GeoIP\"."
 
-#: app/templates/base.html:193 app/templates/base.html:230
+#: app/templates/base.html:192
+msgid "The GeoIP technology is possible thanks to http://www.localizaip.com.br. Although modern, this technology has some accuracy limitations."
+msgstr "A tecnologia \"GeoIP\" é possível graças ao site http://www.localizaip.com.br. Apesar de moderna, esta tecnologia apresenta                        limitações de precisão."
+
+#: app/templates/base.html:196 app/templates/base.html:233
 msgid "Close"
 msgstr "Fechar"
 
-#: app/templates/base.html:229
+#: app/templates/base.html:232
 msgid "Send"
 msgstr "Enviar"
-
-#~ msgid "Name"
-#~ msgstr "Nome"
-
-#~ msgid "Enter your name"
-#~ msgstr "Digite seu nome"
-
-#~ msgid "Please, enter your name"
-#~ msgstr "Por favor, digite seu nome"
-
-#~ msgid "Your name must have a minimum of 3 characters"
-#~ msgstr "Ou seu nome deve ter, no mínimo, 3 caracteres"
-
-#~ msgid "Your name must have a maximum of 128 characters"
-#~ msgstr "O seu nome deve ter, no máximo, 128 caracteres"
-
-#~ msgid "Enter your email"
-#~ msgstr "Digite seu email"
-
-#~ msgid "Please, enter your email"
-#~ msgstr "Por favor, digite seu email"
-
-#~ msgid "Your email must have a minimum of 6 characters"
-#~ msgstr "O seu email deve ter, no mínimo, 6 caracteres"
-
-#~ msgid "Please, inform a valid email"
-#~ msgstr "Por favor, informe um email válido"
-
-#~ msgid "Message"
-#~ msgstr "Mensagem"
-
-#~ msgid "Please, write your message"
-#~ msgstr "Por favor, escreva sua mensagem"
-
-#~ msgid "Your message must have between 3 and 4000 characters"
-#~ msgstr "A sua mensagem deve ter entre 3 e 4000 caracteres"
-
-#~ msgid ""
-#~ "Enter your message with suggestions, bug reports or anything else you "
-#~ "think is important"
-#~ msgstr ""
-#~ "Digite sua mensagem com sugestões, relatos de problemas ou qualquer "
-#~ "outro aspecto que você achar importante"
