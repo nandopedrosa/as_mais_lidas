@@ -167,14 +167,7 @@ def __local_df(soup):
     :param soup: the BeautifulSoup object
     :return: a list with the most read news from the G1 DF Page
     """
-    news = []
-    anchors = soup.find('ul', class_='highlights').find_all('a')
-
-    for a in anchors:
-        title = a.span.string.strip()
-        link = a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    return __get_local_g1_news(soup)
 
 
 def __local_sp(soup):
@@ -349,14 +342,7 @@ def __local_go(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from TV Anhaguera page
    """
-    news = []
-    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
-
-    for a in anchors:
-        title = a['title']
-        link = "http://g1.globo.com" + a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    return __get_local_g1_news(soup)
 
 
 def __local_ma(soup):
@@ -399,14 +385,7 @@ def __local_ms(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from TV Morena page
    """
-    news = []
-    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
-
-    for a in anchors:
-        title = a['title']
-        link = "http://g1.globo.com" + a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    return __get_local_g1_news(soup)
 
 
 def __local_mg(soup):
@@ -431,14 +410,7 @@ def __local_pa(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from Rede Liberal page
    """
-    news = []
-    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
-
-    for a in anchors:
-        title = a['title']
-        link = "http://g1.globo.com" + a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    return __get_local_g1_news(soup)
 
 
 def __local_pb(soup):
@@ -481,14 +453,7 @@ def __local_pi(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from TV Clube page
    """
-    news = []
-    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
-
-    for a in anchors:
-        title = a['title']
-        link = "http://g1.globo.com" + a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    return __get_local_g1_news(soup)
 
 
 def __local_rn(soup):
@@ -497,14 +462,7 @@ def __local_rn(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from Inter TV page
    """
-    news = []
-    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
-
-    for a in anchors:
-        title = a['title']
-        link = "http://g1.globo.com" + a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    return __get_local_g1_news(soup)
 
 
 def __local_rs(soup):
@@ -513,14 +471,7 @@ def __local_rs(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from RBS TV page
    """
-    news = []
-    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
-
-    for a in anchors:
-        title = a['title']
-        link = "http://g1.globo.com" + a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    return __get_local_g1_news(soup)
 
 
 def __local_sc(soup):
@@ -600,12 +551,21 @@ def __local_to(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from TV Anhaguera page
    """
+    return __get_local_g1_news(soup)
+
+
+def __get_local_g1_news(soup):
+    """
+ Gets the most read news from a local G1 news source
+ :param soup: the BeautifulSoup object
+ :return: a list with the most read news from a local g1 news source
+ """
     news = []
-    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
+    anchors = soup.find('ul', class_='highlights').find_all('a')
 
     for a in anchors:
-        title = a['title']
-        link = "http://g1.globo.com" + a['href']
+        title = a.span.string.strip()
+        link = a['href']
         news.append(dict(title=title, link=link))
     return news
 
