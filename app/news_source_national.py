@@ -168,11 +168,11 @@ def __local_df(soup):
     :return: a list with the most read news from the G1 DF Page
     """
     news = []
-    anchors = soup.find('div', class_='widget widget-mais-lidas').find_all('a')
+    anchors = soup.find('ul', class_='highlights').find_all('a')
 
     for a in anchors:
-        title = a['title']
-        link = "http://g1.globo.com" + a['href']
+        title = a.span.string.strip()
+        link = a['href']
         news.append(dict(title=title, link=link))
     return news
 
