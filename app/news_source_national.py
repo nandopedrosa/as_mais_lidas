@@ -175,11 +175,10 @@ def __local_sp(soup):
     :return: a list with the most read news from the Estadao Page
     """
     news = []
-    container = soup.find('ul', id='lidas')
-    links = container.find_all('a')
+    titles = soup.find('section', class_='col-xs-12 maislidas-interno').find_all('h3', class_='fifth')
 
-    for a in links:
-        news.append(dict(title=a.p.string, link=a['href']))
+    for title in titles:
+        news.append(dict(title=title.string, link=title.parent['href']))
     return news
 
 
