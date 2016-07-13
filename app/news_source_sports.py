@@ -36,11 +36,11 @@ def __e_fox_br(soup):
     news = []
     ns = get_ns('e_fox_br')
 
-    anchors = soup.find('div', class_='most-viewed').find_all('a')
+    anchors = soup.find('section', class_='home-section most-viewed').find_all('a')
 
     for a in anchors:
-        title = a.find(class_='article-title').string
-        link = ns.url + a['href']
+        title = a.h3.string
+        link = a['href']
         news.append(dict(title=title, link=link))
 
     return news
