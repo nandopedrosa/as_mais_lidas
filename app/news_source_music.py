@@ -15,14 +15,12 @@ def __m_rs(soup):
    :return: a list with the most read news from the Rolling Stone page
    """
     news = []
-    ns = get_ns('m_rs')
 
-    ul = soup.find('div', class_='most-viewed').find('ul')
-    anchors = ul.find_all('a')
+    articles = soup.find('aside', class_='module-trending-right-rail card-container').find_all('article')
 
-    for a in anchors:
-        title = a.string
-        link = 'http://www.rollingstone.com' + a['href']
+    for article in articles:
+        title = article.h3.string
+        link = 'http://www.rollingstone.com' + article.a['href']
         news.append(dict(title=title, link=link))
 
     return news
@@ -51,27 +49,8 @@ def __m_whiplash(soup):
     return news
 
 
-def __m_revolver(soup):
-    """
-   Gets the most read news from the Revolver page
-   :param soup: the BeautifulSoup object
-   :return: a list with the most read news from the Revolver page
-   """
-    news = []
-    ns = get_ns('m_revolver')
-
-    anchors = soup.find('li', id='wpp-3').find_all('a', class_='wpp-post-title')
-
-    for a in anchors:
-        title = a.string
-        link = a['href']
-        news.append(dict(title=title, link=link))
-
-    return news
-
-
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(m_rs=__m_rs, m_whiplash=__m_whiplash, m_revolver=__m_revolver)
+strategies = dict(m_rs=__m_rs, m_whiplash=__m_whiplash)
 
 
 def get_most_read(key):
