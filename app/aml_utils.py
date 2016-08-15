@@ -66,7 +66,9 @@ def getpage(url):
     :return: the header response and contents (bytes) of the page
     """
     http = httplib2.Http('.cache')
-    response, content = http.request(url, headers={'User-agent': 'Mozilla/5.0'})
+    headers = {'User-agent': 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36'}
+
+    response, content = http.request(url, headers=headers)
     return response, content
 
 
