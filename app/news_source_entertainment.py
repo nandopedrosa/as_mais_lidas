@@ -1,5 +1,5 @@
 """
-news_source_entertainment.py: Scraping functions for the most read  News Sources of the Sports Category
+news_source_entertainment.py: Scraping functions for the most read  News Sources of the Entertainment Category
 
 __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
