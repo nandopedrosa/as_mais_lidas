@@ -151,11 +151,11 @@ def __veja(soup):
     news = []
     ns = get_ns('veja')
 
-    links = soup.find('div', id='abril_popular_posts_widget-3').find_all(anchor_has_no_class)
+    links = soup.find('div', id='abril_popular_posts_widget-7').find_all(anchor_has_no_class)
 
     for a in links:
         news.append(dict(title=a.string,
-                         link= a['href']))  # Relative link, we have to prefix with the page domain
+                         link=a['href']))  # Relative link, we have to prefix with the page domain
     return news
 
 
