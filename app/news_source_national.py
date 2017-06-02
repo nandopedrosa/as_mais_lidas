@@ -151,7 +151,7 @@ def __veja(soup):
     news = []
     ns = get_ns('veja')
 
-    links = soup.find('div', id='abril_popular_posts_widget-7').find_all(anchor_has_no_class)
+    links = soup.find('div', id='abril_popular_posts_widget-7').find_all('a', class_='')
 
     for a in links:
         news.append(dict(title=a.string,

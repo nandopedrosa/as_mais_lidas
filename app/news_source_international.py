@@ -35,7 +35,7 @@ def __wp(soup):
 
     for a in anchors:
         link = a['href']
-        title = a.find('div', class_='headline').string
+        title = a.find('div', class_='headline').text
         news.append(dict(title=title, link=link))
     return news
 
@@ -124,12 +124,12 @@ def __reu(soup):
    """
     news = []
 
-    div = soup.find('div', class_='news-headline-list ')
+    div = soup.find('div', class_='news-headline-list medium')
     h3s = div.find_all('h3', class_='story-title')
 
     for h in h3s:
-        link = 'http://www.reuters.com' + h.a['href']
-        title = h.a.string
+        link = 'http://www.reuters.com' + h.parent['href']
+        title = h.string
         news.append(dict(title=title, link=link))
     return news
 

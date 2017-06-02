@@ -93,7 +93,7 @@ def __en_vip(soup):
 
     divs = soup.find_all('div', class_='td-block-span12')
 
-    for d in divs[:5]:
+    for d in divs[:3]:
         a = d.find(anchor_has_no_class)
         title = a['title']
         link = a['href']
