@@ -63,7 +63,7 @@ def __lf(soup):
    :return: a list with the most read news from the Le Figaro page
    """
     news = []
-    anchors = soup.find('div', class_='fig-wid-most fig-wid-most-daily').find('ol').find_all('a')
+    anchors = soup.find('div', class_='fig-toparticles__main').find_all('a')
 
     for a in anchors:
         link = a['href']
@@ -81,7 +81,8 @@ def __tt(soup):
     news = []
     ns = get_ns('tt')
 
-    headers = soup.find('div', class_='mostViewedList').find_all('h3', class_='list-of-entities__item-body-headline')
+    headers = soup.find('ol', class_='js-list-of-entities__container list-of-entities__container tmg-particle-most-read-carousel__list')\
+        .find_all('h3', class_='list-of-entities__item-body-headline')
 
     for h in headers:
         a = h.find('a')

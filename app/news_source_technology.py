@@ -65,13 +65,11 @@ def __tec_canal(soup):
     """
     news = []
     ns = get_ns('tec_canal')
-    anchors = soup.find('div', class_='topArticles box').find_all('a')
+    articles = soup.find('section', id='most-readed').find_all('article')
 
-    for a in anchors:
-        title = a.img['alt']
-        link = ns.url + a['href']
-        # Remove last forward slash
-        link = link[:-1]
+    for article in articles:
+        title = article.a.text
+        link = article.a['href']
         news.append(dict(title=title, link=link))
     return news
 
