@@ -52,11 +52,15 @@ def __r7(soup):
     :return: a list with the most read news from the R7 Page
     """
     news = []
-    container = soup.find('ul', class_='most-read')
-    most_read = container.find_all('a')
+    ps = soup.find_all('p', class_='trends-thermometer-description')
+    i = 0
 
-    for item in most_read:
-        news.append(dict(title=item['title'], link=item['href']))
+    for p in ps:
+        if i == 6:  # Six trending topics
+            break
+        i += 1
+        a = p.parent.parent.parent.a
+        news.append(dict(title=a['title'], link=a['href']))
     return news
 
 
