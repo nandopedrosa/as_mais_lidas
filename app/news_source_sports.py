@@ -39,9 +39,10 @@ def __e_fox_br(soup):
     anchors = soup.find('section', class_='home-section most-viewed').find_all('a')
 
     for a in anchors:
-        title = a.h3.string
-        link = a['href']
-        news.append(dict(title=title, link=link))
+        if a.h3:
+            title = a.h3.string
+            link = a['href']
+            news.append(dict(title=title, link=link))
 
     return news
 
