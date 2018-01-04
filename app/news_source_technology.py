@@ -47,6 +47,7 @@ def __tec_olhar(soup):
     :param soup: the BeautifulSoup object
     :return: a list with the most read news from the Olhar Digital page
     """
+    # DEPRECATED
     news = []
     images = soup.find('div', id='div-gpt-corpo2').next_sibling.next_sibling.find_all('img')
 
@@ -80,6 +81,7 @@ def __tec_uol(soup):
     :param soup: the BeautifulSoup object
     :return: a list with the most read news from the UOL Tecnologia page
     """
+    # DEPRECATED
     news = []
     anchors = soup.find('ol', class_='lst-wrapper').find_all('a')
 

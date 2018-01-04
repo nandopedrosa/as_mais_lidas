@@ -120,10 +120,10 @@ def __bol(soup):
     :return: a list with the most read news from the BOL Page
     """
     news = []
-    anchors = soup.find('ul', class_='maisclicadas').find_all('a')
+    anchors = soup.find('div', class_='mais-clicadas-lista link-primary').find_all('a')
 
     for a in anchors:
-        title = a.span.string.next
+        title = a.find('span', class_='mais-clicadas-item-content').text
         link = a['href']
         news.append(dict(title=title, link=link))
     return news
@@ -153,13 +153,29 @@ def __veja(soup):
     :return: a list with the most read news from the Veja Page
     """
     news = []
-    ns = get_ns('veja')
 
     links = soup.find('div', id='abril_popular_posts_widget-7').find_all('a', class_='')
 
     for a in links:
         news.append(dict(title=a.string,
-                         link=a['href']))  # Relative link, we have to prefix with the page domain
+                         link=a['href']))
+    return news
+
+
+def __nexo(soup):
+    """
+    Gets the most read news from the Jornal Nexo page
+
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Jornal Nexo Page
+    """
+    news = []
+
+    headers = soup.find('div', class_='news-list top-list').find('div', class_='top-list').find_all('h4')
+
+    for header in headers:
+        news.append(dict(title=header.a.text,
+                         link=header.a['href']))
     return news
 
 
@@ -174,16 +190,11 @@ def __local_df(soup):
 
 def __local_sp(soup):
     """
-    Gets the most read news from Sao Paulo Local News (Estadao)
-    :param soup: the BeautifulSoup object
-    :return: a list with the most read news from the Estadao Page
-    """
-    news = []
-    titles = soup.find('section', class_='col-xs-12 maislidas-interno').find_all('h3', class_='fifth')
-
-    for title in titles:
-        news.append(dict(title=title.string, link=title.parent['href']))
-    return news
+   Gets the most read news from São Paulo Local News (G1 Sao Paulo)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from G1 Sao Paulo page
+   """
+    return __get_local_g1_news(soup)
 
 
 def __local_rj(soup):
@@ -224,10 +235,14 @@ def __local_ac(soup):
    :return: a list with the most read news from Gazeta do Acre page
    """
     news = []
-    list_items = soup.find('div', id='direita_').find_all('li')
+    # Unordered list
+    unordered_list = list(soup.find("img",
+                                    src="http://agazetadoacre.com/wp-content/themes/agazeta_do_acre-sembarra/images/mais-lidas-cabec.jpg").parents)[
+        5].next_sibling.ul
+    list_items = unordered_list.find_all('li')
 
     for li in list_items:
-        title = li.a.string
+        title = li.h5.a.string
         link = li.a['href']
         news.append(dict(title=title, link=link))
     return news
@@ -242,10 +257,15 @@ def __local_al(soup):
     news = []
     ns = get_ns('localAL')
 
-    links = soup.find('ul', class_='read-more').find_all('a')
-
-    for a in links:
-        news.append(dict(title=a.h3.string, link=ns.url + a['href']))
+    divs = soup.find_all('div', class_='card-news-small')
+    # Incrementer, we only need 4 hits
+    i = 0
+    for div in divs:
+        title = div.find('span', class_='card-news__title')
+        news.append(dict(title=title.string, link=ns.url + title.parent['href']))
+        i += 1
+        if i == 4:
+            break
     return news
 
 
@@ -267,20 +287,11 @@ def __local_ap(soup):
 
 def __local_am(soup):
     """
- Gets the most read news from Amazonia Local News (A Crítica)
- :param soup: the BeautifulSoup object
- :return: a list with the most read news from A Crítica page
- """
-    news = []
-    ns = get_ns('localAM')
-
-    list_items = soup.find('div', id='mas-leidas').find_all('li')
-
-    for li in list_items:
-        title = li.a.string
-        link = ns.url + li.a['href']
-        news.append(dict(title=title, link=link))
-    return news
+   Gets the most read news from Amazonas Local News (Rede Amazonica)
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from Rede Amazonica page
+   """
+    return __get_local_g1_news(soup)
 
 
 def __local_ba(soup):
@@ -292,10 +303,10 @@ def __local_ba(soup):
     news = []
     ns = get_ns('localBA')
 
-    anchors = soup.find('aside', id='conteudos').find_all('a')
+    anchors = soup.find('section', class_='maisLidas row').find_all('a')
 
     for a in anchors:
-        title = a.string
+        title = a.p.string
         link = ns.url + a['href']
         news.append(dict(title=title, link=link))
     return news
@@ -321,20 +332,11 @@ def __local_ce(soup):
 
 def __local_es(soup):
     """
-   Gets the most read news from Espírito Santo Local News (Folha Vitória)
-   :param soup: the BeautifulSoup object
-   :return: a list with the most read news from Folha Vitória page
-   """
-    news = []
-    ns = get_ns('localES')
-
-    list_items = soup.find('div', class_='readMore container t2').find_all('li', class_='geral')
-
-    for li in list_items:
-        title = li.a.string
-        link = ns.url + li.a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    Gets the most read news from Espirito Santo Local News (TV Gazeta)
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from TV Gazeta page
+    """
+    return __get_local_g1_news(soup)
 
 
 def __local_go(soup):
@@ -353,10 +355,10 @@ def __local_ma(soup):
    :return: a list with the most read news from Jornal Pequeno page
    """
     news = []
-    anchors = soup.find('div', class_='tablidas tab').find_all('a')
+    anchors = soup.find('div', id='mais-lidas').find_all('a')
 
     for a in anchors:
-        title = a.h5.string
+        title = a.string
         link = a['href']
         news.append(dict(title=title, link=link))
     return news
@@ -396,12 +398,13 @@ def __local_mg(soup):
    :return: a list with the most read news from Estado de Minas page
    """
     news = []
-    anchors = soup.find('div', id='lidas').find_all('a')
+    anchors = soup.find('ul', class_='list-unstyled list-borded mb-0').find_all('a')
 
     for a in anchors:
-        title = a['title']
-        link = a['href']
-        news.append(dict(title=title, link=link))
+        if a.has_attr('title'):
+            title = a['title']
+            link = a['href']
+            news.append(dict(title=title, link=link))
     return news
 
 
@@ -439,11 +442,11 @@ def __local_pr(soup):
     news = []
     ns = get_ns('localPR')
 
-    anchors = soup.find('ul', id='lidas').find_all('a')
+    anchors = soup.find('div', class_='tbn-coluna col-4 c-mais-lidas-comentadas c-sequencia').find_all('a')
 
     for a in anchors:
         title = a.string
-        link = ns.url + a['href']
+        link = a['href']
         news.append(dict(title=title, link=link))
     return news
 
@@ -477,36 +480,20 @@ def __local_rs(soup):
 
 def __local_sc(soup):
     """
-   Gets the most read news from Santa Catarina Local News (Click RBS)
+   Gets the most read news from Santa Catarina Local News (NSC TV)
    :param soup: the BeautifulSoup object
-   :return: a list with the most read news from Click RBS page
+   :return: a list with the most read news from NSC TV page
    """
-    news = []
-    anchors = soup.find('div', id='noticiasmaislidas').find_all('a')
-
-    for a in anchors:
-        title = a.string
-        link = a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    return __get_local_g1_news(soup)
 
 
 def __local_ro(soup):
     """
-   Gets the most read news from Rondônia Local News (Rondonia ao Vivo)
-   :param soup: the BeautifulSoup object
-   :return: a list with the most read news from Rondonia ao Vivo page
-   """
-    news = []
-    ns = get_ns('localRO')
-
-    anchors = soup.find('div', id='mais-lidas').find_all('a', class_='fill-lidas')
-
-    for a in anchors:
-        title = a['title']
-        link = ns.url + a['href']
-        news.append(dict(title=title, link=link))
-    return news
+  Gets the most read news from Rondônia Local News (Rede Amazônica)
+  :param soup: the BeautifulSoup object
+  :return: a list with the most read news from Rede Amazônica page
+  """
+    return __get_local_g1_news(soup)
 
 
 def __local_rr(soup):
@@ -578,7 +565,7 @@ strategies = dict(g1=__g1, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=_
                   localGO=__local_go, localMA=__local_ma, localMT=__local_mt, localMS=__local_ms, localMG=__local_mg,
                   localPA=__local_pa, localPB=__local_pb, localPR=__local_pr, localPI=__local_pi, localRN=__local_rn,
                   localRS=__local_rs, localSC=__local_sc, localRO=__local_ro, localRR=__local_rr, localSE=__local_se,
-                  localTO=__local_to)
+                  localTO=__local_to, nexo=__nexo)
 
 
 def get_most_read(key):

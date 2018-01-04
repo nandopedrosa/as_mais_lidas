@@ -14,6 +14,7 @@ def __e_espn_br(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from the ESPN  page
    """
+    # DEPRECATED
     news = []
     ns = get_ns('e_espn_br')
 
@@ -74,6 +75,7 @@ def __e_placar(soup):
     :param soup: the BeautifulSoup object
     :return: a list with the most read news from the Placar page
     """
+    # DEPRECATED
     news = []
     ns = get_ns('e_placar')
 

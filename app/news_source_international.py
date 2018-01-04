@@ -14,6 +14,7 @@ def __fox(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from the Fox News page
    """
+    # DEPRECATED due to removal of Most read news section
     news = []
     anchors = soup.find('section', id='trending').find('ol').find_all('a')
 
@@ -78,6 +79,7 @@ def __tt(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from the The Telegraph page
    """
+    # DEPRECATED - Can't access source code due to script
     news = []
     ns = get_ns('tt')
 
