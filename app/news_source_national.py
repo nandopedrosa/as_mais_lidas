@@ -73,43 +73,14 @@ def __folha(soup):
     """
     news = []
 
-    # We have to get the data from a script tag and process the raw text...
-    data = soup.select('#folha-top')[0].next_sibling.next_sibling.string
+    anchors = soup.find('ol', class_='c-most-read__list').find_all('a')
 
-    # Line by line...
-    lines = data.split('\n')
-
-    # For each line...
-    for i, line in enumerate(lines):
-        # If we reach the end of the array, we break from the loop
-        if "]" in line:
-            break
-
-        if line.strip().startswith('title'):
-            # We get the title and the link of the news
-            title = __folha_get_script_content(line, is_title=True)
-            link = __folha_get_script_content(lines[i + 1])
-            news.append(dict(title=title, link=link))
+    for a in anchors:
+        title = a.string
+        link = a['href']
+        news.append(dict(title=title, link=link))
 
     return news
-
-
-def __folha_get_script_content(line, is_title=False):
-    """
-    Processes the Folha de São Paulo script lines to get the Title and Link of the most read news
-    :param line:  a line from the script
-    :return: title or link
-    """
-    start_index = line.index('"') + 1
-    last_index = line.rindex('"')
-    content = line[start_index:last_index]
-
-    # We have to escape html entities for the Title content
-    if is_title:
-        content = html.unescape(content)
-        content = content.replace("\;", "")  # Unescape still leaves some garbage we have to clean...
-
-    return content
 
 
 def __bol(soup):
