@@ -58,8 +58,28 @@ def __tec_olhar(soup):
     return news
 
 
+def __tec_conv(soup):
+    """
+    Gets the most read news from the Convergencia Digital page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Convergencia Digital page
+    """
+    news = []
+    ns = get_ns('tec_conv')
+
+    anchors = soup.find('div', id='slideshow').find_all('a')
+
+    for a in anchors:
+        if a.h1:
+            title = a.h1.string
+            link = 'http://www.convergenciadigital.com.br' + a['href']
+            news.append(dict(title=title, link=link))
+    return news
+
+
 def __tec_canal(soup):
     """
+    DEPRECATED
     Gets the most read news from the Canaltech page
     :param soup: the BeautifulSoup object
     :return: a list with the most read news from the Canaltech page
@@ -111,7 +131,7 @@ def __tec_giz(soup):
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(tec_g1=__tec_g1, tec_cw=__tec_cw, tec_olhar=__tec_olhar, tec_canal=__tec_canal, tec_uol=__tec_uol,
-                  tec_giz=__tec_giz)
+                  tec_giz=__tec_giz, tec_conv=__tec_conv)
 
 
 def get_most_read(key):
