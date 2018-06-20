@@ -20,10 +20,42 @@ def __g1(soup):
     :return: a list with the most read news from the G1 Page
     """
     news = []
-    container = soup.select('ul.highlights > li')
+    scripts = soup.find_all('script')
 
-    for item in container:
-        news.append(dict(title=item.a.span.string, link=item.a['href']))
+    for script in scripts:
+        script_content = script.text
+
+        # O conteúdo do G1 agora é gerado por script. Primeiro achamos o script correto, pois são vários
+        if script_content.startswith("'use strict'"):
+            i = 0
+
+            # Recuperamos as URLs mais acessadas
+            while True:
+                # Primeiro achamos um top-post (url) com essa chave de busca
+                key_index = script_content.find('G1-POST-TOP', i)
+
+                if key_index == -1:
+                    break
+
+                # Agora achamos o começo da url
+                start_index = script_content.rfind('"', 0, key_index) + 1
+
+                # Agora achamos o final da url
+                end_index = script_content.find('"', key_index)
+
+                # E agora pegamos a URL (substring)
+                url = script_content[start_index : end_index]
+
+                # Com a URL, entramos na página e descobrimos o título dela
+                response, content = getpage(url)
+                soup2 = parsepage(content)
+                title = soup2.find('h1', class_='content-head__title').string
+
+                news.append(dict(title=title, link=url))
+
+                # Preparamos o próximo índice de busca
+                i = key_index + 10
+
     return news
 
 
