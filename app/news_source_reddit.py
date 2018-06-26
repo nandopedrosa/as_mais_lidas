@@ -16,7 +16,7 @@ def __re_any(soup):
     """
     news = []
 
-    entries = soup.find('div', class_="s13nyulz-0 MjxuI s12rq52u-0 jNBfJm").find_all('h2')
+    entries = soup.find_all('h2')
 
     i = 0
 
