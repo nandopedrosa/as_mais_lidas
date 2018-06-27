@@ -278,14 +278,7 @@ def __local_ap(soup):
  :param soup: the BeautifulSoup object
  :return: a list with the most read news from Jornal do Dia page
  """
-    news = []
-    list_items = soup.find('div', id='Mod212').find_all('li')
-
-    for li in list_items:
-        title = li.h4.a.string
-        link = li.h4.a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    return __get_local_g1_news(soup)
 
 
 def __local_am(soup):
@@ -426,14 +419,7 @@ def __local_pb(soup):
    :param soup: the BeautifulSoup object
    :return: a list with the most read news from Paraíba Online page
    """
-    news = []
-    anchors = soup.find('div', class_='timeline amarelo').find_all('a')
-
-    for a in anchors:
-        title = a.string
-        link = a['href']
-        news.append(dict(title=title, link=link))
-    return news
+    return __get_local_g1_news(soup)
 
 
 def __local_pr(soup):
@@ -581,6 +567,14 @@ def get_most_read(key):
     :return: a list with the most read news from the page and the name of news source
     """
     ns = get_ns(key)
+
+    if key == 'localAP':
+        ns.url = 'http://g1.globo.com/ap/amapa/'
+    elif key == 'localPB':
+        ns.url = 'http://g1.globo.com/pb/paraiba/'
+    elif key == 'localSC':
+        ns.url = 'http://g1.globo.com/sc/santa-catarina/'
+
     response, content = getpage(ns.url)  # Download the page
     soup = parsepage(content)  # Then we parse it
     strategy = strategies[key]  # Then we execute the selected Strategy based on the source
