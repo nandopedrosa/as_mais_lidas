@@ -548,14 +548,16 @@ def __local_to(soup):
 def __get_local_g1_news(soup):
     """
  Gets the most read news from a local G1 news source
+ Update: there is no Most Read news from local regions anymore,
+ so we just show the first five news
  :param soup: the BeautifulSoup object
  :return: a list with the most read news from a local g1 news source
  """
     news = []
-    anchors = soup.find('ul', class_='highlights').find_all('a')
+    anchors = soup.find_all('a', class_='feed-post-link gui-color-primary gui-color-hover')
 
     for a in anchors:
-        title = a.span.string.strip()
+        title = a.string
         link = a['href']
         news.append(dict(title=title, link=link))
     return news
