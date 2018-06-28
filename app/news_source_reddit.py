@@ -21,15 +21,24 @@ def __re_any(soup):
     i = 0
 
     for entry in entries:
-        title = entry.string
-        # Ignore Requests
-        if 'AMA Request' in title:
+        if entry.parent.name == 'a':
+            title = entry.string
+
+            # Ignore Requests
+            if 'AMA Request' in title:
+                continue
+
+            link = 'https://www.reddit.com' + entry.parent['href']
+
+            news.append(dict(title=title, link=link))
+
+            i += 1
+            if i == 5:
+                break
+        else:
             continue
-        link = 'https://www.reddit.com' + entry.parent['href']
-        news.append(dict(title=title, link=link))
-        i += 1
-        if i == 5:
-            break
+
+
 
     return news
 
