@@ -567,14 +567,6 @@ def get_most_read(key):
     :return: a list with the most read news from the page and the name of news source
     """
     ns = get_ns(key)
-
-    if key == 'localAP':
-        ns.url = 'http://g1.globo.com/ap/amapa/'
-    elif key == 'localPB':
-        ns.url = 'http://g1.globo.com/pb/paraiba/'
-    elif key == 'localSC':
-        ns.url = 'http://g1.globo.com/sc/santa-catarina/'
-
     response, content = getpage(ns.url)  # Download the page
     soup = parsepage(content)  # Then we parse it
     strategy = strategies[key]  # Then we execute the selected Strategy based on the source
