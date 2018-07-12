@@ -11,7 +11,7 @@ import httplib2
 from bs4 import BeautifulSoup
 from flask.ext.mail import Message
 from app import app, mail
-from app.decorators import async
+from app.decorators import async_decorator
 from app.aml_config import ADMINS
 from app.models import *
 
@@ -108,7 +108,7 @@ def send_email(username, reply_to, text_body):
 
 
 # noinspection PyShadowingNames
-@async
+@async_decorator
 def __send_email_async(app, msg):
     """
     Helper function to make send emails asynchronously (there' no point making the user wait for the email to be sent)
