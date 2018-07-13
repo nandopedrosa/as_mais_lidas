@@ -6,6 +6,7 @@ __email__ = "fpedrosa@gmail.com"
 
 """
 from app.aml_utils import getpage, parsepage, get_ns
+from app.news_source_national import g1
 
 
 def __tec_g1(soup):
@@ -14,13 +15,7 @@ def __tec_g1(soup):
     :param soup: the BeautifulSoup object
     :return: a list with the most read news from the G1 Technology page
     """
-    news = []
-    anchors = soup.find('ul', class_='highlights').find_all('a')
-
-    for a in anchors:
-        title = a.span.string
-        link = a['href']
-        news.append(dict(title=title, link=link))
+    news = g1(soup)
     return news
 
 

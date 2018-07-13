@@ -7,35 +7,7 @@ __email__ = "fpedrosa@gmail.com"
 """
 from app.aml_utils import getpage, parsepage, get_ns, anchor_has_no_class
 
-
-def __en_om_filmes(soup):
-    """
-    Gets the most read news from the Omelete Filmes page
-    :param soup: the BeautifulSoup object
-    :return: a list with the most read news from the Omelete Filmes page
-    """
-    return __get_omelete_news(soup)
-
-
-def __en_om_series(soup):
-    """
-    Gets the most read news from the Omelete Séries page
-    :param soup: the BeautifulSoup object
-    :return: a list with the most read news from the Omelete Séries page
-    """
-    return __get_omelete_news(soup)
-
-
-def __en_om_hqs(soup):
-    """
-    Gets the most read news from the Omelete Filmes page
-    :param soup: the BeautifulSoup object
-    :return: a list with the most read news from the Omelete HQs page
-    """
-    return __get_omelete_news(soup)
-
-
-def __get_omelete_news(soup):
+def __en_omelete(soup):
     """
     Helper function to get Omelete News
     :param soup: the BeautifulSoup object
@@ -43,11 +15,11 @@ def __get_omelete_news(soup):
     """
     news = []
 
-    list_items = soup.find('div', class_='pyquery-ajax-omeletop').find_all('li')
+    anchors = soup.find('aside', class_='c-ranking c-ranking--read').find_all('a')
 
-    for item in list_items:
-        link = 'http://www.omelete.com.br' + item['data-url']
-        title = item['data-name']
+    for a in anchors:
+        link = 'http://www.omelete.com.br' + a['href']
+        title = a.find('div', class_='c-ranking__text').string
         news.append(dict(title=title, link=link))
 
     return news
@@ -160,7 +132,7 @@ def __en_vip(soup):
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(en_ego=__en_ego, en_fuxico=__en_fuxico, en_contigo=__en_contigo, en_tititi=__en_tititi,
-                  en_vip=__en_vip, en_om_filmes=__en_om_filmes, en_om_series=__en_om_series, en_om_hqs=__en_om_hqs)
+                  en_vip=__en_vip, en_omelete=__en_omelete)
 
 
 def get_most_read(key):
