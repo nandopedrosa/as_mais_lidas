@@ -8,26 +8,6 @@ __email__ = "fpedrosa@gmail.com"
 from app.aml_utils import getpage, parsepage, get_ns
 
 
-def __e_espn_br(soup):
-    """
-   Gets the most read news from the ESPN.com.br page
-   :param soup: the BeautifulSoup object
-   :return: a list with the most read news from the ESPN  page
-   """
-    # DEPRECATED
-    news = []
-    ns = get_ns('e_espn_br')
-
-    anchors = soup.find('div', id='most_viewed-all').find_all('a')
-
-    for a in anchors:
-        title = a.string
-        link = ns.url + a['href']
-        news.append(dict(title=title, link=link))
-
-    return news
-
-
 def __e_fox_br(soup):
     """
     Gets the most read news from the Fox Sports page
@@ -69,26 +49,6 @@ def __e_lance(soup):
     return news
 
 
-def __e_placar(soup):
-    """
-    Gets the most read news from the Placar page
-    :param soup: the BeautifulSoup object
-    :return: a list with the most read news from the Placar page
-    """
-    # DEPRECATED
-    news = []
-    ns = get_ns('e_placar')
-
-    anchors = soup.find('div', class_='mais-lidas box right').find_all('a')
-
-    for a in anchors:
-        title = a.find('h1').string + ': ' + a.find('h2').string
-        link = ns.url + a['href']
-        news.append(dict(title=title, link=link))
-
-    return news
-
-
 def __e_gp(soup):
     """
     Gets the most read news from the Grande Premio page
@@ -98,18 +58,18 @@ def __e_gp(soup):
     news = []
     ns = get_ns('e_gp')
 
-    anchors = soup.find('div', class_='mhv-mais-lida-posicao').parent.find_all('a')
+    divs = soup.find_all('div', class_='bloco-trending')
 
-    for a in anchors:
-        title = a.string
-        link = ns.url + a['href']
+    for div in divs:
+        link = ns.url + div.parent['href']
+        title = div.find('div', class_='titulo').string
         news.append(dict(title=title, link=link))
 
     return news
 
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(e_espn_br=__e_espn_br, e_fox_br=__e_fox_br, e_lance=__e_lance, e_placar=__e_placar, e_gp=__e_gp)
+strategies = dict(e_fox_br=__e_fox_br, e_lance=__e_lance, e_gp=__e_gp)
 
 
 def get_most_read(key):
