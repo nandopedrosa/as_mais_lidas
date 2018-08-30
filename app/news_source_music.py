@@ -16,11 +16,11 @@ def __m_rs(soup):
    """
     news = []
 
-    articles = soup.find('aside', class_='module-trending-right-rail card-container').find_all('article')
+    anchors = soup.find('ol', class_='c-trending__list').find_all('a')
 
-    for article in articles:
-        title = article.h3.string
-        link = 'http://www.rollingstone.com' + article.a['href']
+    for a in anchors:
+        title = a.text
+        link = a['href']
         news.append(dict(title=title, link=link))
 
     return news
