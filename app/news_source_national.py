@@ -24,9 +24,9 @@ def g1(soup):
 
     for script in scripts:
         script_content = script.text
-
+ 
         # O conteúdo do G1 agora é gerado por script. Primeiro achamos o script correto, pois são vários
-        if script_content.startswith("'use strict'"):
+        if script_content.strip().startswith("((a,b,c,d,e,f)"):
             i = 0
 
             # Recuperamos as URLs mais acessadas
