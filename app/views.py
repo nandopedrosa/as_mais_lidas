@@ -64,9 +64,7 @@ def get_state():
     Gets the user Local News Source based on their IP Address
     :return: a JSON file with the user State and Local News Source
     """
-    ip = request.args.get('ip')
-
-    state = getstate(ip)
+    state = getstate()
 
     # DEBUG - Change here to simulate different locations. Comment otherwise.
     # state = 'TO'

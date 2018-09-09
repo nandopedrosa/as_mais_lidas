@@ -23,16 +23,21 @@ STATES = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS'
           'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']
 
 
-def getstate(ip):
+def getstate():
     """
     Gets the user State Location based on their IP Address
-    :param ip: The user IP
     :return: State Location (e.g: SP, DF, etc.)
     """
     try:
+        # First, we discover the user's public ip address
+        response, content = getpage('http://ip.42.pl/raw')  # Download the page
+        soup = parsepage(content)  # Then we parse it
+        ip = soup.find('body').string
+
         if ip is None:
             return 'notfound'
 
+        # Now we use some IP localization service to determine from where that IP comes from
         url = IP_SERVICE_URL.replace("#IP#", ip)
         response, content = getpage(url)
         soup = parsepage(content)

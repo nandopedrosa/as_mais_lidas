@@ -245,12 +245,6 @@
 <!-- Bootstrap JavaScript -->
 <script src="../static/css/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Get User IP and set localized news feed -->
-<script type="text/javascript">
-    var userip;
-</script>
-
-<script type="text/javascript" src="http://l2.io/ip.js?var=userip"></script>
 
 <script>
 
@@ -262,9 +256,6 @@
 
     $.get(
             baseURL + '/get_local_ns',
-            {
-                ip: userip
-            },
             function (responseContent) {
                 //If the User State Location was not found, then we hide the Local news source
                 if (responseContent.state == 'notfound') {
