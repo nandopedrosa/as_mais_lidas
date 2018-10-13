@@ -7,6 +7,32 @@ __email__ = "fpedrosa@gmail.com"
 """
 from app.aml_utils import getpage, parsepage, get_ns, anchor_has_no_class
 
+def __en_nerd(soup):
+    """
+    Helper function to get Jovem Nerd News
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Jovem Nerd website
+    """
+    news = []
+
+    h2s = soup.find_all('h2', class_='entry-card__content-title')
+
+    i = 0
+    for h2 in h2s:
+        link = h2.a['href']
+        title = h2.a.string
+        news.append(dict(title=title, link=link))
+        i += 1
+
+        if i == 10:
+            break
+
+
+
+    return news
+
+
+
 def __en_omelete(soup):
     """
     Helper function to get Omelete News
@@ -132,7 +158,7 @@ def __en_vip(soup):
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(en_ego=__en_ego, en_fuxico=__en_fuxico, en_contigo=__en_contigo, en_tititi=__en_tititi,
-                  en_vip=__en_vip, en_omelete=__en_omelete)
+                  en_vip=__en_vip, en_omelete=__en_omelete, en_nerd=__en_nerd)
 
 
 def get_most_read(key):
