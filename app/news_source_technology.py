@@ -105,7 +105,7 @@ def __tec_uol(soup):
         link = a['href']
         news.append(dict(title=title, link=link))
     return news
-
+  
 
 def __tec_giz(soup):
     """
@@ -114,13 +114,15 @@ def __tec_giz(soup):
     :return: a list with the most read news from the Gizmodo page
     """
     news = []
-    li = soup.find('li', class_='selected')
-    h3s = li.parent.next_sibling.next_sibling.find_all('h3')
+    container = soup.find('div', id='wpp-2').find_all('a')
 
-    for h3 in h3s:
-        title = h3.a.string
-        link = h3.a['href']
-        news.append(dict(title=title, link=link))
+    for a in container:
+        img = a.img
+
+        if img is None:
+            title = a.string
+            link = a['href']
+            news.append(dict(title=title, link=link))
     return news
 
 
