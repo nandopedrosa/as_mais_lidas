@@ -105,7 +105,7 @@ def __tec_uol(soup):
         link = a['href']
         news.append(dict(title=title, link=link))
     return news
-  
+
 
 def __tec_giz(soup):
     """
