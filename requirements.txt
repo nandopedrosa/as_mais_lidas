@@ -20,7 +20,7 @@ pytz==2015.7
 six==1.10.0
 speaklater==1.3
 Tempita==0.5.2
-Werkzeug==0.11.2
+Werkzeug==0.15.3
 WTForms==2.0.2
 Flask-Migrate==1.7.0
 Flask-Script==2.0.5
