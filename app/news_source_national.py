@@ -174,11 +174,11 @@ def __nexo(soup):
     """
     news = []
 
-    headers = soup.find('div', class_='news-list top-list').find('div', class_='top-list').find_all('h4')
+    headers = soup.find('ul', class_='Recent__list___G501w').find_all('h4')
 
     for header in headers:
         news.append(dict(title=header.a.text,
-                         link=header.a['href']))
+                         link="https://www.nexojornal.com.br" + header.a['href']))
     return news
 
 

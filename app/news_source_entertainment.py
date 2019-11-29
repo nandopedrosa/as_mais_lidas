@@ -15,19 +15,12 @@ def __en_nerd(soup):
     """
     news = []
 
-    h2s = soup.find_all('h2', class_='entry-card__content-title')
+    links = soup.find('div', class_='highlight-list').find_all('a')
 
-    i = 0
-    for h2 in h2s:
-        link = h2.a['href']
-        title = h2.a.string
+    for a in links:
+        link = a['href']
+        title = a.string.strip()
         news.append(dict(title=title, link=link))
-        i += 1
-
-        if i == 10:
-            break
-
-
 
     return news
 
@@ -59,8 +52,6 @@ def __en_ego(soup):
     """
     # DEPRECATED
     news = []
-    ns = get_ns('en_ego')
-
     anchors = soup.find('div', class_='widget mais-lidas').find_all('a')
 
     for a in anchors:

@@ -13,7 +13,7 @@ gunicorn==19.4.5
 httplib2==0.11.3
 itsdangerous==0.24
 Jinja2==2.8
-lxml==4.2.3
+lxml==4.3.5
 MarkupSafe==0.23
 pbr==1.8.1
 pytz==2015.7

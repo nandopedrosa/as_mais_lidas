@@ -16,35 +16,28 @@ def __re_any(soup):
     """
     news = []
 
-    entries = soup.find_all('h2')
+    anchors = soup.find_all('a')
 
     i = 0
 
-    for entry in entries:
-        if entry.parent.name == 'a':
-            title = entry.string
-
-            # Ignore Requests
-            if 'AMA Request' in title:
-                continue
-
-            link = 'https://www.reddit.com' + entry.parent['href']
-
-            news.append(dict(title=title, link=link))
-
-            i += 1
-            if i == 5:
-                break
-        else:
-            continue
-
-
+    for a in anchors:
+        if a.has_attr('data-click-id'):
+            if a['data-click-id']  == 'body':
+                title = a.h3.string.strip()
+                # Ignore Requests
+                if 'AMA Request' in title:
+                    continue
+                link = 'https://www.reddit.com' + a['href']
+                news.append(dict(title=title, link=link))
+                i += 1
+                if i == 5:
+                    break
 
     return news
 
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(re_ask=__re_any, re_til=__re_any, re_iama=__re_any)
+strategies = dict(re_ask=__re_any, re_til=__re_any, re_iama=__re_any, re_aww=__re_any, re_bros=__re_any, re_derps=__re_any, re_interestingasfuck=__re_any, re_damnthatsinteresting=__re_any, re_nextfuckinglevel=__re_any)
 
 
 def get_most_read(key):
