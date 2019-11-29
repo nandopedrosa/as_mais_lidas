@@ -5,3 +5,5 @@
 *$py.class
 *.cache/
 aml-venv/
+*.code-workspace
+.vscode/
