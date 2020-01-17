@@ -37,7 +37,7 @@ def __re_any(soup):
 
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(re_ask=__re_any, re_til=__re_any, re_iama=__re_any, re_aww=__re_any, re_bros=__re_any, re_derps=__re_any, re_interestingasfuck=__re_any, re_damnthatsinteresting=__re_any, re_nextfuckinglevel=__re_any)
+strategies = dict(re_ask=__re_any, re_science=__re_any, re_life=__re_any, re_world=__re_any,  re_til=__re_any, re_iama=__re_any, re_aww=__re_any, re_bros=__re_any, re_derps=__re_any, re_interestingasfuck=__re_any, re_damnthatsinteresting=__re_any, re_nextfuckinglevel=__re_any)
 
 
 def get_most_read(key):

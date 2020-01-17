@@ -157,11 +157,11 @@ def __veja(soup):
     """
     news = []
 
-    spans= soup.find_all('span', class_='item-popular-order-number')
+    headers = soup.find('section', class_='block most-read dark').find_all('h2')
 
-    for s in spans:
-        news.append(dict(title=s.next.next.string,
-                         link=s.next.next['href']))
+    for h2 in headers:
+        news.append(dict(title=h2.next.next.next.string,
+                         link=h2.parent['href']))
     return news
 
 
