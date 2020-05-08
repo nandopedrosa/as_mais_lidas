@@ -30,6 +30,7 @@ psycopg2-binary==2.8.4
 pylint==2.4.4
 python-editor==0.5
 pytz==2015.7
+sendgrid==6.3.0
 six==1.13.0
 speaklater==1.3
 SQLAlchemy==1.3.11

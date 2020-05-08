@@ -30,7 +30,7 @@ def index():
     """
     news, header = get_most_read(DEFAULT_NS)
     current_year = datetime.now().year
-    contact_form = ContactForm()
+    contact_form = ContactForm()    
     return render_template("ns.html",
                            title=gettext('Home Page'),
                            year=current_year,
@@ -105,9 +105,14 @@ def send_message():
     form = ContactForm(request.form)
 
     if form.validate():
-        form.errors['error'] = False
-        form.errors['status'] = gettext('Message successfully sent')
-        send_email(form.name.data, form.email.data, form.message.data)
+        status_code = send_email(form.name.data, form.email.data, form.message.data)
+        #200 codes, success
+        if not str(status_code).startswith('20'):
+            form.errors['error'] = True
+            form.errors['status'] = gettext('Your message could not be sent')
+        else:            
+            form.errors['error'] = False
+            form.errors['status'] = gettext('Message successfully sent')        
     else:
         form.errors['status'] = gettext('Your message could not be sent')
         form.errors['error'] = True
@@ -156,6 +161,7 @@ def not_found_error(error):
 def internal_error(error):
     contact_form = ContactForm()
     current_year = datetime.now().year
+    send_email('ADMIN - ERROR', 'noreply@asmaislidas.com.br', str(error), True)
     return render_template("500.html",
                            title=gettext('Error'),
                            year=current_year,

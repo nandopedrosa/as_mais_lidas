@@ -14,15 +14,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# Flask-mail settings
-MAIL_SERVER = 'smtp.gmail.com'
-MAIL_PORT = 465
-MAIL_USE_TLS = False
-MAIL_USE_SSL = True
-MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-MAIL_DEFAULT_SENDER = 'asmaislidasapp@gmail.com'
-ADMINS = ['fpedrosa@gmail.com']
+# Mailjet settings
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 
 # available languages
 LANGUAGES = {

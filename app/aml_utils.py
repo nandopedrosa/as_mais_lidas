@@ -9,11 +9,13 @@ __email__ = "fpedrosa@gmail.com"
 import httplib2
 # noinspection PyPackageRequirements
 from bs4 import BeautifulSoup
-from flask.ext.mail import Message
-from app import app, mail
+from app import app
 from app.decorators import async_decorator
-from app.aml_config import ADMINS
+
+from app.aml_config import SENDGRID_API_KEY
 from app.models import *
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 # Constants
 
@@ -71,7 +73,8 @@ def getpage(url):
     :return: the header response and contents (bytes) of the page
     """
     http = httplib2.Http('.cache', disable_ssl_certificate_validation=True)
-    headers = {'User-agent': 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36'}
+    headers = {
+        'User-agent': 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36'}
 
     response, content = http.request(url, headers=headers)
     return response, content
@@ -98,7 +101,7 @@ def anchor_has_no_class(tag):
     return not tag.has_attr('class') and tag.name == 'a'
 
 
-def send_email(username, reply_to, text_body):
+def send_email(username, reply_to, text_body, error_msg=False):
     """
     Sends an email to the given recipients
     :param username: the name of the person who sent the contact message
@@ -106,24 +109,30 @@ def send_email(username, reply_to, text_body):
     :param text_body: the message
     :return: None
     """
-    subject = '[asmaislidas] {0} has sent you a message'.format(username)
-    msg = Message(subject, recipients=ADMINS)
-    msg.body = "Name: " + username + "\nReply to: " + reply_to + "\nMessage:\n" + text_body
-    __send_email_async(app, msg)
+    
+    if not error_msg:    
+        content = '<p>Reply to: ' + reply_to + '</p>' + '<p>' + text_body + '</p>'
+        content = content.replace('\r\n', '<br/>')
+    else:
+        content = text_body
 
+    message = Mail(
+        from_email = 'noreply@asmaislidas.com.br',
+        to_emails = 'fpedrosa@gmail.com',
+        subject = '[asmaislidas] ' + username + ' has sent you a message',
+        html_content = content
+    )
 
-# noinspection PyShadowingNames
-@async_decorator
-def __send_email_async(app, msg):
-    """
-    Helper function to make send emails asynchronously (there' no point making the user wait for the email to be sent)
-    :param app: the flask app
-    :param msg: the msg object from Flask Mail
-    :return: None
-    """
-    with app.app_context():
-        mail.send(msg)
-
+    try:
+        sg = SendGridAPIClient(SENDGRID_API_KEY)
+        response = sg.send(message)   
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)     
+    except Exception as e:
+        print(e.message)
+    
+    return response.status_code
 
 def get_ns(key):
     """
@@ -131,5 +140,6 @@ def get_ns(key):
     :param key: the key of the news source (e.g: g1, uol, etc.)
     :return: the news source object
     """
-    ns = NewsSource.query.filter_by(key=key).first()  # Fetch news source by key
+    ns = NewsSource.query.filter_by(
+        key=key).first()  # Fetch news source by key
     return ns
