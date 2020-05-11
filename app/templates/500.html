@@ -1,16 +1,49 @@
-{% extends "base.html" %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="well" style="margin: 20px auto; text-align: center; padding: 25px; max-width: 600px">
-    <h2 style="margin: 0"><div class="glyphicon glyphicon-warning-sign"></div> {{ _('An error has occurred') }}</h2>
-    <p style="margin-top: 5px ">{{ _('We are sorry to inform an internal error has occurred. The site administrator has been contacted and we will try to fix this as soon as possible.') }}</p>
-    <p>
-        <a style="margin: 5px 5px" class="btn btn-default btn-sm" href="{{ url_for('index') }}">{{ _('Back to Homepage') }}</a>
-    </p>
-</div>
+<head>
 
-{% endblock %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="As notícias mais lidas dos maiores Sites de Notícias de todo o mundo">
+    <meta name="author" content="Fernando Pedrosa">
+
+    <title id="page-title">{{ title }} - As Mais Lidas</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/css/custom.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../static/images/favicon.ico">
+
+</head>
+
+
+<body>
+    <div class="well" style="margin: 20px auto; text-align: center; padding: 25px; max-width: 600px">
+        <h2 style="margin: 0"><div class="glyphicon glyphicon-warning-sign"></div> {{ _('An error has occurred') }}</h2>
+        <p style="margin-top: 5px ">{{ _('We are sorry to inform an internal error has occurred. The site administrator has been contacted and we will try to fix this as soon as possible.') }}</p>
+        <p>
+            <a style="margin: 5px 5px" class="btn btn-default btn-sm" href="{{ url_for('index') }}">{{ _('Back to Homepage') }}</a>
+        </p>
+    </div>
+
+    <!-- jQuery -->
+<script src="../static/js/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="../static/css/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+
+
+
 
 
 

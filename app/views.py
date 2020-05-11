@@ -16,6 +16,7 @@ from flask.ext.babel import gettext
 from app import app, babel
 from datetime import datetime
 from app.aml_config import LANGUAGES
+import traceback
 
 # Default news source
 DEFAULT_NS = "uol"
@@ -161,11 +162,11 @@ def not_found_error(error):
 def internal_error(error):
     contact_form = ContactForm()
     current_year = datetime.now().year
-    send_email('ADMIN - ERROR', 'noreply@asmaislidas.com.br', str(error), True)
+    stack_trace_msg = traceback.format_exc()
+    send_email('ADMIN - ERROR', 'noreply@asmaislidas.com.br', stack_trace_msg, True)
     return render_template("500.html",
-                           title=gettext('Error'),
-                           year=current_year,
-                           contact_form=contact_form)
+                           title='Ooops')
+                           
 
 
 @app.route('/error', methods=['GET'])
