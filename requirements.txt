@@ -16,7 +16,7 @@ Flask-SQLAlchemy==2.4.1
 Flask-WTF==0.12
 flipflop==1.0
 gunicorn==19.4.5
-httplib2==0.11.3
+httplib2==0.18.0
 isort==4.3.21
 itsdangerous==0.24
 Jinja2==2.8
