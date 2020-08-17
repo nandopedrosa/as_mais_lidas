@@ -35,12 +35,12 @@ def __m_whiplash(soup):
     news = []
     ns = get_ns('m_whiplash')
 
-    anchors = soup.find('table', class_='tabela').find_all('a')
+    articles = soup.find_all('p', class_='mancheteConteudo2')
     i = 0;
 
-    for a in anchors:
-        title = a.string
-        link = a['href']
+    for article in articles:
+        title = article.a.img['alt']
+        link = article.a['href']
         news.append(dict(title=title, link=link))
         i += 1
         if i == 10:
