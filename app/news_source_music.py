@@ -35,12 +35,12 @@ def __m_whiplash(soup):
     news = []
     ns = get_ns('m_whiplash')
 
-    articles = soup.find_all('p', class_='mancheteConteudo2')
+    paragraphs = soup.find_all('p', class_='linkManchete')
     i = 0;
 
-    for article in articles:
-        title = article.a.img['alt']
-        link = article.a['href']
+    for p in paragraphs:
+        title = p.string
+        link = p.a['href']
         news.append(dict(title=title, link=link))
         i += 1
         if i == 10:
@@ -48,9 +48,28 @@ def __m_whiplash(soup):
 
     return news
 
+def __m_rockbizz(soup):
+    """
+   Gets the most read news from the Rock Bizz page
+   :param soup: the BeautifulSoup object
+   :return: a list with the most read news from the Rock Bizz page
+   """
+    news = []
+    ns = get_ns('m_bizz')
+
+    section = soup.find('section', id='recent-posts-2')
+    items = section.find_all('li')
+
+    for item in items:
+        title = item.text
+        link = item.a['href']
+        news.append(dict(title=title, link=link))   
+
+    return news    
+
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(m_rs=__m_rs, m_whiplash=__m_whiplash)
+strategies = dict(m_rs=__m_rs, m_bizz=__m_rockbizz)
 
 
 def get_most_read(key):
