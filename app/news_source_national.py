@@ -8,9 +8,30 @@ __email__ = "fpedrosa@gmail.com"
 
 import html
 from app.aml_utils import getpage, anchor_has_no_class, parsepage, get_ns
+import json
 from app.models import *
 from app import db
 
+def __correio(soup):
+    """
+    Gets the most read news from the correio braziliense page
+
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Correio Braziliense Page
+    """    
+    news = []
+    json_content = json.loads(soup.text)
+    entries = json_content["matia"]
+
+    for entry in entries:
+        title = entry["title"]
+        url = entry["link"]
+        news.append(dict(title=title, link=url))
+        if(len(news)>=10):
+            break
+
+    return news
+   
 
 def g1(soup):
     """
@@ -569,7 +590,7 @@ def __get_local_g1_news(soup):
 
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(g1=g1, metro=__metro, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
+strategies = dict(g1=g1, correio=__correio, metro=__metro, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
                   localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac, localAL=__local_al,
                   localAP=__local_ap, localAM=__local_am, localBA=__local_ba, localCE=__local_ce, localES=__local_es,
                   localGO=__local_go, localMA=__local_ma, localMT=__local_mt, localMS=__local_ms, localMG=__local_mg,
