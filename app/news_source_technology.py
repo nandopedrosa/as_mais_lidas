@@ -125,10 +125,32 @@ def __tec_giz(soup):
             news.append(dict(title=title, link=link))
     return news
 
+def __tec_tecmundo(soup):
+    """
+    Gets the most read news from the Tecmundo page
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the Tecmundo page
+    """
+    news = []
+    h3s = soup.find_all('h3', class_='tec--card__title')
+
+     # Limit to 10 news
+    i = 0
+    for h3 in h3s:
+        title = h3.a.string
+        link = h3.a['href']
+        
+        news.append(dict(title=title, link=link))
+
+        i += 1
+        if i == 10:
+            break
+    return news
+
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
 strategies = dict(tec_g1=__tec_g1, tec_cw=__tec_cw, tec_olhar=__tec_olhar, tec_canal=__tec_canal, tec_uol=__tec_uol,
-                  tec_giz=__tec_giz, tec_conv=__tec_conv)
+                  tec_giz=__tec_giz, tec_conv=__tec_conv, tec_tecmundo=__tec_tecmundo)
 
 
 def get_most_read(key):
