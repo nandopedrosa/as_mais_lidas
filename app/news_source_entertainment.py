@@ -69,21 +69,16 @@ def __en_fuxico(soup):
     :return: a list with the most read news from the Fuxico page
     """
     news = []
-    divs = soup.find_all('div', class_='post-news')
+    links = soup.find_all('a', class_='news-box-link')
 
-    # Limit to 5 news
+    # Limit to 10 news
     i = 0
-    for div in divs:
-        a = div.find('a', attrs={'class': None})
-        if a.span is not None:
-            title = a.span.next.next.string
-        else:
-            title = a.string
-        link = 'http://www.ofuxico.com.br' + a['href']
-        news.append(dict(title=title, link=link))
+    for link in links:
+        title = link.h2.string
+        news.append(dict(title=title, link=link['href']))
 
         i += 1
-        if i == 5:
+        if i == 10:
             break
     return news
 
