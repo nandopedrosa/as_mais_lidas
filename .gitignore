@@ -7,3 +7,4 @@
 aml-venv/
 *.code-workspace
 .vscode/
+sql_script.sql
