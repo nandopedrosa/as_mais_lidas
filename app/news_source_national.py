@@ -107,7 +107,7 @@ def __uol(soup):
     :return: a list with the most read news from the UOL Page
     """
     news = []
-    container = soup.select('ol.mostRead')
+    container = soup.find('ol', class_='mostRead')
     most_read = container.find_all('li')
 
     for item in most_read:
