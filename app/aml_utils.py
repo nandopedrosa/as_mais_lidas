@@ -11,7 +11,7 @@ import httplib2
 from bs4 import BeautifulSoup
 from app import app
 from app.decorators import async_decorator
-
+import json
 from app.aml_config import SENDGRID_API_KEY
 from app.models import *
 from sendgrid import SendGridAPIClient
@@ -80,6 +80,31 @@ def getpage(url):
     return response, content
 
 
+def get_outline(url):
+    """
+    Gets the Outline link for a Paywall URL
+
+    :param url: the original (paywall) page address
+    :return: the new url
+    """
+    if(url is None):
+        return ""
+
+    api_base_url = "https://api.outline.com/v3/parse_article?source_url="
+    response, content = getpage(api_base_url + url)
+    json_content = json.loads(content)
+    return "https://outline.com/" + json_content['data']['short_code']
+
+
+def replace_original_link_with_outline_call(url):
+    """
+    Replaces the original link with a call to get an outline link
+
+    :param url: the original (paywall) url
+    :return: the new url
+    """
+    return "/outline?original_url=" + url
+
 def parsepage(content):
     """
     Parses a single page and its contents into a BeautifulSoup object
@@ -109,30 +134,31 @@ def send_email(username, reply_to, text_body, error_msg=False):
     :param text_body: the message
     :return: None
     """
-    
-    if not error_msg:    
+
+    if not error_msg:
         content = '<p>Reply to: ' + reply_to + '</p>' + '<p>' + text_body + '</p>'
         content = content.replace('\r\n', '<br/>')
     else:
         content = text_body
 
     message = Mail(
-        from_email = 'noreply@asmaislidas.com.br',
-        to_emails = 'fpedrosa@gmail.com',
-        subject = '[asmaislidas] ' + username + ' has sent you a message',
-        html_content = content
+        from_email='noreply@asmaislidas.com.br',
+        to_emails='fpedrosa@gmail.com',
+        subject='[asmaislidas] ' + username + ' has sent you a message',
+        html_content=content
     )
 
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)
-        response = sg.send(message)   
+        response = sg.send(message)
         print(response.status_code)
         print(response.body)
-        print(response.headers)     
+        print(response.headers)
     except Exception as e:
         print(e.message)
-    
+
     return response.status_code
+
 
 def get_ns(key):
     """

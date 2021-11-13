@@ -8,7 +8,7 @@ __email__ = "fpedrosa@gmail.com"
 """
 
 import json
-from app.aml_utils import getstate, send_email, get_ns
+from app.aml_utils import getstate, send_email, get_ns, get_outline
 from app.facade import get_most_read
 from app.forms import ContactForm
 from flask import render_template, request, session, redirect, url_for, jsonify
@@ -58,6 +58,15 @@ def ns():
     j = json.dumps(d)
     return j
 
+@app.route('/outline', methods=["GET"])
+def outline():
+    """
+    Gets the outline page of a given Paywall URL    
+    :return the outline page
+    """
+    original_url = request.args.get('original_url')
+    outline_url = get_outline(original_url)    
+    return redirect(outline_url)
 
 @app.route('/get_local_ns', methods=["GET"])
 def get_state():

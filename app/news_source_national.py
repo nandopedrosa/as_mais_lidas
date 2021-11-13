@@ -7,7 +7,7 @@ __email__ = "fpedrosa@gmail.com"
 """
 
 import html
-from app.aml_utils import getpage, anchor_has_no_class, parsepage, get_ns
+from app.aml_utils import getpage, replace_original_link_with_outline_call, anchor_has_no_class, parsepage, get_ns
 import json
 from app.models import *
 from app import db
@@ -113,6 +113,8 @@ def __uol(soup):
     for item in most_read:
         title = item.a['title']
         link =  item.a['href']
+        if "folha.uol" in link: 
+            link = replace_original_link_with_outline_call(link)
         news.append(dict(title=title, link=link))
     return news
 
@@ -149,9 +151,9 @@ def __folha(soup):
     anchors = soup.find('ol', class_='c-most-read__list').find_all('a')
 
     for a in anchors:
-        title = a.string
-        link = a['href']
-        news.append(dict(title=title, link=link))
+        title = a.text
+        original_link = a['href']        
+        news.append(dict(title=title, link=replace_original_link_with_outline_call(original_link)))
 
     return news
 
@@ -202,7 +204,7 @@ def __veja(soup):
 
     for h2 in headers:
         news.append(dict(title=h2.next.next.next.string,
-                         link=h2.parent['href']))
+                         link=replace_original_link_with_outline_call(h2.parent['href'])))
     return news
 
 
