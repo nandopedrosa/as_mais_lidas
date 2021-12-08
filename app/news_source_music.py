@@ -57,12 +57,12 @@ def __m_rockbizz(soup):
     news = []
     ns = get_ns('m_bizz')
 
-    section = soup.find('section', id='recent-posts-2')
-    items = section.find_all('li')
+    main = soup.find('main', id='main')
+    articles = main.find_all('article')
 
-    for item in items:
-        title = item.text
-        link = item.a['href']
+    for article in articles:
+        title = article.a.string
+        link = article.a['href']        
         news.append(dict(title=title, link=link))   
 
     return news    
