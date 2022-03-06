@@ -90,10 +90,7 @@ def get_outline(url):
     if(url is None):
         return ""
 
-    api_base_url = "https://api.outline.com/v3/parse_article?source_url="
-    response, content = getpage(api_base_url + url)
-    json_content = json.loads(content)
-    return "https://outline.com/" + json_content['data']['short_code']
+    return "https://12ft.io/" + url
 
 
 def replace_original_link_with_outline_call(url):
