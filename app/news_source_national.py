@@ -12,13 +12,14 @@ import json
 from app.models import *
 from app import db
 
+
 def __correio(soup):
     """
     Gets the most read news from the correio braziliense page
 
     :param soup: the BeautifulSoup object
     :return: a list with the most read news from the Correio Braziliense Page
-    """    
+    """
     news = []
     json_content = json.loads(soup.text)
     entries = json_content["matia"]
@@ -27,11 +28,11 @@ def __correio(soup):
         title = entry["title"]
         url = entry["link"]
         news.append(dict(title=title, link=url))
-        if(len(news)>=10):
+        if(len(news) >= 10):
             break
 
     return news
-   
+
 
 def g1(soup):
     """
@@ -65,7 +66,7 @@ def g1(soup):
                 end_index = script_content.find('"', key_index)
 
                 # E agora pegamos a URL (substring)
-                url = script_content[start_index : end_index]
+                url = script_content[start_index: end_index]
 
                 # Com a URL, entramos na página e descobrimos o título dela
                 response, content = getpage(url)
@@ -93,10 +94,26 @@ def __metro(soup):
     for item in container:
         a = item.a
         title = a.string
-        link = a['href'] 
+        link = a['href']
         news.append(dict(title=title, link=link))
         if len(news) == 10:
             break
+    return news
+
+def __cnn(soup):
+    """
+    Gets the most read news from the CNN brasil page
+
+    :param soup: the BeautifulSoup object
+    :return: a list with the most read news from the CNN Brasil Page
+    """    
+    news = []
+    headers = soup.find_all('h3', class_='most__read__title')    
+    for h3 in headers:
+        title = h3.a['title']
+        link = h3.a['href'] 
+        news.append(dict(title=title, link=link))
+    
     return news
 
 def __uol(soup):
@@ -112,8 +129,8 @@ def __uol(soup):
 
     for item in most_read:
         title = item.a['title']
-        link =  item.a['href']
-        if "folha.uol" in link: 
+        link = item.a['href']
+        if "folha.uol" in link:
             link = replace_original_link_with_outline_call(link)
         news.append(dict(title=title, link=link))
     return news
@@ -148,12 +165,14 @@ def __folha(soup):
     """
     news = []
 
-    anchors = soup.find('ol', class_='c-most-read__list').find_all('a')
+    items = soup.find('li', class_='c-most-popular__item')
 
-    for a in anchors:
-        title = a.text
-        original_link = a['href']        
-        news.append(dict(title=title, link=replace_original_link_with_outline_call(original_link)))
+    for item in items:
+        div = item.find('div', class_='c-most-popular__content')
+        link = div.a['href']
+        title = div.a.string
+        news.append(
+            dict(title=title, link=replace_original_link_with_outline_call(link)))
 
     return news
 
@@ -166,7 +185,8 @@ def __bol(soup):
     :return: a list with the most read news from the BOL Page
     """
     news = []
-    anchors = soup.find('div', class_='mais-clicadas-lista link-primary').find_all('a')
+    anchors = soup.find(
+        'div', class_='mais-clicadas-lista link-primary').find_all('a')
 
     for a in anchors:
         title = a.find('span', class_='mais-clicadas-item-content').text
@@ -200,10 +220,11 @@ def __veja(soup):
     """
     news = []
 
-    links = soup.find('section', class_='block most-read dark').find_all('a', class_='card')
+    links = soup.find(
+        'section', class_='block most-read dark').find_all('a', class_='card')
 
     for link in links:
-        title = link.h2.text        
+        title = link.h2.text
         news.append(dict(title=title,
                          link=replace_original_link_with_outline_call(link['href'])))
     return news
@@ -266,7 +287,8 @@ def __local_pe(soup):
     :return: a list with the most read news from JC Online Page
     """
     news = []
-    list_items = soup.find('div', class_='maisVistas').find_all('li', class_='texto')
+    list_items = soup.find('div', class_='maisVistas').find_all(
+        'li', class_='texto')
 
     for li in list_items:
         title = li.a.string
@@ -309,7 +331,8 @@ def __local_al(soup):
     i = 0
     for div in divs:
         title = div.find('span', class_='card-news__title')
-        news.append(dict(title=title.string, link=ns.url + title.parent['href']))
+        news.append(dict(title=title.string,
+                         link=ns.url + title.parent['href']))
         i += 1
         if i == 4:
             break
@@ -438,7 +461,8 @@ def __local_mg(soup):
    :return: a list with the most read news from Estado de Minas page
    """
     news = []
-    anchors = soup.find('ul', class_='list-unstyled list-borded mb-0').find_all('a')
+    anchors = soup.find(
+        'ul', class_='list-unstyled list-borded mb-0').find_all('a')
 
     for a in anchors:
         if a.has_attr('title'):
@@ -475,7 +499,8 @@ def __local_pr(soup):
     news = []
     ns = get_ns('localPR')
 
-    anchors = soup.find('div', class_='tbn-coluna col-4 c-mais-lidas-comentadas c-sequencia').find_all('a')
+    anchors = soup.find(
+        'div', class_='tbn-coluna col-4 c-mais-lidas-comentadas c-sequencia').find_all('a')
 
     for a in anchors:
         title = a.string
@@ -538,7 +563,8 @@ def __local_rr(soup):
     news = []
     ns = get_ns('localRR')
 
-    divs = soup.find('div', class_='mais-lidas').find_all('div', class_="ultimas-text")
+    divs = soup.find('div', class_='mais-lidas').find_all('div',
+                                                          class_="ultimas-text")
 
     for div in divs:
         a = div.find('a')
@@ -584,7 +610,8 @@ def __get_local_g1_news(soup):
  :return: a list with the most read news from a local g1 news source
  """
     news = []
-    anchors = soup.find_all('a', class_='feed-post-link gui-color-primary gui-color-hover')
+    anchors = soup.find_all(
+        'a', class_='feed-post-link gui-color-primary gui-color-hover')
 
     for a in anchors:
         title = a.string
@@ -594,7 +621,7 @@ def __get_local_g1_news(soup):
 
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies = dict(g1=g1, correio=__correio, metro=__metro, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
+strategies = dict(g1=g1, cnn=__cnn, correio=__correio, metro=__metro, uol=__uol, r7=__r7, folha=__folha, bol=__bol, carta=__carta, veja=__veja, localDF=__local_df,
                   localSP=__local_sp, localRJ=__local_rj, localPE=__local_pe, localAC=__local_ac, localAL=__local_al,
                   localAP=__local_ap, localAM=__local_am, localBA=__local_ba, localCE=__local_ce, localES=__local_es,
                   localGO=__local_go, localMA=__local_ma, localMT=__local_mt, localMS=__local_ms, localMG=__local_mg,
@@ -613,5 +640,6 @@ def get_most_read(key):
     ns = get_ns(key)
     response, content = getpage(ns.url)  # Download the page
     soup = parsepage(content)  # Then we parse it
-    strategy = strategies[key]  # Then we execute the selected Strategy based on the source
+    # Then we execute the selected Strategy based on the source
+    strategy = strategies[key]
     return strategy(soup), ns.name
