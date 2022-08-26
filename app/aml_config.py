@@ -14,17 +14,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# Mailjet settings
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
-
-# available languages
-LANGUAGES = {
-    'en': 'English',
-    'pt': 'Português'
-}
-
-BABEL_DEFAULT_LOCALE = 'pt_BR'
-
 # Database Configuration
 if os.environ.get('DATABASE_URL') is None:
     SQLALCHEMY_DATABASE_URI = (

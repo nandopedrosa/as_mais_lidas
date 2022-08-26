@@ -10,7 +10,6 @@ import html
 from app.aml_utils import getpage, replace_original_link_with_outline_call, anchor_has_no_class, parsepage, get_ns
 import json
 from app.models import *
-from app import db
 
 
 def __correio(soup):

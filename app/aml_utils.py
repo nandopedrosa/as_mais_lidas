@@ -9,59 +9,9 @@ __email__ = "fpedrosa@gmail.com"
 import httplib2
 # noinspection PyPackageRequirements
 from bs4 import BeautifulSoup
-from app import app
 from app.decorators import async_decorator
 import json
-from app.aml_config import SENDGRID_API_KEY
 from app.models import *
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
-
-# Constants
-
-IP_SERVICE_URL = "http://www.localizaip.com.br/localizar-ip.php?ip=#IP#"
-
-STATES = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI',
-          'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']
-
-
-def getstate():
-    """
-    Gets the user State Location based on their IP Address
-    :return: State Location (e.g: SP, DF, etc.)
-    """
-    try:
-        # First, we discover the user's public ip address
-        response, content = getpage('http://ip.42.pl/raw')  # Download the page
-        soup = parsepage(content)  # Then we parse it
-        ip = soup.find('body').string
-
-        if ip is None:
-            return 'notfound'
-
-        # Now we use some IP localization service to determine from where that IP comes from
-        url = IP_SERVICE_URL.replace("#IP#", ip)
-        response, content = getpage(url)
-        soup = parsepage(content)
-        data = soup.find_all('span', class_='style4')[1].get_text()
-
-        state_index = data.find("Estado")
-
-        if state_index != -1:
-            start_index = state_index + len("Estado:")
-        else:
-            return 'notfound'
-
-        end_index = start_index + 2
-
-        state = data[start_index: end_index]
-
-        if state not in STATES:
-            state = 'notfound'
-
-        return state
-    except Exception:
-        return 'notfound'
 
 
 def getpage(url):
@@ -121,41 +71,6 @@ def anchor_has_no_class(tag):
     :return: boolean value
     """
     return not tag.has_attr('class') and tag.name == 'a'
-
-
-def send_email(username, reply_to, text_body, error_msg=False):
-    """
-    Sends an email to the given recipients
-    :param username: the name of the person who sent the contact message
-    :param reply_to: the email of the person who sent the contact message
-    :param text_body: the message
-    :return: None
-    """
-
-    if not error_msg:
-        content = '<p>Reply to: ' + reply_to + '</p>' + '<p>' + text_body + '</p>'
-        content = content.replace('\r\n', '<br/>')
-    else:
-        content = text_body
-
-    message = Mail(
-        from_email='noreply@asmaislidas.com.br',
-        to_emails='fpedrosa@gmail.com',
-        subject='[asmaislidas] ' + username + ' has sent you a message',
-        html_content=content
-    )
-
-    try:
-        sg = SendGridAPIClient(SENDGRID_API_KEY)
-        response = sg.send(message)
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
-    except Exception as e:
-        print(e.message)
-
-    return response.status_code
-
 
 def get_ns(key):
     """

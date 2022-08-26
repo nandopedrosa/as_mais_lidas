@@ -5,10 +5,11 @@ __author__ = "Fernando P. Lopes"
 __email__ = "fpedrosa@gmail.com"
 
 """
-from app import app, db
 
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 
-class NewsSource(db.Model):
+class NewsSource(db.Model):    
     id_news_source = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     key = db.Column(db.String(128), unique=True, nullable=False)

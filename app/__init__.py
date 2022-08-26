@@ -6,27 +6,10 @@ __email__ = "fpedrosa@gmail.com"
 
 """
 from flask import Flask
-from flask.ext.babel import Babel
-from flask.json import JSONEncoder as BaseEncoder
-from speaklater import _LazyString
-import logging
-import logging.handlers
-from flask.ext.sqlalchemy import SQLAlchemy
-
-"""
-=================================================== Custom Config Classes ====================================
-"""
-
-
-class JSONEncoder(BaseEncoder):
-    """
-    Subclass of BaseEncoder. Allows Flask-Babel lazy_gettext to render error messages on WTForms.
-    """
-
-    def default(self, o):
-        if isinstance(o, _LazyString):
-            return str(o)
-        return BaseEncoder.default(self, o)
+from flask.templating import render_template
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+from app.facade import get_most_read
 
 """
 =================================================== App Initilization ====================================
@@ -37,13 +20,26 @@ app = Flask(__name__)
 # Load Configurations
 app.config.from_pyfile('aml_config.py')
 
-# Flask-Babel
-babel = Babel(app)
-
 # Database
-db = SQLAlchemy(app)
+from app.models import db
+db.init_app(app)
 
-# Custom JSON Serializer (necessary for Flask-Babel lazy_gettext to work)
-app.json_encoder = JSONEncoder
+DEFAULT_NS = "uol"
 
-from app import views
+@app.route('/')
+@app.route('/index', methods=["GET"])
+def index():
+    """
+    Renders the index (home) page with the default News Source
+    :return: The rendered index page
+    """
+    news, header = get_most_read(DEFAULT_NS)
+    current_year = datetime.now().year    
+    return render_template("ns.html",
+                           title='Home Page',
+                           year=current_year,
+                           news=news,
+                           header=header,
+                           )
+
+from app import views                           

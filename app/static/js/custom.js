@@ -25,11 +25,6 @@ function refreshNewsSource(obj) {
         ns: id
     };
 
-    // For local News Sources we have to fecth JQuery.data to know the location (eg.: DF, SP, etc.)
-    if (id == 'local') {
-        params.local = obj.data('state');
-    }
-
     // AJAX call to refresh the news source
     $.get(
         baseURL + '/most_read_ns',
@@ -76,14 +71,10 @@ $('.aml-btn').click(function () {
 
     if (id == 'btn-national') {
         $('.news.national').css('display', 'block');
-        $('.news.international').css('display', 'none');
-        $('#select-location').parent().show();
         firstItem = $('.national').first();
 
     } else {
         $('.national').css('display', 'none');
-        $('.international').css('display', 'block');
-        $('#select-location').parent().hide();
         firstItem = $('.international').first();
     }
     toggleMenuItem(firstItem);
@@ -98,59 +89,6 @@ $('#aml-menu > a.list-group-item').click(function () {
     refreshNewsSource($(this));
 });
 
-/*
- Change page language
- */
-$('#lang').click(function () {
-    var lang = $(this);
-    var code = 'pt';
-
-    if (lang.text().toLowerCase() == 'english') {
-        lang.text('PORTUGUÊS');
-        code = 'en';
-    } else {
-        lang.text('ENGLISH');
-    }
-
-    $.post(
-        baseURL + '/lang/' + code,
-        function () {
-            window.location.reload();
-        }
-    );
-
-});
-
-/*
- Change user location
- */
-$('#select-location').change(function () {
-    var location = $(this).val();
-
-    if (location == '')
-        return;
-
-    $.get(
-        baseURL + '/change_location',
-        {
-            location: location
-        },
-        function (responseContent) {
-            $('#local').text(responseContent.ns_name + '*');
-            $('#local').data('state', location.replace('local', '')); // e.g (localAC -> AC)
-        },
-        'json'
-    );
-
-    //Active regional news source menu item
-    toggleMenuItem($('#local'));
-
-    //Refresh regional news source after 1 second
-    setTimeout(function(){
-        $('#local').trigger('click');
-    },1000);
-
-});
 
 /*
  Resets modal fields and error messages
@@ -179,16 +117,6 @@ $('*[data-toggle="modal"]').click(function () {
 });
 
 /*
- Highlights a field with error and shows the error message
-  param: id: the field id
-  param: message: the error message
- */
-function fieldError(id, message) {
-    $(id).next('p').text(message);
-    $(id).parent('div.form-group').addClass('has-error');
-}
-
-/*
  Shows a sucess message alert
  param: formId: the id of the form related to the message
  para: message: the message content to be shown
@@ -209,30 +137,6 @@ function showErrorMesssage(formId, message) {
 }
 
 /*
- Submit contact message
- */
-$('#btn-submit-contact').click(function () {
-    removeErrorAlert('#contact-modal');
-    $.post(
-        baseURL + '/send_message',
-        $('#contact-form').serialize(),
-        function (data) {
-            if (data.error) {
-                if (data.name != undefined) fieldError('#contact-name', data.name[0]);
-                if (data.email != undefined) fieldError('#contact-email', data.email[0]);
-                if (data.message != undefined) fieldError('#contact-message', data.message[0]);
-                showErrorMesssage('#contact-form', data.status);
-            } else {
-                resetModal('#contact-modal');
-                showSuccessMessage('#contact-form', data.status);
-            }
-        },
-        'json'
-    );
-});
-
-
-/*
  Change category
  */
 $('#select-category').change(function() {
@@ -249,12 +153,8 @@ $('#select-category').change(function() {
 
     // We only show the Location Select and National/International Buttons for the News Category
     if(category != 'news') {
-        $('#select-location').parent().hide();
-        $('#btn-international').hide();
         $('#btn-national').hide();
     } else {
-        $('#select-location').parent().show();
-        $('#btn-international').show();
         $('#btn-national').show();
     }
 
