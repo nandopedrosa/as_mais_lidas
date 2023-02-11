@@ -41,7 +41,6 @@ def index():
                            news=news,
                            header=header,
                            )
+                           
 
-from app import views           
-
-
+from app import views      
