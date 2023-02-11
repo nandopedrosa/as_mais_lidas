@@ -9,8 +9,9 @@ from app.aml_utils import getpage, parsepage, get_ns
 import requests
 
 limit = 5
-timeframe = 'today' #hour, day, week, month, year, all
-listing = 'top' # controversial, best, hot, new, random, rising, top
+timeframe = 'today'  # hour, day, week, month, year, all
+listing = 'top'  # controversial, best, hot, new, random, rising, top
+
 
 def __re_any(subreddit):
     """
@@ -20,8 +21,17 @@ def __re_any(subreddit):
     """
     posts = []
     base_url = f'https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}'
-    result = requests.get(base_url, headers={'user-agent': 'your bot 0.1'})
-    if(result.status_code != 200):
+    headers = {'User-Agent': 'AsMaisLidas by /u/nandopedrosa'}
+
+    session = requests.Session()
+
+    session.proxies = {
+        'http': 'http://159.203.61.169:8080',
+    }
+
+    result = session.get(base_url, headers=headers)
+
+    if (result.status_code != 200):
         print("REQUEST RESULT: " + str(result.text))
     json_data = result.json()
 
@@ -33,7 +43,7 @@ def __re_any(subreddit):
 
 
 # Strategy Pattern - a dictionary of functions. Key: the name of the News Source. Value: the Function to execute
-strategies=dict(re_ask=__re_any, re_science=__re_any, re_life=__re_any, re_world=__re_any,  re_til=__re_any, re_iama=__re_any, re_aww=__re_any,
+strategies = dict(re_ask=__re_any, re_science=__re_any, re_life=__re_any, re_world=__re_any,  re_til=__re_any, re_iama=__re_any, re_aww=__re_any,
                   re_bros=__re_any, re_derps=__re_any, re_interestingasfuck=__re_any, re_damnthatsinteresting=__re_any, re_nextfuckinglevel=__re_any)
 
 
@@ -44,6 +54,6 @@ def get_most_read(key):
     :param key: the key of the source page (e.g: g1)
     :return: a list with the most read news from the page and the name of news source
     """
-    ns=get_ns(key)
-    strategy=strategies[key]
+    ns = get_ns(key)
+    strategy = strategies[key]
     return strategy(ns.url), ns.name
