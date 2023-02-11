@@ -23,13 +23,11 @@ def __re_any(subreddit):
     base_url = f'https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}'
     headers = {'User-Agent': 'AsMaisLidas by /u/nandopedrosa'}
 
-    session = requests.Session()
-
-    session.proxies = {
-        'http': 'http://159.203.61.169:8080',
+    proxies = {
+        'http': 'http://114.7.27.98:8080',
     }
 
-    result = session.get(base_url, headers=headers)
+    result = requests.get(base_url, headers=headers, proxies=proxies)
 
     if (result.status_code != 200):
         print("REQUEST RESULT: " + str(result.text))
