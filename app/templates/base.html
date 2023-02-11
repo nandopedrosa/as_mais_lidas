@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-          content="As notícias mais lidas dos maiores Sites de Notícias de todo o mundo">
+    <meta name="description" content="As notícias mais lidas dos maiores Sites de Notícias de todo o mundo">
     <meta name="author" content="Fernando Pedrosa">
 
     <title id="page-title">As Mais Lidas</title>
@@ -27,150 +26,161 @@
     <link rel="apple-touch-icon" sizes="114x114" href="../static/images/114.png">
     <link rel="apple-touch-icon" sizes="76x76" href="../static/images/76.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../static/images/72.png">
-    
-    
+
+
 
 </head>
 
 <body>
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-static-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="navbar-header pull-right" id="navbar-info">
+                <ul class="list-inline" id="aml-nav-menu">
+                    <li>
+                        <a id="about" href="#" data-toggle="modal" data-target="#about-modal">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div class="container aml-top-header">
+        <div class="row">
+            <div class="jumbotron">
+                <h1 id="aml-title">As Mais Lidas
+                    <small>As notícias que você quer ler.</small>
+                </h1>
+                <p id="aml-description">Aqui você encontra as matérias mais lidas dos grandes Portais de Notícias
+                    nacionais!</p>
+            </div>
+        </div>
+    </div>
+    <!-- /Navigation -->
     <div class="container">
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="navbar-header pull-right" id="navbar-info">
-            <ul class="list-inline" id="aml-nav-menu">    
-                <li>
-                    <a id="about" href="#" data-toggle="modal" data-target="#about-modal">Sobre</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+        <div class="row">
+            <div class="form-group col-xs-5  col-md-2">
+                <label id="label-select-category" for="select-category">Categoria</label>
+                <select class="form-control" id="select-category">
+                    <option value="news">Notícias</option>
+                    <option value="technology">Tecnologia</option>
+                    <option value="entertainment">Entretenimento</option>
+                    <option value="music">Música</option>
+                </select>
+            </div>
 
-<div class="container aml-top-header">
-    <div class="row">
-        <div class="jumbotron">
-            <h1 id="aml-title">As Mais Lidas
-                <small>As notícias que você quer ler.</small>
-            </h1>
-            <p id="aml-description">Aqui você encontra as matérias mais lidas dos grandes Portais de Notícias nacionais!</p>            
-        </div>
-    </div>
-</div>
-<!-- /Navigation -->
-<div class="container">
-    <div class="row">
-        <div class="form-group col-xs-5  col-md-2">
-            <label id="label-select-category" for="select-category">Categoria</label>
-            <select class="form-control" id="select-category">
-                <option value="news">Notícias</option>                
-                <option value="technology">Tecnologia</option>
-                <option value="entertainment">Entretenimento</option>
-                <option value="music">Música</option>
-                <option value="reddit">Reddit</option>
-            </select>
         </div>
 
-    </div>
+        <div class="row">
+            <div class="col-xs-5 col-md-2">
+                <div class="list-group" id="aml-menu">
+                    <a href="javascript:void(0)" id="uol" class="list-group-item news active national">UOL</a>
+                    <a href="javascript:void(0)" id="g1" class="list-group-item news national">G1</a>
+                    <a href="javascript:void(0)" id="cnn" class="list-group-item news national">CNN</a>
+                    <a href="javascript:void(0)" id="veja" class="list-group-item news national">Veja</a>
+                    <a href="javascript:void(0)" id="correio" class="list-group-item news national">Correio
+                        Braziliense</a>
+                    <a href="javascript:void(0)" id="en_fuxico"
+                        class="list-group-item entertainment national">Fuxico</a>
+                    <a href="javascript:void(0)" id="en_nerd" class="list-group-item entertainment national">Jovem
+                        Nerd</a>
 
-    <div class="row">
-        <div class="col-xs-5 col-md-2">
-            <div class="list-group" id="aml-menu">
-                <a href="javascript:void(0)" id="uol" class="list-group-item news active national">UOL</a>
-                <a href="javascript:void(0)" id="g1" class="list-group-item news national">G1</a>                
-                <a href="javascript:void(0)" id="cnn" class="list-group-item news national">CNN</a>
-                <a href="javascript:void(0)" id="veja" class="list-group-item news national">Veja</a>  
-                <a href="javascript:void(0)" id="correio" class="list-group-item news national">Correio Braziliense</a>                  
-                <a href="javascript:void(0)" id="en_fuxico" class="list-group-item entertainment national">Fuxico</a>
-                <a href="javascript:void(0)" id="en_nerd" class="list-group-item entertainment national">Jovem Nerd</a>
+                    <a href="javascript:void(0)" id="tec_g1" class="list-group-item technology national">G1
+                        Tecnologia</a>
+                    <a href="javascript:void(0)" id="tec_tecmundo"
+                        class="list-group-item technology national">Tecmundo</a>
 
-                <a href="javascript:void(0)" id="tec_g1" class="list-group-item technology national">G1 Tecnologia</a>
-                <a href="javascript:void(0)" id="tec_tecmundo" class="list-group-item technology national">Tecmundo</a>
-                
-                <a href="javascript:void(0)" id="m_bizz" class="list-group-item music national">Rock Bizz</a>
-                <a href="javascript:void(0)" id="m_rs" class="list-group-item music national">Rolling Stone</a>
+                    <a href="javascript:void(0)" id="m_bizz" class="list-group-item music national">Rock Bizz</a>
+                    <a href="javascript:void(0)" id="m_rs" class="list-group-item music national">Rolling Stone</a>
 
-                <a href="javascript:void(0)" id="re_ask" class="list-group-item reddit national">Ask Reddit</a>
-                <a href="javascript:void(0)" id="re_til" class="list-group-item reddit national">TIL</a>
-                <a href="javascript:void(0)" id="re_world" class="list-group-item reddit national">World News</a>
-                <a href="javascript:void(0)" id="re_life" class="list-group-item reddit national">Life Pro Tips</a>
-                <a href="javascript:void(0)" id="re_science" class="list-group-item reddit national">Science</a>                             
+                    <a href="javascript:void(0)" id="re_ask" class="list-group-item reddit national">Ask Reddit</a>
+                    <a href="javascript:void(0)" id="re_til" class="list-group-item reddit national">TIL</a>
+                    <a href="javascript:void(0)" id="re_world" class="list-group-item reddit national">World News</a>
+                    <a href="javascript:void(0)" id="re_life" class="list-group-item reddit national">Life Pro Tips</a>
+                    <a href="javascript:void(0)" id="re_science" class="list-group-item reddit national">Science</a>
+
+                </div>
+            </div>
+
+            <div id="loading"><img src="../static/images/ajax-loader.gif"></div>
+
+            <!-- Page Content -->
+            <div class="col-xs-7 col-md-10">
+                {% block content %} {% endblock %}
 
             </div>
+            <!-- /Page Content -->
         </div>
-
-        <div id="loading"><img src="../static/images/ajax-loader.gif"></div>
-
-        <!-- Page Content -->
-        <div class="col-xs-7 col-md-10">
-            {% block content %} {% endblock %}
-
-        </div>
-        <!-- /Page Content -->
+        <!-- /Row -->
     </div>
-    <!-- /Row -->
-</div>
-<!-- /Container -->
+    <!-- /Container -->
 
-<div class="container text-center">
-    <footer class="footer">
-        <p class="footer-text">Copyright © As Mais Lidas {{ year }}</p>
-    </footer>
-</div>
+    <div class="container text-center">
+        <footer class="footer">
+            <p class="footer-text">Copyright © As Mais Lidas {{ year }}</p>
+        </footer>
+    </div>
 
-<!-- Modals -->
+    <!-- Modals -->
 
-<!-- About Modal -->
+    <!-- About Modal -->
 
-<div id="about-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div id="about-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="about-header">Sobre</h4>
-            </div>
-            <div class="modal-body" id="about-modal-body">
-                <p><b>As Mais Lidas</b> é um site para aqueles que querem ir direto ao ponto.</p>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="about-header">Sobre</h4>
+                </div>
+                <div class="modal-body" id="about-modal-body">
+                    <p><b>As Mais Lidas</b> é um site para aqueles que querem ir direto ao ponto.</p>
 
-                <p>A ideia veio ao pensar naqueles que não têm tempo (ou vontade) de navegar em vários sites apenas para encontrar o que realmente interessa.</p>
+                    <p>A ideia veio ao pensar naqueles que não têm tempo (ou vontade) de navegar em vários sites apenas
+                        para encontrar o que realmente interessa.</p>
 
-                <p> Aqui você pode encontrar, em um único lugar, as notícias mais lidas dos maiores sites de todo o mundo e conseguir informação em questão de minutos!</p>            
+                    <p> Aqui você pode encontrar, em um único lugar, as notícias mais lidas dos maiores sites de todo o
+                        mundo e conseguir informação em questão de minutos!</p>
 
-                <p> Dúvidas ou sugestões, mande um email para <a href="mailto:asmaislidas@gmail.com">asmaislidas@gmail.com</a></p>
-            </div>
-            <div class="modal-footer">
-                <button id="btn-close-about-modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <p> Dúvidas ou sugestões, mande um email para <a
+                            href="mailto:asmaislidas@gmail.com">asmaislidas@gmail.com</a></p>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-close-about-modal" type="button" class="btn btn-default"
+                        data-dismiss="modal">Fechar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<!-- jQuery -->
-<script src="../static/js/jquery/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="../static/js/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap JavaScript -->
-<script src="../static/css/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="../static/css/bootstrap/js/bootstrap.min.js"></script>
 
 
-<!-- Custom JavaScript -->
-<script src="../static/js/custom.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="../static/js/custom.js"></script>
 
-<!-- Google Analyics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <!-- Google Analyics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-69683343-2', 'auto');
-  ga('send', 'pageview');
+        ga('create', 'UA-69683343-2', 'auto');
+        ga('send', 'pageview');
 
-</script>
+    </script>
 
 </body>
 
