@@ -21,6 +21,7 @@ def __re_any(subreddit):
     posts = []
     base_url = f'https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}'
     request = requests.get(base_url, headers={'User-agent': 'asmaislidas'})
+    print("REQUEST RESULT: " + str(request))
     json_data = request.json()
 
     for post in json_data['data']['children']:
